@@ -105,7 +105,7 @@ tbody tr:nth-child(even){background:var(--surface-2)}
   <p class="kicker">HBO Werktuigbouwkunde · Programmeren &amp; Mechatronica · robothond Bello</p>
   <h1>De Bello-omgeving op je eigen laptop</h1>
   <p class="lead">Installeren, starten, werken, bijwerken, en wat je doet als het niet werkt.</p>
-  <p><span class="versie">handleiding bij versie 2026.11.04</span></p>
+  <p><span class="versie">handleiding bij versie 2026.11.04b</span></p>
 
   <nav class="inhoud" aria-label="Inhoud">
     <a href="#wat">1. Wat je krijgt</a>
@@ -187,15 +187,14 @@ docker compose --profile pico stop        # stoppen
 docker compose --profile pico pull &amp;&amp; docker compose --profile pico up -d   # bijwerken</code></pre>
 
   <h2 id="startpagina">5. De startpagina</h2>
-  <p>Op <code>localhost:8000</code> staan vijf tegels. Elke tegel opent een eigen tabblad.</p>
+  <p>Op <code>localhost:8000</code> staan vier tegels. Elke tegel opent een eigen tabblad.</p>
   <div class="kaarten">
     <div class="kaart"><b>1. Bello in 3D</b>Het beeld van de simulatie. Met de muis draai en zoom je.
       Onder het beeld staat de console: wat Bello zegt en de foutmeldingen uit je code.
       <small>De knop met de luidspreker zet het blafgeluid aan; browsers spelen pas geluid na een klik.</small></div>
     <div class="kaart"><b>2. Je code</b>De editor (VS Code in de browser) met <code>mijn_code.py</code>. Hier werk je.</div>
     <div class="kaart"><b>3. AI-tutor</b>Hints bij fouten en begrippen, geen uitwerkingen. Werkt vanaf week 3 met je eigen sleutel.</div>
-    <div class="kaart"><b>4. Bello op afstand (MQTT)</b>Hoe een Pico W of de Pico-emulator Bello commando's stuurt. Vanaf week 6, en bij de demo in week 1.</div>
-    <div class="kaart"><b>5. Pico in de browser (Velxio)</b>Een nagebootste Raspberry Pi Pico met LED-ogen, noodstop en oefenpoot, al bedraad.</div>
+    <div class="kaart"><b>4. Pico in de browser (Velxio)</b>Een nagebootste Raspberry Pi Pico met LED-ogen, noodstop en oefenpoot, al bedraad.</div>
   </div>
   <p>Onderaan de startpagina staan het versienummer en de lijst <em>wat is er nieuw</em>.</p>
 
@@ -228,7 +227,7 @@ bello.zwaai()</code></pre>
   de vensters naast elkaar werkt het prettigst.</div>
 
   <h2 id="pico">7. Pico in de browser</h2>
-  <p>Tegel 5 opent Velxio met het Bello-project: een Raspberry Pi Pico met LED-ogen op GP14 en
+  <p>Tegel 4 opent Velxio met het Bello-project: een Raspberry Pi Pico met LED-ogen op GP14 en
   GP15, een noodstop op GP16, twee servo's van de oefenpoot op GP12 en GP13 en een MPU6050 op
   I2C0. De bedrading staat al klaar; <code>main.py</code> bevat een voorbeeldprogramma.</p>
   <ol class="stappen">
@@ -238,7 +237,9 @@ bello.zwaai()</code></pre>
     <li>Druk op <strong>Stop</strong> om het programma te stoppen. Een nieuwe Run begint met Bello op de startpositie.</li>
   </ol>
   <p>Voorwaarde: Bello luistert pas als je eigen <code>mijn_code.py</code> klaar is. In de console
-  staat dan <code>[Bello/pico] klaar</code>. Een programma dat eindeloos doorloopt houdt Bello bezet.</p>
+  staat dan <code>[Bello/pico] klaar</code>. Een programma dat eindeloos doorloopt houdt Bello bezet.
+  Dit luisteren gebeurt vanzelf, je hoeft er niets voor in te stellen; vanaf week 6 stuurt een echte
+  Pico W op hetzelfde wifi op dezelfde manier commando's.</p>
 
   <h2 id="tutor">8. De AI-tutor</h2>
   <p>De tutor geeft hints, geen antwoorden. Hij leest je <code>mijn_code.py</code> en de laatste
@@ -303,7 +304,7 @@ bello.zwaai()</code></pre>
       <tr><td>Rode foutmelding meteen na <code>starten.cmd</code>, of <code>docker</code> wordt niet herkend</td><td>Docker Desktop draait niet</td><td>Start Docker Desktop, wacht op de rustige walvis, probeer opnieuw</td></tr>
       <tr><td><code>starten.cmd</code> stopt tijdens het ophalen</td><td>Geen internet of te weinig schijfruimte</td><td>Controleer beide en start opnieuw; wat al binnen is blijft binnen</td></tr>
       <tr><td>Pagina op <code>localhost:8000</code> blijft leeg</td><td>De simulator is nog aan het opstarten</td><td>Wacht een halve minuut en ververs</td></tr>
-      <tr><td>3D-beeld blijft zwart, "verbinden"</td><td>De eerste keer laadt de viewer code van internet</td><td>Internet aanzetten, ververs; daarna werkt het offline</td></tr>
+      <tr><td>3D-beeld blijft zwart</td><td>De pagina heeft oude viewer-code in de browsercache, of was verbonden voordat de simulator klaar was</td><td>Druk <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd> (verversen zonder cache). Blijft het zwart met "verbinden": de eerste keer heeft de viewer internet nodig; daarna werkt hij offline</td></tr>
       <tr><td>Bello reageert niet na opslaan</td><td>Fout in je code, of de simulatie staat op pauze</td><td>Kijk in de console naar een rode regel; druk <kbd>F6</kbd> als je zelf op Pauze had gedrukt</td></tr>
       <tr><td>De Pico-emulator beweegt Bello niet</td><td>Je programma in <code>mijn_code.py</code> is nog niet klaar</td><td>Wacht op <code>[Bello/pico] klaar</code> in de console; controleer met <kbd>F12</kbd> op de Velxio-pagina of er <code>[max-hook] verbonden met brug</code> staat</td></tr>
       <tr><td>Tutor zegt "geen taalmodel"</td><td>Geen sleutel in <code>.env</code></td><td>Normaal tot week 3; daarna sleutel invullen en herstarten</td></tr>
@@ -332,7 +333,7 @@ bello.zwaai()</code></pre>
   <h3>Moet Docker Desktop altijd aan staan?</h3>
   <p>Alleen als je met Bello werkt. Sluit je het, dan stopt alles; je code blijft bewaard.</p>
 
-  <p class="foot">Programmeren &amp; Mechatronica · Bello-omgeving · handleiding bij versie 2026.11.04.
+  <p class="foot">Programmeren &amp; Mechatronica · Bello-omgeving · handleiding bij versie 2026.11.04b.
   Technische details voor de docent staan in <code>cursus/container/README.md</code>.</p>
 </main>
 </body>

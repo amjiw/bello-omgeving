@@ -2,6 +2,15 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04b - na de eerste test op een studentlaptop
+
+- Startpagina: tegel "Bello op afstand (MQTT)" weg; Bello luistert toch al vanzelf. De Pico-tegel is nu nummer 4.
+- Startpagina: link naar de handleiding, naast de versie.
+- Tutor zonder sleutel: duidelijke melding met de stappen voor de Groq-sleutel, technische regel alleen bij een echte storing.
+- 3D-beeld: de camera staat bij het starten meteen op Bello gericht, iets van opzij zodat je hem ziet lopen; schuiven is niet meer nodig.
+- Handleiding: bij een zwart 3D-beeld eerst Ctrl+Shift+R (verversen zonder cache).
+- Fout opgelost: na de Stop-knop reageerde Bello niet meer op de Pico-emulator (de luisterlus kreeg een Bello zonder de speelse commando's en crashte bij `geef_poot`). Ook blijft de simulatie nu bereikbaar als het luisteren onverhoopt misgaat.
+
 ## 2026.11.04 - eerste uitgave
 
 - Bello in 3D, de editor met Run/Pauze/Stop/Snel, de console met geluid.

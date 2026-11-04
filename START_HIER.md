@@ -21,10 +21,10 @@ en de Pico-emulator) draait in Docker-containers op je eigen laptop. Je werkt in
    `stoppen.cmd`, `bijwerken.cmd` en `diagnose.cmd`) en dubbelklik op **`starten.cmd`**. De eerste
    keer haalt hij ongeveer 3,5 GB op (doe dit thuis of op het schoolnetwerk, niet via je telefoon);
    daarna start hij in een halve minuut. De browser
-   opent `http://localhost:8000` met de tegels: Bello in 3D, je code, de AI-tutor, Bello op
-   afstand en de Pico in de browser.
+   opent `http://localhost:8000` met de tegels: Bello in 3D, je code, de AI-tutor en de Pico
+   in de browser.
 4. Klik op tegel 2, open `mijn_code.py`, verander een getal, druk F5. Bello doet wat je typt.
-5. Klik op tegel 5: de Pico-emulator (Velxio) opent met het Bello-project, al bedraad. Druk op
+5. Klik op tegel 4: de Pico-emulator (Velxio) opent met het Bello-project, al bedraad. Druk op
    Run: de LED-ogen gaan aan en elke `CMD:`-regel in de seriële monitor wordt een beweging van
    Bello in het 3D-tabblad.
 

@@ -2,6 +2,10 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04f - taalmodel
+
+- Overal "taalmodel" in plaats van "motor": statusregel en logboek van de tutor, startpagina, handleiding.
+
 ## 2026.11.04e - handleiding en cursus van acht weken
 
 - Handleiding: foto van Bello op pagina 1, uitleg van logboek (knop via tegel 3) en kennismap.

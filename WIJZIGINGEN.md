@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04e - handleiding en cursus van acht weken
+
+- Handleiding: foto van Bello op pagina 1, uitleg van logboek (knop via tegel 3) en kennismap.
+- Tutor-kennisbank: de cursus in de nieuwe vorm (acht practica, project in viertallen, assessment in week 9).
+
 ## 2026.11.04d - opmaak en kennisbank
 
 - Startpagina: de links "de standaardviewer" en "de consolepagina" vielen buiten tegel 1 en 2.

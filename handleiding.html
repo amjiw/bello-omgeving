@@ -185,7 +185,7 @@ docker compose --profile pico stop        # stoppen
 docker compose --profile pico pull &amp;&amp; docker compose --profile pico up -d   # bijwerken</code></pre>
 
   <h2 id="startpagina">5. De startpagina</h2>
-  <p>Op <code>localhost:8000</code> staan vijf kaarten. Elke kaart opent een eigen tabblad.</p>
+  <p>Op <code>localhost:8000</code> staan vijf tegels. Elke tegel opent een eigen tabblad.</p>
   <div class="kaarten">
     <div class="kaart"><b>1. Bello in 3D</b>Het beeld van de simulatie. Met de muis draai en zoom je.
       Onder het beeld staat de console: wat Bello zegt en de foutmeldingen uit je code.
@@ -198,7 +198,7 @@ docker compose --profile pico pull &amp;&amp; docker compose --profile pico up -
   <p>Onderaan de startpagina staan het versienummer en de lijst <em>wat is er nieuw</em>.</p>
 
   <h2 id="editor">6. Werken in de editor</h2>
-  <p>Kaart 2 opent de map met <code>mijn_code.py</code>. Dat is jouw bestand: alles wat je Bello laat
+  <p>Tegel 2 opent de map met <code>mijn_code.py</code>. Dat is jouw bestand: alles wat je Bello laat
   doen, schrijf je hier. Elk programma begint met:</p>
 <pre><code>from max_speels import Bello
 bello = Bello()
@@ -222,7 +222,7 @@ bello.zwaai()</code></pre>
   de vensters naast elkaar werkt het prettigst.</div>
 
   <h2 id="pico">7. Pico in de browser</h2>
-  <p>Kaart 5 opent Velxio met het Bello-project: een Raspberry Pi Pico met LED-ogen op GP14 en
+  <p>Tegel 5 opent Velxio met het Bello-project: een Raspberry Pi Pico met LED-ogen op GP14 en
   GP15, een noodstop op GP16, twee servo's van de oefenpoot op GP12 en GP13 en een MPU6050 op
   I2C0. De bedrading staat al klaar; <code>main.py</code> bevat een voorbeeldprogramma.</p>
   <ol class="stappen">
@@ -245,9 +245,9 @@ bello.zwaai()</code></pre>
   het bestand <code>.env</code> in je map:</p>
 <pre><code>GROQ_API_KEY=gsk_...</code></pre>
   <p>Daarna <code>stoppen.cmd</code> en <code>starten.cmd</code>. Je vindt de tutor op drie plekken,
-  en het is overal dezelfde: kaart 3, in de editor via <kbd>Ctrl</kbd>+<kbd>L</kbd>, en in de
+  en het is overal dezelfde: tegel 3, in de editor via <kbd>Ctrl</kbd>+<kbd>L</kbd>, en in de
   terminal van de editor met <code>opencode</code>. Alles komt in een logboek op je eigen laptop
-  (knop <em>logboek</em> op kaart 3); de docent mag er bij de live-demo naar vragen.</p>
+  (knop <em>logboek</em> op tegel 3); de docent mag er bij de live-demo naar vragen.</p>
   <div class="let-op"><b>Je sleutel is persoonlijk.</b> Nooit delen, nooit in je code zetten, nooit in een
   verslag plakken. Tot week 3 mag <code>.env</code> leeg blijven; de tutor meldt dan netjes dat er
   geen taalmodel is.</div>

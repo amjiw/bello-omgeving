@@ -105,7 +105,7 @@ tbody tr:nth-child(even){background:var(--surface-2)}
   <p class="kicker">HBO Werktuigbouwkunde · Programmeren &amp; Mechatronica · robothond Bello</p>
   <h1>De Bello-omgeving op je eigen laptop</h1>
   <p class="lead">Installeren, starten, werken, bijwerken, en wat je doet als het niet werkt.</p>
-  <p><span class="versie">handleiding bij versie 2026.11.04b</span></p>
+  <p><span class="versie">handleiding bij versie 2026.11.04c</span></p>
 
   <nav class="inhoud" aria-label="Inhoud">
     <a href="#wat">1. Wat je krijgt</a>
@@ -287,7 +287,7 @@ bello.zwaai()</code></pre>
     <thead><tr><th>Wat</th><th>Hoe</th></tr></thead>
     <tbody>
       <tr><td>Stoppen</td><td><code>stoppen.cmd</code>, of de container stoppen in Docker Desktop. Je code blijft bewaard.</td></tr>
-      <tr><td>Nieuwe versie van de docent</td><td><code>bijwerken.cmd</code>. Haalt de nieuwste instellingen van GitHub en alleen het verschil in de images (meestal enkele megabytes), herstart, en je eigen <code>mijn_code.py</code> blijft staan.</td></tr>
+      <tr><td>Nieuwe versie van de docent</td><td>Gaat vanzelf: <code>starten.cmd</code> kijkt bij elke start of er een nieuwe versie is en haalt alleen het verschil op (meestal enkele megabytes). Laat je de omgeving dagen draaien, dan meldt de startpagina een nieuwe versie; dan <code>stoppen.cmd</code> en <code>starten.cmd</code>, of <code>bijwerken.cmd</code> (haalt ook nieuwe instellingen op). Je eigen <code>mijn_code.py</code> blijft altijd staan.</td></tr>
       <tr><td>Welke versie heb ik?</td><td>Onderaan de startpagina. Dit is de eerste vraag die de docent stelt bij een storing.</td></tr>
       <tr><td>Terugdraaien</td><td>Zet in <code>.env</code> de regel <code>BELLO_VERSIE=2026.11.04</code> (de oude datum) en draai <code>bijwerken.cmd</code>. Terug naar nieuw: <code>BELLO_VERSIE=latest</code>.</td></tr>
       <tr><td>Lokale AI aan of uit</td><td><code>ai_lokaal_aan.cmd</code> / <code>ai_lokaal_uit.cmd</code>. Alleen zinvol met 16 GB werkgeheugen.</td></tr>
@@ -333,7 +333,7 @@ bello.zwaai()</code></pre>
   <h3>Moet Docker Desktop altijd aan staan?</h3>
   <p>Alleen als je met Bello werkt. Sluit je het, dan stopt alles; je code blijft bewaard.</p>
 
-  <p class="foot">Programmeren &amp; Mechatronica · Bello-omgeving · handleiding bij versie 2026.11.04b.
+  <p class="foot">Programmeren &amp; Mechatronica · Bello-omgeving · handleiding bij versie 2026.11.04c.
   Technische details voor de docent staan in <code>cursus/container/README.md</code>.</p>
 </main>
 </body>

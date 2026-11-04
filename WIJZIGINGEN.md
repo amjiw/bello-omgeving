@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04c - updates vanzelf
+
+- `starten.cmd` controleert bij elke start of er een nieuwe versie is en haalt die op (zonder internet: overgeslagen).
+- De startpagina meldt het als er een nieuwere versie is dan die op je laptop draait.
+
 ## 2026.11.04b - na de eerste test op een studentlaptop
 
 - Startpagina: tegel "Bello op afstand (MQTT)" weg; Bello luistert toch al vanzelf. De Pico-tegel is nu nummer 4.

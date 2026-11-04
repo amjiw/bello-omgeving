@@ -9,7 +9,8 @@ Docker-containers op je eigen laptop. Je werkt in de browser.
 
 1. Installeer [Docker Desktop](https://www.docker.com/products/docker-desktop/) en start het.
 2. Pak de zip uit op een vaste plek, bijvoorbeeld `Documenten\bello-omgeving`.
-3. Dubbelklik op `starten.cmd`. De eerste keer haalt hij ongeveer 3,5 GB op.
+3. Open de uitgepakte map `bello-omgeving` en dubbelklik daar op `starten.cmd`. De eerste keer
+   haalt hij ongeveer 3,5 GB op.
 4. De browser opent `http://localhost:8000`.
 
 De volledige handleiding staat in de zip (`handleiding.html`, dubbelklikken) en in

@@ -17,8 +17,10 @@ en de Pico-emulator) draait in Docker-containers op je eigen laptop. Je werkt in
 2. Download de zip via https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-omgeving.zip
    (als je dit leest heb je hem al) en pak hem uit op een vaste plek, bijvoorbeeld
    `Documenten\bello-omgeving`. Verplaats de map daarna niet meer.
-3. Dubbelklik op **`starten.cmd`**. De eerste keer haalt hij ongeveer 3,5 GB op (doe dit thuis of
-   op het schoolnetwerk, niet via je telefoon); daarna start hij in een halve minuut. De browser
+3. Open in de Verkenner de uitgepakte map `bello-omgeving` (daar staan de knoppen `starten.cmd`,
+   `stoppen.cmd`, `bijwerken.cmd` en `diagnose.cmd`) en dubbelklik op **`starten.cmd`**. De eerste
+   keer haalt hij ongeveer 3,5 GB op (doe dit thuis of op het schoolnetwerk, niet via je telefoon);
+   daarna start hij in een halve minuut. De browser
    opent `http://localhost:8000` met de kaarten: Bello in 3D, je code, de AI-tutor, Bello op
    afstand en de Pico in de browser.
 4. Klik op kaart 2, open `mijn_code.py`, verander een getal, druk F5. Bello doet wat je typt.

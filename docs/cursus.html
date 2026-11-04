@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inleiding Programmeren &amp; Mechatronica — 10 weken met robothond Bello (HBO Werktuigbouwkunde)</title>
+<style>
+  :root {
+    --blauw: #1a4b8c;
+    --blauw-licht: #e8f0fb;
+    --groen: #1e7a45;
+    --groen-licht: #e6f4ec;
+    --oranje: #c05a10;
+    --oranje-licht: #fdf0e3;
+    --geel-licht: #fdf6dd;
+    --geel-rand: #c9a227;
+    --grijs: #55606e;
+    --code-bg: #1e2430;
+    --code-tekst: #e6edf3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    margin: 0; color: #1d2530; background: #f5f7fa; line-height: 1.6;
+  }
+  header.top {
+    background: linear-gradient(135deg, #123363, #1a4b8c 60%, #2e6bbf);
+    color: #fff; padding: 2.2rem 1.5rem 1.8rem;
+  }
+  header.top h1 { margin: 0 0 .4rem; font-size: 1.7rem; }
+  header.top p { margin: .2rem 0; opacity: .92; max-width: 62rem; }
+  nav.weeknav {
+    position: sticky; top: 0; z-index: 10; background: #fff;
+    border-bottom: 2px solid var(--blauw); padding: .45rem 1rem;
+    display: flex; flex-wrap: wrap; gap: .35rem; align-items: center;
+  }
+  nav.weeknav a {
+    text-decoration: none; color: var(--blauw); font-weight: 600; font-size: .85rem;
+    padding: .2rem .55rem; border-radius: 99px; border: 1px solid #c8d6ea;
+  }
+  nav.weeknav a:hover { background: var(--blauw-licht); }
+  main { max-width: 62rem; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
+  section.week, section.blok {
+    background: #fff; border: 1px solid #dde4ee; border-radius: 12px;
+    padding: 1.4rem 1.6rem; margin: 1.6rem 0; box-shadow: 0 1px 3px rgba(20,40,80,.06);
+  }
+  section.week > h2 { margin-top: 0; color: var(--blauw); border-bottom: 2px solid var(--blauw-licht); padding-bottom: .4rem; }
+  section.blok > h2 { margin-top: 0; color: var(--blauw); }
+  h3 { color: #17335e; margin-bottom: .3rem; }
+  .weeklabel {
+    display: inline-block; background: var(--blauw); color: #fff; border-radius: 6px;
+    font-size: .8rem; padding: .1rem .55rem; vertical-align: middle; margin-right: .5rem;
+  }
+  .doelen { background: var(--blauw-licht); border-left: 4px solid var(--blauw); padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
+  .doelen ul, .theorie ul { margin: .3rem 0 .2rem; padding-left: 1.2rem; }
+  .theorie { background: #f2f0fb; border-left: 4px solid #5b4ba8; padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
+  .theorie b:first-child { color: #4a3d8f; }
+  .opdracht { background: var(--groen-licht); border-left: 4px solid var(--groen); padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
+  .opdracht b:first-child { color: var(--groen); }
+  .maxlink { background: var(--oranje-licht); border-left: 4px solid var(--oranje); padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
+  .maxlink b:first-child { color: var(--oranje); }
+  .proef { background: #fce9ef; border-left: 4px solid #b0295e; padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
+  .proef b:first-child { color: #b0295e; }
+  .letop { background: var(--geel-licht); border-left: 4px solid var(--geel-rand); padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
+  .docent{position:relative;border:1px dashed #b1541c;border-radius:8px;padding:.6rem .9rem;margin:.8rem 0}
+  .docent::before{content:"alleen docent — niet in Blackboard";position:absolute;top:-.7em;left:.8rem;background:#fff;color:#b1541c;font-size:.72rem;padding:0 .4rem;letter-spacing:.04em}
+  .letop.docent{border-style:dashed}
+  pre {
+    background: var(--code-bg); color: var(--code-tekst); border-radius: 8px;
+    padding: .9rem 1.1rem; overflow-x: auto; font-size: .86rem; line-height: 1.5;
+  }
+  pre code { font-family: "Cascadia Code", Consolas, "Courier New", monospace; }
+  code.inline, p code, li code, td code {
+    background: #e9edf4; color: #16325c; border-radius: 4px; padding: .05rem .3rem;
+    font-family: Consolas, monospace; font-size: .88em;
+  }
+  .codetitel {
+    display: block; background: #2c3547; color: #b8c4d6; font-size: .78rem;
+    border-radius: 8px 8px 0 0; padding: .3rem 1.1rem; margin-bottom: -1.05rem;
+    font-family: Consolas, monospace; position: relative; z-index: 1;
+  }
+  .codetitel + pre { border-radius: 0 0 8px 8px; padding-top: 1.3rem; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: .92rem; }
+  th, td { border: 1px solid #d5dde9; padding: .45rem .7rem; text-align: left; vertical-align: top; }
+  th { background: var(--blauw-licht); color: #16325c; }
+  tr:nth-child(even) td { background: #f7f9fc; }
+  .dagdeel { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: .8rem 0; }
+  @media (max-width: 720px) { .dagdeel { grid-template-columns: 1fr; } }
+  .dagdeel > div { border: 1px solid #dde4ee; border-radius: 8px; padding: .7rem 1rem; background: #fafbfe; }
+  .dagdeel h4 { margin: .1rem 0 .4rem; color: var(--blauw); }
+  .tag { font-size: .75rem; font-weight: 700; border-radius: 4px; padding: .05rem .4rem; margin-right: .3rem; }
+  .tag.pc { background: #dbe7fb; color: #1a4b8c; }
+  .tag.pico { background: #e0f3e7; color: #1e7a45; }
+  .tag.webots { background: #f3e3f7; color: #7a2c8f; }
+  .tag.max { background: #fde3d0; color: #c05a10; }
+  footer { text-align: center; color: var(--grijs); font-size: .85rem; padding: 2rem 1rem; }
+  video.demovideo { width: 100%; max-width: 40rem; display: block; border-radius: 10px; border: 1px solid #dde4ee; margin: .8rem auto .2rem; background: #000; }
+  .videocap { text-align: center; font-size: .85rem; color: var(--grijs); margin: .2rem 0 .8rem; }
+  .videoduo { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: .8rem 0; }
+  @media (max-width: 720px) { .videoduo { grid-template-columns: 1fr; } }
+  .videoduo figure { margin: 0; }
+  .videoduo video { width: 100%; border-radius: 10px; border: 1px solid #dde4ee; background: #000; }
+  .videoduo figcaption { text-align: center; font-size: .85rem; color: var(--grijs); margin-top: .2rem; }
+  details.rubriek { margin: .8rem 0; border: 1px solid #d5dde9; border-radius: 8px; padding: .5rem .9rem; background: #fafbfe; }
+  details.rubriek summary { cursor: pointer; font-weight: 700; color: var(--blauw); }
+  details.rubriek table { font-size: .85rem; margin: .7rem 0 .3rem; }
+  details.rubriek td:first-child { white-space: nowrap; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Inleiding Programmeren &amp; Mechatronica — met robothond Bello</h1>
+  <p><b>10-weeks programma</b> · 1 lesdag per week · eerstejaars HBO Werktuigbouwkunde</p>
+  <p>Vanaf dag 1 bestuur je robothond <b>Bello</b> in de Webots-simulator met simpele commando's.
+     Elke week gaat de motorkap verder open, tot je zijn looppatroon zelf programmeert.
+     Halverwege komt de <b>echte Bello</b> op tafel: fysieke componenten aansluiten en proeven doen.</p>
+</header>
+
+<nav class="weeknav">
+  <a href="#overzicht">Overzicht</a>
+  <a href="#maxapi">Bello-API</a>
+  <a href="#omgeving">Bello-omgeving</a>
+  <a href="#w1">W1</a><a href="#w2">W2</a><a href="#w3">W3</a><a href="#w4">W4</a><a href="#w5">W5</a>
+  <a href="#w6">W6</a><a href="#w7">W7</a><a href="#w8">W8</a><a href="#w9">W9 toets</a><a href="#w10">W10 herk.</a>
+  <a href="#beoordeling">Beoordeling</a>
+  <a href="#materiaal">Materiaal</a>
+  <a href="#bronnen">Bronnen</a>
+</nav>
+
+<main>
+
+<section class="blok" id="overzicht">
+  <h2>Opzet: de motorkap gaat steeds verder open</h2>
+  <p>Studenten besturen vanaf de eerste les de robothond <b>Bello</b> in <b>Webots</b> — eerst met
+     kant-en-klare commando's (<code>bello.loop(3)</code>), aan het eind met een zelfgeschreven
+     looppatroon. Het niveau groeit in drie fases:</p>
+  <div class="letop"><b>Studielast: 72 uur</b> = één dag van acht uur per week, negen weken lang. Daarvan
+    is drie uur per week practicum (week 9 de assessment, week 10 de herkansing); de overige vijf uur per week is zelfstudie: de installatie vóór week 1, de
+    opdrachten afmaken, naslag lezen als je iets niet snapt en vanaf week 7 aan het project werken. In
+    het practicum leer je het nieuwe en krijg je hulp. Geen weekcijfers en geen verslagen: per week zijn A1 en B1 de basis (laat ze aan een ander tweetal zien), de rest is
+    verdieping voor wie tijd over heeft. Je werkt in tweetallen (werkt de omgeving bij een van
+    jullie niet, dan werk je even samen op de andere laptop); het project doe je met twee tweetallen
+    samen. Het boek is naslag, geen leesplicht.</div>
+  <div class="videoduo">
+    <figure>
+      <video controls loop muted playsinline preload="metadata">
+        <source src="media/w9_trot.mp4" type="video/mp4">
+      </video>
+      <figcaption>Bello in <b>Webots</b> — de simulator waarin jij hem vanaf les 1 bestuurt</figcaption>
+    </figure>
+    <figure>
+      <video controls loop muted playsinline preload="metadata">
+        <source src="media/max_mjx.mp4" type="video/mp4">
+      </video>
+      <figcaption>Hetzelfde model in <b>MuJoCo</b>: de RL-policy die zichzelf heeft leren lopen —
+        het beste resultaat tot nu toe</figcaption>
+    </figure>
+  </div>
+  <table>
+    <tr><th>Fase</th><th>Weken</th><th>Wat je doet</th></tr>
+    <tr><td><b>1. Besturen</b> <span class="tag webots">WEBOTS</span></td><td>1–5</td>
+        <td>Bello aansturen met hoge commando's uit de Bello-API; ondertussen alle programmeerbasis
+            leren (expressies, condities, loops, functies, lists). Vanaf week 5 mag je aan de
+            losse gewrichten zitten: <code>bello.zet_hoek(...)</code>.</td></tr>
+    <tr><td><b>2. Bouwen &amp; meten</b> <span class="tag pico">PICO</span><span class="tag max">FYSIEKE MAX</span></td><td>6</td>
+        <td>De echte Bello komt erbij: een Raspberry Pi Pico (in de browser-emulator) met LED-ogen en
+            noodstop die Bello commando's stuurt. Oefenpoot, IMU en datalogger als verdieping.</td></tr>
+    <tr><td><b>3. Zelf laten lopen</b> <span class="tag webots">WEBOTS</span>+<span class="tag max">FYSIEKE MAX</span></td><td>7–10</td>
+        <td>Het project "Maak Bello slimmer" in viertallen (week 7 en 8): Bello iets nieuws leren in
+            Webots (SIM), via de Pico (PICO) of met metingen (MEET). Week 9 assessment, week 10
+            herkansing.</td></tr>
+  </table>
+
+  <p>Elk practicum heeft twee delen: <b>A — programmeren</b> (ongeveer een uur, Python op de PC met
+     een werktuigbouwsom; naslag in <i>De Programmeursleerling</i>) en <b>B — Bello</b> (de rest van het
+     practicum, in Webots en vanaf week 6 met de Pico; naslag in <i>Get Started with MicroPython on
+     Raspberry Pi Pico</i>). De volgorde van A en B wisselt per week.</p>
+
+  <h3>Weekoverzicht</h3>
+  <table>
+    <tr><th>Week</th><th>A — programmeren</th><th>B — Bello</th><th>Naslag</th></tr>
+    <tr><td><b>1</b></td><td>Expressies, variabelen, <code>print</code>/<code>input</code></td><td>Webots + Bello-wereld installeren; Bello's eerste stappen met commando's</td><td>PL H1–4 · Webots-tut. 1</td></tr>
+    <tr><td><b>2</b></td><td>Condities (<code>if</code>/<code>elif</code>/<code>else</code>)</td><td>Bello kijkt uit: reageren op de afstandssensor</td><td>PL H6</td></tr>
+    <tr><td><b>3</b></td><td>Herhalingen (<code>while</code>, <code>for</code>)</td><td>Bello loopt patronen: vierkant, patrouille, parcours</td><td>PL H7</td></tr>
+    <tr><td><b>4</b></td><td>Functies, parameters, <code>return</code></td><td>Leer Bello nieuwe trucjes: je eigen commando's bovenop de API</td><td>PL H5+H8</td></tr>
+    <tr><td><b>5</b></td><td>Lists en tuples; dictionary als opzoektabel</td><td>Een show als list; motorkap open: losse gewrichten sturen</td><td>PL H10–13</td></tr>
+    <tr><td><b>6</b></td><td>Een class herkennen; <code>try</code>/<code>except</code></td><td><b>De echte Bello en de Pico:</b> LED-ogen, noodstop, commando's naar Bello · Proef 1 · verdieping: oefenpoot, IMU, datalogger</td><td>Pico H1–4 · PL H17, H20</td></tr>
+    <tr><td><b>7</b></td><td colspan="2">Project "Maak Bello slimmer" — bouwen (1): spoor kiezen, plan in drie zinnen, bouwen</td><td>—</td></tr>
+    <tr><td><b>8</b></td><td colspan="2">Project — bouwen (2), generale repetitie, inleveren</td><td>—</td></tr>
+    <tr><td><b>9</b></td><td colspan="2"><b>Assessment:</b> demo, code-uitleg en individuele verdediging (12 min per viertal)</td><td>—</td></tr>
+    <tr><td><b>10</b></td><td colspan="2">Herkansing</td><td>—</td></tr>
+  </table>
+  <p><b>Afkortingen:</b> <i>PL</i> = De Programmeursleerling · <i>Pico</i> = Get Started with
+     MicroPython on Raspberry Pi Pico. De <i>Python Cheat Sheet</i> is elke week het naslagblad
+     naast het toetsenbord.</p>
+  <div class="letop"><b>Zo leer je het:</b> elk concept komt drie keer terug —
+    (1) in A op de PC met een werktuigbouwsom, (2) in B meteen toegepast op Bello
+    (sim of fysiek), (3) later opnieuw op een dieper niveau, dichter bij de hardware.
+    Herhaling in een nieuwe context is hoe het beklijft.</div>
+</section>
+
+<section class="blok" id="maxapi">
+  <h2>De Bello-API (de bibliotheek waar je tegen programmeert)</h2>
+  <p>Studenten programmeren vanaf les 1 tegen de Bello-bibliotheek: <code>max_api.py</code>
+     (door de docent geleverd, draait in de Webots-controller en neemt het lopen — de
+     sinus-gait uit het Bello-project — voor zijn rekening) met daarbovenop het dunne laagje
+     <code>max_speels.py</code>: dezelfde motor, plus trucjes als <code>blaf</code> en
+     <code>geef_poot</code> en droge oneliners in de console (uit te zetten met
+     <code>bello.grappen(False)</code>). De student schrijft gewoon een Python-script
+     — in <code>mijn_code.py</code>, geopend in de browser-editor van de Bello-omgeving (of in Thonny, bij de losse bundel
+     zonder Docker). <b>Opslaan is genoeg:</b> de simulatie in Webots herstart automatisch met
+     de nieuwe code, en fouten verschijnen in de Webots-console.</p>
+  <span class="codetitel">zo ziet elk studentenscript eruit</span>
+<pre><code>from max_speels import Bello
+
+bello = Bello()          # verbindt met de simulator
+bello.zwaai()
+bello.blaf(3)          # drie keer "Woef!"
+bello.loop(3)          # drie stappen vooruit
+bello.zit()</code></pre>
+  <table>
+    <tr><th>Commando</th><th>Betekenis</th><th>Vanaf</th></tr>
+    <tr><td><code>bello.sta()</code> / <code>bello.zit()</code></td><td>ga staan / ga zitten</td><td>W1</td></tr>
+    <tr><td><code>bello.loop(n)</code> / <code>bello.achteruit(n)</code></td><td><code>n</code> stappen vooruit / achteruit</td><td>W1</td></tr>
+    <tr><td><code>bello.draai(graden)</code></td><td>draai om zijn as (+ = linksom)</td><td>W1</td></tr>
+    <tr><td><code>bello.zwaai()</code></td><td>zwaai met de poot linksvoor</td><td>W1</td></tr>
+    <tr><td><code>bello.zeg(tekst)</code> / <code>bello.wacht(s)</code></td><td>tekst in de console / pauzeer <code>s</code> seconden</td><td>W1</td></tr>
+    <tr><td><code>bello.blaf(n)</code> / <code>bello.geef_poot()</code> / <code>bello.kwispel(n)</code> / <code>bello.bedel()</code> / <code>bello.jaag_op_staart(n)</code> / <code>bello.doe_alsof_dood()</code></td><td>trucjes uit <code>max_speels</code>: echte bewegingen uit dezelfde primitieven, met wat karakter</td><td>W1</td></tr>
+    <tr><td><code>bello.grappen(False)</code></td><td>zet de oneliners van Bello uit</td><td>W1</td></tr>
+    <tr><td><code>bello.grom()</code></td><td>lage waarschuwing (kopje omlaag) — bv. als er iets voor zijn neus staat</td><td>W2</td></tr>
+    <tr><td><code>bello.voer()</code> / <code>bello.aai()</code> / <code>bello.toestand()</code></td><td>Tamagotchi-Bello: honger, energie en blijheid als dictionary</td><td>W6</td></tr>
+    <tr><td><code>bello.afstand()</code></td><td>afstand (m) tot het obstakel vóór zijn neus</td><td>W2</td></tr>
+    <tr><td><code>bello.kantelhoek()</code></td><td>rolhoek van de romp in graden (0 = horizontaal)</td><td>W2</td></tr>
+    <tr><td><code>bello.start_lopen()</code> / <code>bello.stop_lopen()</code></td><td>continu lopen aan/uit (handig bij metingen)</td><td>W7</td></tr>
+    <tr><td><code>bello.zet_hoek(naam, graden)</code></td><td>één gewricht direct sturen, bv. <code>"LV_knie"</code></td><td>W5</td></tr>
+    <tr><td><code>bello.hoeken()</code></td><td>dictionary met alle 12 actuele gewrichtshoeken</td><td>W6</td></tr>
+  </table>
+  
+</section>
+
+<section class="blok" id="omgeving">
+  <h2>De Bello-omgeving op je laptop</h2>
+  <p>Alles wat je voor dit vak nodig hebt (de simulator met Bello, een code-editor, de AI-tutor en een
+     Pico-emulator) draait in één pakket op je eigen laptop, in de browser. Je installeert alleen
+     Docker Desktop; verder niets.</p>
+  <ul>
+    <li><b>Downloaden:</b> <a href="https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-omgeving.zip">bello-omgeving.zip</a> (altijd de nieuwste versie; de zip is klein,
+        de rest komt bij de eerste start binnen)</li>
+    <li><b>Handleiding:</b> <a href="https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-handleiding.pdf">bello-handleiding.pdf</a> — installeren, starten, werken,
+        bijwerken, en wat je doet als het niet werkt</li>
+    <li><b>Studiehandleiding</b> (leeruitkomsten, weekoverzicht, workshop, toetsing):
+        <a href="https://claude.ai/artifact/AHphzTK3TRTQuhb1XDjK5c">studiehandleiding Programmeren &amp; Mechatronica</a></li>
+  </ul>
+  <p>In het kort: Docker Desktop installeren (eenmalig, adminrechten), de zip uitpakken in
+     <code>C:\dev\bello-omgeving</code>, dubbelklikken op <code>starten.cmd</code> (de eerste keer haalt hij
+     ongeveer 3,5 GB op), en <code>http://localhost:8000</code> opent met vier tegels: Bello in 3D, je code,
+     de AI-tutor en de Pico in de browser. Je programma staat in <code>mijn_code.py</code> (tegel 2);
+     opslaan is genoeg, de simulatie herstart vanzelf. Nieuwe versies van de docent komen automatisch
+     binnen bij het starten. Gaat er iets mis: <code>diagnose.cmd</code> maakt een zip die je naar de
+     docent stuurt.</p>
+  <p><b>Doe de installatie vóór de eerste les</b>, thuis of op school (3,5 GB download), dan kunnen we in
+     week 1 meteen beginnen. Lukt het niet, kom dan een kwartier eerder.</p>
+</section>
+
+<!-- ================= WEEK 1 ================= -->
+<section class="week" id="w1">
+  <h2><span class="weeklabel">Week 1</span> Bello luistert naar jouw code — eerste programma's</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li>Een Python-programma schrijven en uitvoeren (PC én Webots).</li>
+      <li>Expressies, datatypes (<code>int</code>, <code>float</code>, <code>str</code>) en variabelen gebruiken.</li>
+      <li>Webots opstarten, de Bello-wereld openen en Bello besturen met API-commando's.</li>
+    </ul>
+  </div>
+  <div class="theorie"><b>Naslag (doorlezen):</b>
+    <ul>
+      <li>PL: H1 <i>Introductie</i>, H2 <i>Python gebruiken</i>, H3 <i>Expressies</i>, H4 <i>Variabelen</i></li>
+      <li>Webots User Guide: Tutorial 1 <i>Your first simulation</i> (alleen doorlezen; de Bello-omgeving installeer je vóór de les, zie <a href="#omgeving">Bello-omgeving</a>)</li>
+    </ul>
+  </div>
+
+  <div class="dagdeel">
+    <div><h4><span class="tag pc">PC</span>A — programmeren</h4>
+      Kick-off: video van de échte Bello + demo van de simulator. Daarna de Bello-omgeving starten
+      (geïnstalleerd vóór de les, zie <a href="#omgeving">Bello-omgeving</a>), eerste programma's in de
+      browser-editor, expressies, variabelen, f-strings.</div>
+    <div><h4><span class="tag webots">WEBOTS</span>B — Bello besturen</h4>
+      Tegel 1 (Bello in 3D) en tegel 2 (je code) openen, <code>mijn_code.py</code> bekijken (het
+      startbestand laat Bello meteen zwaaien, blaffen en een poot geven), het API-kaartje
+      verkennen en Bello zijn eerste opdrachten geven (opslaan = de simulatie herstart
+      vanzelf). Afsluiter: wie laat Bello het netste rondje lopen?</div>
+  </div>
+
+  <h3>Voorbeelden</h3>
+  <span class="codetitel">voorbeeld 1 — hallo.py (PC)</span>
+<pre><code>print("Hallo werktuigbouw!")
+print("2 + 3 =", 2 + 3)
+print("7 / 2 =", 7 / 2)      # 3.5  (float-deling)
+print("7 // 2 =", 7 // 2)    # 3    (gehele deling)
+print("7 % 2 =", 7 % 2)      # 1    (rest)
+print("2 ** 10 =", 2 ** 10)  # 1024 (macht)</code></pre>
+
+  <span class="codetitel">voorbeeld 2 — massa_cilinder.py (PC): een echte werktuigbouwsom</span>
+<pre><code>import math
+
+DICHTHEID_STAAL = 7850          # kg/m^3 (constante: hoofdletters)
+
+diameter = float(input("Diameter in mm: ")) / 1000   # naar meter
+lengte   = float(input("Lengte in mm: ")) / 1000
+
+volume = math.pi * (diameter / 2) ** 2 * lengte      # m^3
+massa  = volume * DICHTHEID_STAAL                    # kg
+
+print(f"Volume: {volume * 1e6:.1f} cm^3")
+print(f"Massa:  {massa:.2f} kg")</code></pre>
+
+  <span class="codetitel">voorbeeld 3 — max_eerste_stappen.py (Webots): Bello doet wat jij typt</span>
+<pre><code>from max_speels import Bello
+
+bello = Bello()
+bello.zeg("Hallo, ik ben Bello!")
+bello.sta()
+bello.loop(4)          # vier stappen vooruit
+bello.draai(90)        # kwartslag linksom
+bello.loop(2)
+bello.zwaai()          # gedag zwaaien
+bello.zit()</code></pre>
+
+  <span class="codetitel">voorbeeld 4 — variabelen sturen de robot (in mijn_code.py)</span>
+<pre><code>from max_speels import Bello
+
+bello = Bello()
+STAPLENGTE = 0.17                 # meter per stap (meet het na op de tegelvloer!)
+stappen = 4                       # pas aan, sla op, en kijk in Webots
+
+afstand = stappen * STAPLENGTE
+bello.zeg(f"Ik ga {stappen} stappen doen, dat is {afstand:.2f} m")
+bello.sta()
+bello.loop(stappen)
+bello.zeg("Klaar!")</code></pre>
+
+  <video class="demovideo" controls loop muted playsinline preload="metadata">
+    <source src="media/w1_eerste_stappen.mp4" type="video/mp4">
+  </video>
+  <p class="videocap">Zo ziet voorbeeld 3 eruit in Webots: lopen, draaien, zwaaien, zitten —
+     dit programmeer jij in les 1.</p>
+  <div class="opdracht"><b>Opdrachten</b>
+    <ul>
+      <li><b>A1 (basis):</b> bereken van een rechthoekige plaat (lengte, breedte, dikte in mm)
+          het volume en de massa. Kies zelf een materiaal en dichtheid.</li>
+      <li><b>A2 (verdieping, optioneel):</b> vraag kracht in kN en oppervlakte in mm², print de spanning in N/mm² (MPa)
+          met 1 decimaal.</li>
+      <li><b>B1 (basis):</b> laat Bello een "ereronde" doen: vooruit, groeten (zwaai), rondje om
+          zijn eigen as (<code>draai(360)</code>) en weer zitten.</li>
+      <li><b>B2 (verdieping, optioneel):</b> laat Bello eerst vragen hoeveel graden hij moet draaien en rapporteer daarna
+          met een f-string hoeveel kwartslagen dat was (gebruik <code>//</code> en <code>%</code>).</li>
+      <li><b>B3 (verdieping, optioneel):</b> bepaal experimenteel de staplengte: laat Bello 10 stappen doen,
+          lees de afgelegde afstand af in Webots en bereken de staplengte per stap.</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is
+    voor wie tijd over heeft.</div>
+  <div class="maxlink"><b>Onder de motorkap:</b> als jij <code>bello.loop(3)</code> typt, speelt de
+    Bello-API een looppatroon af dat óók op de echte Bello draait. In het project (week 8, SIM-spoor) schrijf je dat patroon
+    zelf — dan heb je de API niet meer nodig.</div>
+</section>
+
+<!-- ================= WEEK 2 ================= -->
+<section class="week" id="w2">
+  <h2><span class="weeklabel">Week 2</span> Bello kijkt uit — beslissingen met condities</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li>Boolean-expressies en vergelijkingsoperatoren (<code>==</code>, <code>&lt;</code>, <code>and</code>, <code>or</code>, <code>not</code>) gebruiken.</li>
+      <li>Programma's laten beslissen met <code>if</code>/<code>elif</code>/<code>else</code>.</li>
+      <li>Sensorwaarden (afstand, kantelhoek) gebruiken om gedrag te kiezen.</li>
+    </ul>
+  </div>
+  <div class="theorie"><b>Naslag (doorlezen):</b>
+    <ul>
+      <li>PL: H6 <i>Condities</i></li>
+      <li>Nieuw op het API-kaartje: <code>bello.afstand()</code> en <code>bello.kantelhoek()</code></li>
+    </ul>
+  </div>
+
+  <h3>Voorbeelden</h3>
+  <span class="codetitel">voorbeeld 1 — veiligheidscheck.py (PC): keurt een as goed of af</span>
+<pre><code>REKGRENS = 235            # N/mm^2 (S235-staal)
+VEILIGHEIDSFACTOR = 1.5
+
+kracht = float(input("Trekkracht in N: "))
+oppervlakte = float(input("Doorsnede in mm^2: "))
+
+spanning = kracht / oppervlakte
+toelaatbaar = REKGRENS / VEILIGHEIDSFACTOR
+
+print(f"Spanning: {spanning:.1f} N/mm^2 (toelaatbaar: {toelaatbaar:.1f})")
+
+if spanning &lt;= toelaatbaar:
+    print("GOEDGEKEURD")
+else:
+    print("AFGEKEURD - kies een grotere doorsnede")</code></pre>
+
+  <span class="codetitel">voorbeeld 2 — passing.py (PC): elif-ladder</span>
+<pre><code>speling = float(input("Speling in mm (gat - as): "))
+
+if speling &gt; 0.05:
+    print("Loopse passing (draaibaar)")
+elif speling &gt; 0.0:
+    print("Nauwe passing")
+elif speling &gt; -0.02:
+    print("Klempassing")
+else:
+    print("Perspassing (persen of krimpen)")</code></pre>
+
+  <span class="codetitel">voorbeeld 3 — max_kijkt_uit.py (Webots): pas lopen als het pad vrij is</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+
+if bello.afstand() &gt; 0.5:
+    bello.zeg("Pad vrij, ik loop!")
+    bello.loop(3)
+else:
+    bello.zeg("Obstakel vlakbij - ik blijf staan.")</code></pre>
+
+  <span class="codetitel">voorbeeld 4 — max_gedrag.py (Webots): een elif-ladder als gedragskeuze</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+afstand = bello.afstand()
+
+if afstand &gt; 1.0:
+    bello.zeg("Ruim baan!")
+    bello.loop(4)
+elif afstand &gt; 0.4:
+    bello.zeg("Voorzichtig...")
+    bello.loop(1)
+elif afstand &gt; 0.15:
+    bello.zeg("Te dichtbij, ik draai weg.")
+    bello.draai(90)
+else:
+    bello.zeg("HELP - achteruit!")
+    bello.achteruit(2)</code></pre>
+
+  <video class="demovideo" controls loop muted playsinline preload="metadata">
+    <source src="media/w2_obstakel.mp4" type="video/mp4">
+  </video>
+  <p class="videocap">Bello loopt tot zijn afstandssensor "te dichtbij" zegt, meldt het obstakel
+     en kiest een vrije richting — condities in actie.</p>
+  <div class="opdracht"><b>Opdrachten</b>
+    <ul>
+      <li><b>A1:</b> vraag een temperatuur en print de materiaalklasse:
+          &lt; 0 °C "brosgedrag mogelijk", 0–300 °C "normaal bedrijf", &gt; 300 °C "kruip — niet toegestaan".</li>
+      <li><b>A2 (verdieping, optioneel):</b> breid de veiligheidscheck uit: vraag ook het materiaal (S235 of S355) en
+          gebruik de juiste rekgrens.</li>
+      <li><b>B1:</b> Bello mag alléén lopen als het pad vrij is (<code>&gt; 0.5</code> m) <i>én</i>
+          hij recht staat (<code>abs(bello.kantelhoek()) &lt; 5</code>) — één <code>if</code> met <code>and</code>.</li>
+      <li><b>B2 (verdieping, optioneel):</b> zet een obstakel in de wereld (rechtermuisknop → Add) en test alle vier de
+          takken van voorbeeld 4 door Bello te verplaatsen.</li>
+      <li><b>B3 (verdieping, optioneel):</b> "parkeersensor": laat Bello piepen via <code>bello.zeg("piep")</code>
+          — vaker naarmate het obstakel dichterbij is (3 zones). Volgende week maken we dit
+          écht herhalend met een loop.</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is
+    voor wie tijd over heeft.</div>
+  <div class="maxlink"><b>Onder de motorkap:</b> de looppolicy van de echte Bello neemt elke 20 ms
+    zo'n beslissing op basis van sensordata — jouw <code>if bello.afstand() &lt; 0.5</code>, maar dan
+    vijftig keer per seconde.</div>
+</section>
+
+<!-- ================= WEEK 3 ================= -->
+<section class="week" id="w3">
+  <h2><span class="weeklabel">Week 3</span> Patronen lopen — herhaling met loops</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li><code>while</code>- en <code>for</code>-loops schrijven, <code>range()</code> gebruiken.</li>
+      <li>Loops combineren met condities; <code>break</code> en <code>continue</code> begrijpen.</li>
+      <li>Bello zelfstandig laten patrouilleren en een parcours laten afleggen.</li>
+    </ul>
+  </div>
+  <div class="theorie"><b>Naslag (doorlezen):</b>
+    <ul>
+      <li>PL: H7 <i>Iteraties</i></li>
+    </ul>
+  </div>
+  <div class="letop"><b>AI-tutor (deze week, 20 minuten):</b> in de container zit een
+    AI-tutor die <i>hints</i> geeft en geen uitwerkingen: tabblad 3 op de startpagina, en
+    dezelfde tutor in de editor (Ctrl+L) en de terminal (<code>opencode</code>). Hij ziet je
+    <code>mijn_code.py</code> en de laatste foutmelding mee, zoekt in het cursusmateriaal en
+    wordt per vraag iets concreter (vraag terug → begrip met bron → voorbeeld in een andere
+    situatie → de regel waar het misgaat). De uitwerking schrijf je zelf; dat is ook wat de
+    assessment van je vraagt. Zijn kennis komt uit open bronnen: de cursuspagina, het
+    API-kaartje, <i>De Programmeursleerling</i>, de officiële Python-tutorial en de
+    MicroPython-quickref, plus je eigen aantekeningen in <code>/werk/tutor/kennis</code>. Je
+    maakt een gratis Groq-account (geen betaalgegevens, stappen in de handleiding, hoofdstuk 8) en
+    zet de sleutel in <code>.env</code>.</div>
+
+  <h3>Voorbeelden</h3>
+  <span class="codetitel">voorbeeld 1 — maattabel.py (PC): een tabel genereren met for + range</span>
+<pre><code>import math
+
+print(" d (mm) |  A (mm^2) | massa/m (kg)")
+print("--------+-----------+-------------")
+for d in range(10, 55, 5):                    # 10, 15, ... 50
+    A = math.pi * (d / 2) ** 2
+    massa_per_m = A * 1e-6 * 7850
+    print(f"{d:&gt;7} | {A:&gt;9.1f} | {massa_per_m:&gt;10.2f}")</code></pre>
+
+  <span class="codetitel">voorbeeld 2 — max_vierkant.py (Webots): vier keer hetzelfde = een loop</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+
+for i in range(4):
+    bello.zeg(f"Zijde {i + 1}")
+    bello.loop(3)
+    bello.draai(90)
+
+bello.zit()</code></pre>
+
+  <span class="codetitel">voorbeeld 3 — max_patrouille.py (Webots): while + sensor = zelfstandig gedrag</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+
+rondjes = 0
+while rondjes &lt; 6:                    # zes lengtes heen-en-weer
+    if bello.afstand() &lt; 0.4:           # muur in zicht?
+        bello.draai(180)                # omkeren
+        rondjes += 1
+    else:
+        bello.loop(1)
+
+bello.zeg("Patrouille klaar!")
+bello.zit()</code></pre>
+
+  <span class="codetitel">voorbeeld 4 — max_zoekt_uitgang.py (Webots): break in een zoek-loop</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+
+# Draai in stapjes van 30 graden tot het pad vrij is
+for poging in range(12):              # maximaal een hele rondte
+    if bello.afstand() &gt; 1.0:
+        bello.zeg(f"Vrij pad gevonden na {poging} draaiingen!")
+        break
+    bello.draai(30)
+else:
+    bello.zeg("Ik zit helemaal ingesloten...")
+
+bello.loop(3)</code></pre>
+
+  <video class="demovideo" controls loop muted playsinline preload="metadata">
+    <source src="media/w3_vierkant.mp4" type="video/mp4">
+  </video>
+  <p class="videocap">Vier keer "loop + draai" in een for-loop = een vierkant. Let op hoe Bello
+     na elke zijde netjes op zijn IMU-koers draait.</p>
+  <div class="opdracht"><b>Opdrachten</b>
+    <ul>
+      <li><b>A1:</b> print de tafel van een door de gebruiker gekozen getal, netjes uitgelijnd.</li>
+      <li><b>A2 (verdieping, optioneel):</b> bereken met een loop de som 1+2+...+n en controleer met de formule n(n+1)/2.</li>
+      <li><b>B1:</b> laat Bello een driehoek en daarna een zeshoek lopen. Welke regel verandert er
+          eigenlijk maar? (Denk aan de buitenhoek: 360/n graden.)</li>
+      <li><b>B2 (verdieping, optioneel):</b> parcours! De docent zet 3 obstakels neer; laat Bello met een while-loop en
+          <code>bello.afstand()</code> zonder botsen de overkant halen.</li>
+      <li><b>B3 (verdieping, optioneel):</b> een spiraal: elke zijde één stap langer dan de vorige
+          (geneste logica: for-loop met groeiende <code>stappen</code>).</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is
+    voor wie tijd over heeft.</div>
+  <div class="maxlink"><b>Onder de motorkap:</b> lopen ís een loop. Elke stap van Bello is dezelfde
+    cyclus — poot optillen, naar voren, neerzetten, afzetten — eindeloos herhaald. In het project (week 8)
+    programmeer je die binnenste loop zelf.</div>
+</section>
+
+<!-- ================= WEEK 4 ================= -->
+<section class="week" id="w4">
+  <h2><span class="weeklabel">Week 4</span> Leer Bello nieuwe trucjes — functies</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li>Eigen functies schrijven met parameters, default-waarden en <code>return</code>.</li>
+      <li>Scope begrijpen: lokale vs. globale variabelen.</li>
+      <li>Je eigen commandolaag bouwen bovenop de Bello-API — abstractie!</li>
+    </ul>
+  </div>
+  <div class="theorie"><b>Naslag (doorlezen):</b>
+    <ul>
+      <li>PL: H5 <i>Eenvoudige functies</i> + H8 <i>Functies</i></li>
+    </ul>
+  </div>
+
+  <h3>Voorbeelden</h3>
+  <span class="codetitel">voorbeeld 1 — massa_functies.py (PC): dezelfde berekening, nu herbruikbaar</span>
+<pre><code>import math
+
+def massa_cilinder(diameter_mm, lengte_mm, dichtheid=7850):
+    """Massa van een massieve cilinder in kg."""
+    volume_m3 = math.pi * (diameter_mm / 2000) ** 2 * (lengte_mm / 1000)
+    return volume_m3 * dichtheid
+
+# Dankzij de functie is een vergelijking nu 3 regels:
+print(f"As staal 40x500:     {massa_cilinder(40, 500):.2f} kg")
+print(f"As aluminium 40x500: {massa_cilinder(40, 500, dichtheid=2700):.2f} kg")
+print(f"As staal 60x500:     {massa_cilinder(60, 500):.2f} kg")</code></pre>
+
+  <span class="codetitel">voorbeeld 2 — doorbuiging.py (PC): functies die functies aanroepen</span>
+<pre><code>import math
+
+def traagheidsmoment_rond(d_mm):
+    """I van een ronde doorsnede in mm^4."""
+    return math.pi * d_mm ** 4 / 64
+
+def doorbuiging_puntlast(F_N, L_mm, d_mm, E=210_000):
+    """Bello. doorbuiging (mm) van een vrij opgelegde balk, puntlast in het midden."""
+    I = traagheidsmoment_rond(d_mm)
+    return F_N * L_mm ** 3 / (48 * E * I)
+
+f = doorbuiging_puntlast(F_N=1000, L_mm=800, d_mm=30)
+print(f"Doorbuiging: {f:.3f} mm")</code></pre>
+
+  <span class="codetitel">voorbeeld 3 — max_trucjes.py (Webots): eigen commando's maken</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+
+def dansje():
+    """Bello's overwinningsdans."""
+    for _ in range(2):
+        bello.zwaai()
+        bello.draai(45)
+        bello.draai(-45)
+
+def loop_veelhoek(zijden, stappen_per_zijde):
+    """Loop een regelmatige veelhoek."""
+    for _ in range(zijden):
+        bello.loop(stappen_per_zijde)
+        bello.draai(360 / zijden)       # buitenhoek
+
+bello.sta()
+loop_veelhoek(zijden=6, stappen_per_zijde=2)
+dansje()
+bello.zit()</code></pre>
+
+  <span class="codetitel">voorbeeld 4 — max_veilig.py (Webots): functies met een return-waarde</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+
+def veilige_stap(marge=0.4):
+    """Doe 1 stap als het pad vrij is. Geeft True terug als het lukte."""
+    if bello.afstand() &gt; marge:
+        bello.loop(1)
+        return True
+    return False
+
+def ga_naar_muur(marge=0.4):
+    """Loop tot de muur en geef het aantal gezette stappen terug."""
+    stappen = 0
+    while veilige_stap(marge):
+        stappen += 1
+    return stappen
+
+bello.sta()
+n = ga_naar_muur()
+bello.zeg(f"Muur bereikt in {n} stappen")</code></pre>
+
+  <video class="demovideo" controls loop muted playsinline preload="metadata">
+    <source src="media/w4_trucjes.mp4" type="video/mp4">
+  </video>
+  <p class="videocap">Eigen functies in actie: zwaaien, heen-en-weer draaien, zitten en weer
+     opstaan — elk trucje is één functieaanroep.</p>
+  <div class="opdracht"><b>Opdrachten</b>
+    <ul>
+      <li><b>A1:</b> schrijf <code>spanning(kracht_N, opp_mm2)</code> en
+          <code>is_veilig(spanning, rekgrens, sf=1.5)</code> (geeft <code>True</code>/<code>False</code>).
+          Gebruik ze samen in één programma.</li>
+      <li><b>A2 (verdieping, optioneel):</b> schrijf <code>traagheidsmoment_koker(b, h, t)</code> voor een rechthoekige
+          koker en vergelijk met de ronde as bij gelijke massa.</li>
+      <li><b>B1:</b> schrijf <code>acht_lopen(grootte)</code>: Bello loopt een achtje (twee
+          tegengestelde rondjes). Test hem met twee verschillende groottes.</li>
+      <li><b>B2 (verdieping, optioneel):</b> schrijf <code>meet_kamer()</code>: Bello meet met <code>ga_naar_muur()</code>
+          in vier richtingen hoe ver de muren zijn en rapporteert lengte × breedte in stappen.</li>
+      <li><b>B3 (verdieping, optioneel):</b> geef <code>dansje()</code> een parameter <code>enthousiasme</code>
+          (1–5) die bepaalt hoe vaak en hoe wild Bello danst.</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is
+    voor wie tijd over heeft.</div>
+  <div class="maxlink"><b>Onder de motorkap:</b> de Bello-API die je al vier weken gebruikt is zelf
+    ook maar een verzameling functies — <code>loop()</code>, <code>draai()</code> — bovenop lagere
+    functies als <code>zet_hoek()</code>. Jij bouwt nu de laag dáárboven. Zo zijn alle
+    robotsystemen opgebouwd: lagen van functies.</div>
+</section>
+
+<!-- ================= WEEK 5 ================= -->
+<section class="week" id="w5">
+  <h2><span class="weeklabel">Week 5</span> Choreografie &amp; commandotaal — strings, tuples, lists en dictionaries</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li>Werken met lists (indexeren, slicen, <code>append</code>) en tuples; strings met f-strings.</li>
+      <li>Met een <code>for</code>-loop over een list itereren.</li>
+      <li>Een dictionary herkennen en gebruiken als opzoektabel (sleutel → waarde).</li>
+      <li>De motorkap gaat open: losse gewrichten sturen met <code>bello.zet_hoek()</code>.</li>
+    </ul>
+  </div>
+  <div class="theorie"><b>Naslag (doorlezen):</b>
+    <ul>
+      <li>PL: H10 <i>Strings</i>, H11 <i>Tuples</i>, H12 <i>Lists</i>, H13 <i>Dictionaries</i></li>
+      <li>Nieuw op het API-kaartje: <code>bello.zet_hoek(naam, graden)</code> — namen als
+          <code>"LV_heup"</code>, <code>"RA_knie"</code> (L/R = links/rechts, V/A = voor/achter)</li>
+    </ul>
+  </div>
+
+  <h3>Voorbeelden</h3>
+  <span class="codetitel">voorbeeld 1 — meetreeks.py (PC): statistiek over een list</span>
+<pre><code>metingen = [20.1, 20.3, 19.8, 20.5, 20.2, 19.9, 20.4]   # asdiameters, mm
+
+print(f"Aantal:     {len(metingen)}")
+print(f"Kleinste:   {min(metingen)} mm")
+print(f"Grootste:   {max(metingen)} mm")
+print(f"Gemiddelde: {sum(metingen) / len(metingen):.2f} mm")
+
+# Welke metingen vallen buiten tolerantie 20.0 +/- 0.3?
+for i, m in enumerate(metingen):
+    if abs(m - 20.0) &gt; 0.3:
+        print(f"Meting {i + 1} ({m} mm) valt BUITEN tolerantie!")</code></pre>
+
+  <span class="codetitel">voorbeeld 2 — max_choreografie.py (Webots): een dans is een list</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+
+# Elke regel is een (commando, waarde)-tuple
+dans = [
+    ("loop", 2), ("draai", 90), ("zwaai", 0),
+    ("draai", -90), ("achteruit", 1), ("zwaai", 0),
+]
+
+for commando, waarde in dans:
+    if commando == "loop":
+        bello.loop(waarde)
+    elif commando == "achteruit":
+        bello.achteruit(waarde)
+    elif commando == "draai":
+        bello.draai(waarde)
+    elif commando == "zwaai":
+        bello.zwaai()
+
+# En achterstevoren? Zo speel je de dans omgekeerd af:
+for commando, waarde in dans[::-1]:
+    bello.zeg(f"terugspoelen: {commando}")</code></pre>
+
+  
+  <span class="codetitel">voorbeeld 3 — motorkap_open.py (Webots): één gewricht zelf sturen</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+
+# Een kniebuiging als reeks hoeken - dit is een mini-gait!
+# (knie: 120 = stahouding, kleiner = meer gebogen; bruikbaar 75-170)
+buiging = [120, 105, 90, 75, 90, 105, 120]
+
+for _ in range(3):                       # drie keer buigen
+    for hoek in buiging:
+        bello.zet_hoek("LV_knie", hoek)
+        bello.wacht(0.15)                  # kleiner getal = sneller
+
+bello.sta()                                # nette houding terug</code></pre>
+
+  <video class="demovideo" controls loop muted playsinline preload="metadata">
+    <source src="media/w5_kniebuiging.mp4" type="video/mp4">
+  </video>
+  <p class="videocap">De motorkap open: een list van hoeken wordt met <code>zet_hoek</code>
+     afgespeeld op de knie linksvoor — jouw eerste mini-gait.</p>
+  <span class="codetitel">voorbeeld 4 — materialen.py (dictionary, 15 minuten) (PC): een dictionary als opzoektabel</span>
+<pre><code>materialen = {
+    "S235":      {"rekgrens": 235, "dichtheid": 7850, "E": 210_000},
+    "S355":      {"rekgrens": 355, "dichtheid": 7850, "E": 210_000},
+    "AlMg3":     {"rekgrens": 80,  "dichtheid": 2660, "E": 70_000},
+    "RVS-304":   {"rekgrens": 190, "dichtheid": 7900, "E": 193_000},
+}
+
+keuze = input("Materiaal: ")
+if keuze in materialen:
+    m = materialen[keuze]
+    print(f"{keuze}: rekgrens {m['rekgrens']} MPa, "
+          f"dichtheid {m['dichtheid']} kg/m^3, E = {m['E']} MPa")
+else:
+    print(f"Onbekend materiaal. Keuze uit: {list(materialen.keys())}")</code></pre>
+
+  
+  <div class="opdracht"><b>Opdrachten</b>
+    <ul>
+      <li><b>A1:</b> vraag 5 meetwaarden (loop + <code>append</code>) en print min, max, gemiddelde
+          en de afwijking van elke meting t.o.v. het gemiddelde.</li>
+      <li><b>A2 (verdieping, optioneel):</b> breid de materialentabel (voorbeeld 4) uit met 2 materialen en toon voor een gegeven
+          kracht en doorsnede van <i>alle</i> materialen of ze veilig zijn (loop over
+          <code>materialen.items()</code>, hergebruik je functies van week 4).</li>
+      <li><b>B1:</b> ontwerp je eigen choreografie-list van minstens 8 stappen en speel hem
+          voorwaarts én achterstevoren af.</li>
+      <li><b>B2 (verdieping, optioneel):</b> laat Bello "pootjes geven": til met <code>zet_hoek</code> de poot rechtsvoor
+          op in 5 soepele tussenstappen en zet hem weer neer.</li>
+      <li><b>B3 (verdieping, optioneel):</b> maak van je kniebuiging-list een <i>zwaaibeweging van de heup</i>
+          en combineer heup + knie tegelijk (twee lists, één for-loop met <code>zip()</code>).</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is
+    voor wie tijd over heeft.</div>
+  <div class="maxlink"><b>Onder de motorkap:</b> dit is de kern van elk looppatroon: een reeks
+    gewrichtshoeken die op het juiste moment wordt afgespeeld. De echte Bello heeft 12 servo's
+    (Feetech STS3215) die precies zo'n hoekenreeks krijgen — jouw list <code>buiging</code>
+    is een mini-gait. Volgende week staat de échte Bello op tafel.</div>
+  <div class="maxlink"><b>Onder de motorkap:</b> de servoconfiguratie van de echte Bello is
+    letterlijk een dictionary (<code>servo_config.json</code> in het OpenRoboticDog-project):
+    per servo een ID, een nulpunt en een bereik. Zelfde datastructuur als jouw materialentabel.</div>
+</section>
+
+<!-- ================= WEEK 6 ================= -->
+<section class="week" id="w6">
+  <h2><span class="weeklabel">Week 6</span> De échte Bello en de Pico — ogen, noodstop en commando's</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li>Een Raspberry Pi Pico programmeren in MicroPython (in de emulator; de echte Pico is verdieping).</li>
+      <li>Digitale in- en uitgangen: LED's aan, een knop lezen, en de noodstop-gedachte.</li>
+      <li>Vanaf de Pico commando's naar Bello sturen; een class herkennen; een fout afvangen met <code>try</code>/<code>except</code>.</li>
+    </ul>
+  </div>
+  <div class="theorie"><b>Naslag (doorlezen):</b>
+    <ul>
+      <li>Pico-boek: H1 <i>Get to know your Pico</i> t/m H4 <i>Physical computing with Pico</i></li>
+      <li>PL: H17 <i>Exceptions</i>, H20 <i>Object Oriëntatie</i> (alleen de eerste paragrafen)</li>
+    </ul>
+  </div>
+
+  <div class="dagdeel">
+    <div><h4><span class="tag pc">PC</span>A — programmeren (ongeveer een uur)</h4>
+      Twee korte dingen. <b>Een class herkennen:</b> <code>max_speels.py</code> begint met
+      <code>class Bello(EchteBello):</code> en voegt trucjes toe aan de bestaande Bello. Een class is data
+      plus gedrag bij elkaar; je gebruikte er al zes weken een. <b>Een fout afvangen:</b> met
+      <code>try</code>/<code>except</code> blijft je programma netjes vragen tot de invoer klopt.</div>
+    <div><h4><span class="tag pico">PICO</span><span class="tag max">FYSIEKE MAX</span>B — Bello (de rest van het practicum)</h4>
+      Tegel 4 op de startpagina: de Pico in de browser, al bedraad met LED-ogen, noodstop en
+      oefenpoot. Knipperen, de knop lezen, en dan: elke <code>CMD:</code>-regel die je Pico print wordt een
+      beweging van Bello. De echte Bello staat op tafel bij de docent; wie de LED-ogen op de echte
+      Pico wil zien knipperen, komt even langs. Afsluiten met Proef 1, klassikaal.</div>
+  </div>
+
+  <h3>Voorbeelden</h3>
+<span class="codetitel">voorbeeld 1 — robuuste_invoer.py (PC): try/except</span>
+<pre><code>def vraag_getal(tekst):
+    """Blijf vragen tot de gebruiker een geldig getal invoert."""
+    while True:
+        try:
+            return float(input(tekst))
+        except ValueError:
+            print("Dat is geen getal, probeer opnieuw.")
+
+diameter = vraag_getal("Diameter in mm: ")
+print(f"Genoteerd: {diameter} mm")</code></pre>
+
+<span class="codetitel">voorbeeld 2 — blink.py (Pico): het "hallo wereld" van de hardware</span>
+<pre><code>from machine import Pin
+import time
+
+led = Pin(25, Pin.OUT)      # onboard-LED (Pico W: Pin("LED", Pin.OUT))
+
+while True:
+    led.toggle()
+    time.sleep(0.5)         # halve seconde wachten</code></pre>
+
+<span class="codetitel">voorbeeld 3 — ogen_noodstop.py (Pico op de fysieke Bello)</span>
+<pre><code>from machine import Pin
+import time
+
+oog_links  = Pin(15, Pin.OUT)             # LED's in Bello's kop, via 330 ohm
+oog_rechts = Pin(14, Pin.OUT)
+noodstop   = Pin(16, Pin.IN, Pin.PULL_DOWN)
+
+actief = True
+while True:
+    if noodstop.value() == 1:
+        actief = False                    # eenmaal ingedrukt = uit blijven
+    if actief:
+        oog_links.on();  oog_rechts.off() # knipoog-patroon
+        time.sleep(0.3)
+        oog_links.off(); oog_rechts.on()
+        time.sleep(0.3)
+    else:
+        oog_links.off(); oog_rechts.off() # ogen dicht: Bello "slaapt"
+        time.sleep(0.1)</code></pre>
+
+  <span class="codetitel">voorbeeld 4 — Bello op afstand: zo stuurt je Pico commando's</span>
+<pre><code># In de Pico-emulator (tegel 4) staat dit al in main.py: de klasse Bello print alleen regels.
+from max_pico import Bello
+
+bello = Bello()            # print "CMD:start": Bello naar de startpositie
+bello.zwaai()              # print "CMD:zwaai"  -> de brug zet het op MQTT -> Bello zwaait
+bello.blaf(3)
+bello.loop(2)
+bello.zeg("Hallo vanaf de Pico!")</code></pre>
+  <p>Zolang je programma loopt, stuurt het elke seconde een hartslag mee. Valt die 2,5 s weg
+     (programma gestopt, Pico uit), dan breekt Bello zijn beweging af en gaat hij veilig staan:
+     de noodstop-gedachte, ingebouwd in de machine zelf.</p>
+  <div class="proef"><b>Proef 1 — reactietijd van de noodstop:</b> meet met
+    <code>time.ticks_ms()</code> hoe lang het duurt tussen het indrukken van de knop en het doven
+    van de ogen. Verklein daarna de <code>time.sleep()</code> in de loop: wat gebeurt er met de
+    reactietijd, en waarom? (Dit is precies waarom echte machinebesturingen korte cyclustijden
+    hebben — schrijf je conclusie in 3 zinnen op.)</div>
+
+  <div class="opdracht"><b>Opdrachten</b>
+    <ul>
+      <li><b>A1:</b> schrijf <code>vraag_getal(tekst)</code> die blijft vragen tot de invoer een getal is
+          (<code>try</code>/<code>except ValueError</code>) en gebruik hem in je plaatberekening van week 1.</li>
+      <li><b>B1:</b> laat de LED-ogen knipperen in een patroon dat stopt zodra de noodstop is
+          ingedrukt, en laat Bello vanaf je Pico een kunstje van minstens vier commando's doen.</li>
+      <li><b>B2 (verdieping, optioneel):</b> geef Bello drie "stemmingen" in een dict —
+          <code>{"blij": 0.2, "rustig": 0.6, "slaperig": 1.2}</code> — en laat de knippersnelheid
+          van de ogen de stemming volgen.</li>
+      <li><b>B3 (verdieping, optioneel):</b> tweehandenbediening zoals op een kantbank: de ogen gaan pas
+          knipperen als <i>twee</i> knoppen tegelijk ingedrukt zijn.</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is
+    voor wie tijd over heeft, net als de verdiepingen hieronder.</div>
+
+  <h3>Verdieping voor wie klaar is (optioneel, ook bruikbaar als projectspoor)</h3>
+  <details><summary>Verdieping 1 — de oefenpoot: een echte servo aansturen en een class ervoor schrijven</summary>
+  <p>Bij de docent liggen een paar 3D-geprinte oefenpoten (heup + knie, twee hobbyservo's, zelfde
+     geometrie als Bello's echte poten) met een echte Pico. Een servo stuur je met PWM op 50 Hz: de
+     pulsbreedte (0,5–2,5 ms) bepaalt de hoek. De class <code>Servo</code> begrenst de hoek, zodat
+     software de hardware niet kapot kan sturen; <code>Poot</code> bundelt twee servo's.</p>
+<span class="codetitel">voorbeeld 1 — servo_class.py (PC): een class als digitale tweeling van hardware</span>
+<pre><code>class Servo:
+    def __init__(self, naam, min_hoek=0, max_hoek=180):
+        self.naam = naam
+        self.min_hoek = min_hoek
+        self.max_hoek = max_hoek
+        self.hoek = 90                      # starthouding
+
+    def zet_hoek(self, graden):
+        # begrens de hoek: hardware beschermen tegen software!
+        self.hoek = max(self.min_hoek, min(self.max_hoek, graden))
+
+    def __repr__(self):
+        return f"Servo({self.naam}: {self.hoek} graden)"
+
+heup = Servo("heup_links_voor", min_hoek=30, max_hoek=150)
+heup.zet_hoek(200)          # wordt automatisch begrensd
+print(heup)                 # Servo(heup_links_voor: 150 graden)</code></pre>
+
+<span class="codetitel">verdieping — servo_pwm.py (Pico): een echte servo aansturen</span>
+<pre><code>from machine import Pin, PWM
+import time
+
+servo = PWM(Pin(15))
+servo.freq(50)                       # standaard servofrequentie: 50 Hz
+
+def zet_hoek(graden):
+    """0-180 graden -&gt; pulsbreedte 0.5-2.5 ms."""
+    min_duty = 1638                  # 0.5 ms van 20 ms  (65535 * 0.025)
+    max_duty = 8192                  # 2.5 ms van 20 ms  (65535 * 0.125)
+    duty = int(min_duty + (graden / 180) * (max_duty - min_duty))
+    servo.duty_u16(duty)
+
+zet_hoek(0);   time.sleep(1)
+zet_hoek(90);  time.sleep(1)
+zet_hoek(180); time.sleep(1)</code></pre>
+
+<span class="codetitel">verdieping — poot_class.py (Pico): week 5's kniebuiging, nu fysiek én netjes OO</span>
+<pre><code>from machine import Pin, PWM
+import time
+
+class EchteServo:
+    def __init__(self, pin_nr, min_hoek=20, max_hoek=160):
+        self.pwm = PWM(Pin(pin_nr))
+        self.pwm.freq(50)
+        self.min_hoek, self.max_hoek = min_hoek, max_hoek
+
+    def zet_hoek(self, graden):
+        graden = max(self.min_hoek, min(self.max_hoek, graden))
+        duty = int(1638 + (graden / 180) * (8192 - 1638))
+        self.pwm.duty_u16(duty)
+
+heup = EchteServo(15)
+knie = EchteServo(16)
+
+buiging = [120, 100, 80, 60, 80, 100, 120]     # zelfde list als in de sim!
+for _ in range(3):
+    for hoek in buiging:
+        knie.zet_hoek(hoek)
+        time.sleep(0.15)</code></pre>
+
+  <div class="proef"><b>Proef 3 — kalibratie van de servo:</b> plak een gradenboog achter de
+    servohoorn en meet voor duty-waarden van 2000 t/m 8000 (stappen van 1000) de échte hoek.
+    Zet de meetpunten in een tabel, plot ze op de PC (week 6!) en bepaal: is het verband lineair?
+    Hoe groot is de afwijking van de formule in <code>zet_hoek()</code>? Pas <code>min_duty</code>
+    en <code>max_duty</code> aan tot 0° en 180° kloppen. Dit is wat "kalibreren" betekent —
+    en waarom de echte Bello per servo een eigen nulpunt in zijn config heeft.</div>
+
+
+  <div class="maxlink"><b>Onder de motorkap:</b> de code van de echte Bello is exact zo opgebouwd:
+    een Robot-object met vier Been-objecten met elk drie servo's. Jouw oefenpoot ís een kwart
+    Bello — zelfde geometrie, alleen goedkopere servo's (SG90 i.p.v. STS3215).</div>
+  </details>
+  <details><summary>Verdieping 2 — de IMU: een digitale sensor via I²C, en sim2real</summary>
+  <p>De MPU6050 meet versnelling en draaisnelheid en praat via I²C (twee draden: SDA en SCL, elk
+     apparaat een adres zoals <code>0x68</code>). Je krijgt de module <code>pico/mpu6050.py</code> met
+     <code>imu.lees_kantelhoek()</code> kant-en-klaar; hieronder zie je hoe die van binnen werkt.</p>
+<span class="codetitel">verdieping — imu_i2c.py: zo werkt pico/mpu6050.py van binnen</span>
+<pre><code>from machine import Pin, I2C
+import time, struct
+
+i2c = I2C(0, sda=Pin(0), scl=Pin(1), freq=400_000)
+MPU = 0x68
+print("Gevonden I2C-adressen:", [hex(a) for a in i2c.scan()])
+
+i2c.writeto_mem(MPU, 0x6B, b"\x00")          # sensor wakker maken
+
+while True:
+    data = i2c.readfrom_mem(MPU, 0x3B, 6)    # 3 assen x 2 bytes
+    ax, ay, az = struct.unpack("&gt;hhh", data)
+    g = 16384                                 # LSB per g (bereik +/- 2g)
+    print(f"ax={ax/g:+.2f}g  ay={ay/g:+.2f}g  az={az/g:+.2f}g")
+    time.sleep(0.2)</code></pre>
+
+<span class="codetitel">verdieping — kantelmeting.py (Pico): dezelfde grootheid als bello.kantelhoek()</span>
+<pre><code># Vervolg op imu_i2c.py: kantelhoek uit de versnellingsmeter
+import math
+
+led = Pin(15, Pin.OUT)
+while True:
+    data = i2c.readfrom_mem(MPU, 0x3B, 6)
+    ax, ay, az = struct.unpack("&gt;hhh", data)
+    kantel = math.degrees(math.atan2(ax, az))     # hoek t.o.v. verticaal
+    led.value(abs(kantel) &gt; 20)                   # waarschuwing boven 20 graden
+    print(f"kantelhoek: {kantel:+.1f} graden")
+    time.sleep(0.1)</code></pre>
+
+  <div class="proef"><b>Proef 4 — sim2real:</b> monteer de MPU6050 op de romp van de fysieke Bello en lees hem uit met de kant-en-klare module <code>pico/mpu6050.py</code> (I2C1 op GP4/GP5)
+    en log de kantelhoek terwijl de docent hem laat lopen (hergebruik je logger van week 6).
+    Vergelijk de plot met je sim-meting uit Proef 2: zelfde patroon? Grotere of kleinere
+    uitslagen? Noem twee oorzaken van het verschil (speling, wrijving, traagheid van echte
+    servo's, oneffen vloer...). Dít gat tussen simulatie en werkelijkheid is waar
+    robotici het grootste deel van hun tijd aan kwijt zijn.</div>
+
+  </details>
+  <details><summary>Verdieping 3 — een datalogger: metingen naar een CSV-bestand en plotten</summary>
+  <p>Bello houdt een dagboek bij: terwijl hij loopt, schrijf je de kantelhoek regel voor regel naar
+     een CSV-bestand met <code>with open(...)</code>, en daarna plot je het met <code>matplotlib</code>.
+     Dit is het gereedschap voor het MEET-spoor van het project.</p>
+<span class="codetitel">verdieping — sim_logger.py (Webots): loggen terwijl Bello loopt</span>
+<pre><code>from max_api import Bello
+
+bello = Bello()
+bello.sta()
+bello.start_lopen()                        # Bello loopt nu continu
+
+with open("kantel_log.csv", "w") as f:
+    f.write("tijd_s,kantelhoek\n")
+    for i in range(200):                 # 20 seconden, elke 0.1 s
+        f.write(f"{i * 0.1:.1f},{bello.kantelhoek():.2f}\n")
+        bello.wacht(0.1)
+
+bello.stop_lopen()
+bello.zeg("Meting klaar - 200 samples opgeslagen")</code></pre>
+
+<span class="codetitel">verdieping — plot_log.py (PC): de gelogde data plotten</span>
+<pre><code># pip install matplotlib  (eenmalig)
+import matplotlib.pyplot as plt
+
+tijden, waardes = [], []
+try:
+    with open("kantel_log.csv") as f:
+        f.readline()                            # kopregel overslaan
+        for regel in f:
+            t, w = regel.strip().split(",")
+            tijden.append(float(t))
+            waardes.append(float(w))
+except FileNotFoundError:
+    print("Log niet gevonden - eerst de logger draaien!")
+    raise SystemExit
+
+plt.plot(tijden, waardes)
+plt.xlabel("tijd (s)"); plt.ylabel("kantelhoek (graden)")
+plt.title("Romp-kanteling van Bello tijdens het lopen")
+plt.grid(True)
+plt.show()</code></pre>
+
+  <div class="proef"><b>Proef 2 — hoe stabiel loopt Bello?</b> Log in de sim 20 s kantelhoek bij
+    een <i>lage</i> en een <i>hoge</i> loopfrequentie (docent zet de gait-snelheid voor je om).
+    Plot beide reeksen in één figuur en bepaal per reeks de grootste uitslag. Conclusie: bij
+    welke snelheid is Bello stabieler, en zie je dat ook aan de simulatie? Doe daarna hetzelfde
+    idee fysiek: leg de Pico-logger op de rug van de echte Bello terwijl de docent hem laat lopen
+    en log de interne temperatuur — hoe warm wordt de elektronica van 10 minuten werken?</div>
+
+
+  </details>
+  <div class="maxlink"><b>Onder de motorkap:</b> de echte Bello is precies zo opgebouwd: een Pico-achtige
+    controller, twaalf servo's met elk een nulpunt en een bereik in een configuratie-dictionary, en een
+    IMU die de kantelhoek meet. Alles wat je deze week in het klein doet, gebeurt daar 50 keer per seconde.</div>
+</section>
+
+<!-- ================= WEEK 7 ================= -->
+<section class="week" id="w7">
+  <h2><span class="weeklabel">Week 7</span> Project "Maak Bello slimmer" — bouwen (1)</h2>
+  <div class="doelen"><b>Leerdoelen</b>
+    <ul>
+      <li>In een viertal (twee tweetallen samen) een klein project plannen en bouwen met alles uit week 1–6.</li>
+      <li>Klein beginnen en werkend houden: één kernfunctie foutloos is meer waard dan drie halve.</li>
+    </ul>
+  </div>
+  <p>Vanaf nu is het practicum bouwtijd. Twee tweetallen vormen samen een team van vier, de docent
+     loopt rond, en de AI-tutor is je eerste hulplijn bij foutmeldingen. Verdeel het werk in twee
+     delen die elk tweetal bouwt en die samen één demo vormen. Kies in het eerste half uur je spoor en
+     schrijf in drie zinnen op wat Bello aan het eind moet kunnen; laat dat aan de docent zien
+     voordat je begint te bouwen.</p>
+  <h3>Het project (teams van vier)</h3>
+  <p>Kies één van de sporen; ze tellen even zwaar. MEET is er voor wie de datalogger-verdieping leuk vond.</p>
+  <table>
+    <tr><th>Spoor</th><th>Opdracht</th><th>Minimale eisen</th></tr>
+    <tr>
+      <td><b>SIM</b> <span class="tag webots">WEBOTS</span></td>
+      <td>Geef Bello nieuw gedrag in Webots: autonoom een parcours door met de afstandssensor, een
+          dans op commando, een "waakhond" die reageert op wat hij ziet, of (verdieping) een eigen
+          looppatroon zonder de Bello-API.</td>
+      <td>Eigen functies met parameters, gedrag uit een list of dict, nette foutafhandeling
+          (<code>try</code>/<code>except</code>) op minstens één plek.</td>
+    </tr>
+    <tr>
+      <td><b>PICO</b> <span class="tag pico">PICO</span></td>
+      <td>Een Pico-programma (in de emulator, of op een echte Pico met de verdiepingskist) dat Bello
+          bestuurt: een afstandsbewaker die de ogen laat knipperen en Bello laat stoppen, een
+          staart-servo die kwispelt op commando, of een oefenpoot-demo met loopcyclus en noodstop.</td>
+      <td>Functies of een class voor de aansturing, gedrag uit een list of dict, nette begrenzing
+          van hoeken, werkende noodstop.</td>
+    </tr>
+    <tr>
+      <td><b>MEET</b> (verdieping) <span class="tag webots">WEBOTS</span>+<span class="tag pc">PC</span></td>
+      <td>Onderzoek een meetvraag: hoe stabiel loopt Bello bij twee snelheden? Hoe verschilt de
+          kanteling in de sim van die van de echte Bello (IMU-verdieping)?</td>
+      <td>Logger met exceptions en nette CSV, programma dat inleest, statistiek berekent en plot;
+          meetplan vooraf en conclusie in 3 zinnen.</td>
+    </tr>
+  </table>
+
+  <span class="codetitel">startpunt — projectskelet dat elk team krijgt</span>
+<pre><code>"""Projectskelet - vul de TODO's in en lever in met je namen hieronder.
+Team: ...
+"""
+
+class Poot:
+    def __init__(self, naam, pin_heup, pin_knie):
+        self.naam = naam
+        # TODO: servo's initialiseren (fysiek: PWM / sim: robot.getDevice)
+
+    def zet_houding(self, hoek_heup, hoek_knie):
+        # TODO: hoeken begrenzen en doorsturen
+        pass
+
+    def loop_cyclus(self, stappen):
+        """stappen = list van (heup, knie)-tuples"""
+        # TODO: afspelen met de juiste timing
+        pass
+
+def log_meting(pad, regels):
+    # TODO: wegschrijven als CSV, met try/except
+    pass
+
+if __name__ == "__main__":
+    poot = Poot("demo", pin_heup=15, pin_knie=16)
+    cyclus = [(90, 120), (70, 60), (50, 60), (50, 120), (70, 130)]
+    poot.loop_cyclus(cyclus)</code></pre>
+
+
+  <details><summary>Verdieping voor het SIM-spoor — de API opzij, jouw eigen looppatroon</summary>
+  <p>Kies je het SIM-spoor, dan leg je de Bello-API weg en stuur je de gewrichten rechtstreeks aan,
+     zoals een roboticus dat doet. Elke poot krijgt een heuphoek
+     <code>amplitude · sin(2πf·t + fase)</code>; bij een <i>trot</i> hebben diagonale poten dezelfde fase.
+     Plot het patroon eerst (voorbeeld 1), zet het dan in een eigen controller (voorbeeld 2) en
+     experimenteer met frequentie en amplitudes: wanneer valt hij om? Verander daarna de fases naar
+     een <i>walk</i> (0, ½π, π, 1½π).</p>
+  <span class="codetitel">voorbeeld 1 — gait_test.py (PC): eerst begrijpen, dan simuleren</span>
+<pre><code># Plot het looppatroon VOORDAT je het in de simulator stopt
+import math
+import matplotlib.pyplot as plt
+
+def heuphoek(t, frequentie=1.0, amplitude=0.4, fase=0.0):
+    """Heuphoek (rad) op tijdstip t voor een poot met gegeven fase."""
+    return amplitude * math.sin(2 * math.pi * frequentie * t + fase)
+
+tijden = [i / 100 for i in range(300)]           # 3 seconden
+fases = {"LV": 0, "RV": math.pi, "LA": math.pi, "RA": 0}   # trot: diagonale paren
+
+for naam, fase in fases.items():
+    plt.plot(tijden, [heuphoek(t, fase=fase) for t in tijden], label=naam)
+plt.legend(); plt.xlabel("tijd (s)"); plt.ylabel("heuphoek (rad)")
+plt.title("Trot: diagonale poten bewegen samen")
+plt.show()</code></pre>
+
+  <span class="codetitel">voorbeeld 2 — mijn_max_controller.py (Webots): de motorkap is eraf</span>
+<pre><code># Geen max_api meer - dit is een echte Webots-controller, zoals de API zelf ook is
+from controller import Robot
+import math
+
+robot = Robot()
+timestep = int(robot.getBasicTimeStep())
+
+# 8 motoren: per poot een heup en een knie (namen uit de scene tree)
+poten = {
+    "LV": {"fase": 0.0},        "RV": {"fase": math.pi},
+    "LA": {"fase": math.pi},    "RA": {"fase": 0.0},
+}
+for naam, poot in poten.items():
+    poot["heup"] = robot.getDevice(f"heup_{naam}")
+    poot["knie"] = robot.getDevice(f"knie_{naam}")
+
+FREQ, A_HEUP, A_KNIE = 1.0, 0.35, 0.45          # afstemmen = de leukste stap!
+
+t = 0.0
+while robot.step(timestep) != -1:
+    t += timestep / 1000                         # ms -&gt; s
+    for poot in poten.values():
+        f = 2 * math.pi * FREQ * t + poot["fase"]
+        poot["heup"].setPosition(A_HEUP * math.sin(f))
+        # knie alleen buigen bij optillen (halve sinus, anders gestrekt):
+        poot["knie"].setPosition(max(0.0, A_KNIE * math.sin(f + math.pi / 2)))</code></pre>
+
+  <div class="videoduo">
+    <figure>
+      <video controls loop muted playsinline preload="metadata">
+        <source src="media/w9_trot.mp4" type="video/mp4">
+      </video>
+      <figcaption>Doel van het SIM-spoor: Bello loopt in <b>Webots</b> op een zelfgeschreven
+        sinus-gait (hier de gait van de Bello-API)</figcaption>
+    </figure>
+    <figure>
+      <video controls loop muted playsinline preload="metadata">
+        <source src="media/max_mjx.mp4" type="video/mp4">
+      </video>
+      <figcaption>Het beste resultaat tot nu toe: de <b>RL-policy</b> die in MuJoCo
+        zichzelf heeft leren lopen</figcaption>
+    </figure>
+  </div>
+
+  </details>
+  <div class="maxlink"><b>Onder de motorkap:</b> jullie projecten vormen samen de hele pijplijn
+    van een echt robotproject: simuleren (SIM), aandrijven (FYSIEK) en meten/valideren (MEET).
+    Precies de drie dingen die nodig waren — en blijven — om Bello van simulatie naar de echte
+    wereld te brengen.</div>
+</section>
+
+<!-- ================= WEEK 8 ================= -->
+<section class="week" id="w8">
+  <h2><span class="weeklabel">Week 8</span> Project — bouwen (2) en generale repetitie</h2>
+  <p>Afbouwen, testen op de randgevallen die de rubric beloont (noodstop, obstakel, verkeerde
+     invoer), en in het laatste uur een <b>generale</b>: elk team doet zijn demo van vier minuten
+     voor een ander team en krijgt feedback. Spreek af wie welk stuk code uitlegt in week 9:
+     ieder van jullie moet een eigen stuk kunnen toelichten én ter plekke een kleine wijziging kunnen
+     doorvoeren.</p>
+  <div class="opdracht"><b>Inleveren (via de ELO, vóór het begin van de assessment in week 9):</b>
+    <ul>
+      <li>Alle code (<code>.py</code>-bestanden), met commentaar en jullie namen erin.</li>
+      <li>Vijf regels reflectie per persoon: wat werkte meteen, wat niet, en hoe heb je dat gedebugd?</li>
+      <li>Alleen bij het MEET-spoor: logbestand + plot.</li>
+    </ul>
+  </div>
+  <div class="letop"><b>Geen verslag.</b> De demo en je code zijn het bewijs; de vijf regels reflectie
+    zijn genoeg. Besteed je tijd aan een werkende demo.</div>
+</section>
+
+<!-- ================= WEEK 9 ================= -->
+<section class="week" id="w9">
+  <h2><span class="weeklabel">Week 9</span> Assessment — demo, code-uitleg en verdediging</h2>
+  <p>Geen nieuwe stof: je laat zien wat je kunt. Dit is de enige toets van het vak; alles ervoor
+     was oefenen. De docent vult de rubric tijdens je demo in, dus je hoort meteen hoe het ging.</p>
+  <h3>Hoe het practicum eruitziet</h3>
+  <ul>
+    <li><b>Per team van vier 12 minuten:</b> live demo (4), code-uitleg (6, ieder anderhalve minuut over
+        een eigen stuk), vragen (2), waaronder één kleine wijziging die je ter plekke doorvoert.</li>
+    <li><b>Zes teams</b> in volgorde van het rooster in de ELO, samen ruim een uur; wie niet aan de beurt
+        is, kijkt mee bij een ander team.</li>
+    <li><b>Afsluiting:</b> de fysieke Bello loopt naast zijn eigen simulatie, met de mooiste projecten
+        van de klas nog een keer op het grote scherm.</li>
+  </ul>
+  <p>De beoordeling gebeurt met de <a href="#beoordeling">projectrubric (25 punten) en de
+     presentatierubric (10 punten)</a>. De verdediging is individueel: kun je je eigen code niet
+     uitleggen en aanpassen, dan geldt voor jou het plafond uit de eindrubric.</p>
+  <div class="letop"><b>Meenemen:</b> je laptop met de Bello-omgeving en je code; bij het PICO-spoor
+    met echte Pico de schakeling.</div>
+</section>
+
+<!-- ================= WEEK 10 ================= -->
+<section class="week" id="w10">
+  <h2><span class="weeklabel">Week 10</span> Herkansing</h2>
+  <p>Voor wie in week 9 onder de 5,5 uitkwam of het basisniveau op de individuele code-uitleg
+     (criterium B2) niet haalde. Je hoort na de assessment precies wat er ontbreekt; je werkt dat bij
+     en doet in week 10 opnieuw de demo, de code-uitleg en de vragen, met dezelfde rubric. Wie bij
+     minder dan zes practica was, haalt eerst in overleg met de docent de gemiste weekopdrachten in.
+     Er is één herkansing.</p>
+</section>
+
+<!-- ================= BEOORDELING ================= -->
+<section class="blok" id="beoordeling">
+  <h2>Beoordeling &amp; eindrubric</h2>
+  <p>Er zijn geen weekcijfers en geen verslagen. Elke week laat je A1 en B1 aan een ander tweetal zien
+     (vinkje op de weeklijst), en de docent loopt rond. Het cijfer komt uit <b>één opdracht</b>: het
+     project (bouwen in week 7 en 8, assessment in week 9) met een individuele verdediging. De docent
+     vult de rubric tijdens de assessment in. Week 10 is de herkansing.</p>
+
+  <h3>Eindcijfer: één opdracht</h3>
+  <table>
+    <tr><th>Onderdeel</th><th>Punten</th><th>Aandeel</th></tr>
+    <tr><td><b>A. Projectrubric</b> (team, hieronder)</td><td>max 25</td><td>teamresultaat</td></tr>
+    <tr><td><b>B. Presentatie &amp; verdediging</b> (individueel, hieronder)</td><td>max 10</td><td>individueel</td></tr>
+  </table>
+  <p><b>Cijfer</b> = 1 + 9 × (A + B) / 35, afgerond op één decimaal. Behaald bij ≥ 5,5, mét
+     minimaal het basisniveau op de individuele code-uitleg (B2). Eén herkansing, in week 10.
+     Er is geen aparte programmeertoets.</p>
+  <div class="letop"><b>Toegangseis:</b>
+    <ul>
+      <li>bij minstens 6 van de 8 practica aanwezig geweest en daar de basisopdrachten (A1 en B1)
+          gedaan, afgevinkt door een ander tweetal op de weeklijst;</li>
+      <li>code en vijf regels reflectie ingeleverd vóór de assessment;</li>
+      <li>bij de assessment kun je een zelfgeschreven stuk code uitleggen én live aanpassen —
+          wie dat niet kan, krijgt het teamcijfer niet.</li>
+    </ul>
+  </div>
+
+  <h3>Projectrubric — 25 punten (team van vier)</h3>
+  <table>
+    <tr><th>Criterium (max)</th><th>0 punten</th><th>helft</th><th>volledig</th></tr>
+    <tr><td>Werkende demo (8)</td><td>demo faalt of is niet van eigen code</td>
+        <td>kernfunctie werkt live, met kleine haperingen</td>
+        <td>demo draait foutloos, inclusief randgevallen (noodstop, obstakel, lege log)</td></tr>
+    <tr><td>Eisen van het spoor (6)</td><td>minder dan de helft van de minimale eisen</td>
+        <td>minimale eisen van het spoor grotendeels aanwezig</td>
+        <td>alle minimale eisen aantoonbaar af; uitbreiding daarbovenop</td></tr>
+    <tr><td>Codekwaliteit (7)</td><td>geen structuur, gekopieerde code</td>
+        <td>functies/classes met logische namen; constanten bij elkaar</td>
+        <td>+ nette foutafhandeling, docstrings, geen dode of dubbele code</td></tr>
+    <tr><td>Inlevering &amp; reflectie (4)</td><td>niet of te laat ingeleverd</td>
+        <td>code compleet en op tijd, vijf regels reflectie aanwezig</td>
+        <td>+ de reflectie beschrijft concreet wat misging en hoe dat is gedebugd</td></tr>
+  </table>
+
+  <h3>Presentatierubric (assessment, week 9) — 10 punten (individueel)</h3>
+  <table>
+    <tr><th>Criterium (max)</th><th>0 punten</th><th>helft</th><th>volledig</th></tr>
+    <tr><td>Live demo (4)</td><td>geen werkende demo getoond</td>
+        <td>demo getoond met uitleg van wat er gebeurt</td>
+        <td>demo + uitleg van wat er mis kán gaan en hoe de code dat afvangt</td></tr>
+    <tr><td>Code-uitleg per student (4)</td><td>kan eigen deel niet uitleggen</td>
+        <td>legt eigen code regel voor regel uit</td>
+        <td>+ voert live een gevraagde wijziging correct door</td></tr>
+    <tr><td>Vragen &amp; reflectie (2)</td><td>geen antwoord op vragen</td>
+        <td>beantwoordt vragen over eigen deel</td>
+        <td>beantwoordt ook vragen over het deel van teamgenoten</td></tr>
+  </table>
+
+  <div class="letop"><b>Waarom de verdediging individueel is:</b> wie zijn eigen code ter plekke kan
+    aanpassen ("laat Bello een vijfhoek lopen in plaats van een vierkant"), heeft hem begrepen. Dat
+    is de hele fraudepreventie van dit vak, en de reden dat de AI-tutor alleen hints geeft: de
+    uitwerking moet van jou zijn, anders kom je in week 9 niet door de drie minuten code-uitleg.</div>
+</section>
+
+<!-- ================= MATERIAAL ================= -->
+<section class="blok" id="materiaal">
+  <h2>Materiaal</h2>
+  <h3>Software (per student, vanaf week 1)</h3>
+  <ul>
+    <li><b>De Bello-omgeving</b> (Docker Desktop + het pakket van de docent, zie
+        <a href="#omgeving">Bello-omgeving</a>): simulator, editor, AI-tutor en Pico-emulator in de browser.
+        De Bello-wereld, <code>max_api.py</code> en het API-kaartje zitten erin.</li>
+    <li>Zonder Docker (uitzondering, in overleg met de docent): de losse bundel met Webots en Thonny,
+        alleen Windows</li>
+    <li>matplotlib (zit in de Bello-omgeving; vanaf week 6) · MicroPython-firmware (week 6)</li>
+  </ul>
+  <h3>Hardware: alleen de verdiepingskist (klassikaal)</h3>
+  <p>Studenten werken met de Pico-emulator in de browser; er is geen kit per tweetal. Voor wie klaar
+     is en de verdieping wil, ligt bij de docent een kist met:</p>
+  <table>
+    <tr><th>Onderdeel</th><th>Aantal</th><th>Voor</th></tr>
+    <tr><td>Raspberry Pi Pico (of Pico W) + micro-USB-kabel, breadboard, jumperdraadjes, LED's + 330 Ω, drukknoppen</td><td>3 sets</td><td>LED-ogen en noodstop op een echte Pico</td></tr>
+    <tr><td>Oefenpoot-frame (3D-print heup + knie) met 2 hobbyservo's SG90/MG90S en gradenboog</td><td>3</td><td>Verdieping 1 (servo's, class <code>Poot</code>, Proef 3)</td></tr>
+    <tr><td>IMU-module MPU6050 (I²C)</td><td>3</td><td>Verdieping 2 (I²C, Proef 4)</td></tr>
+    <tr><td>Afstandssensor (HC-SR04 of VL53L0X), powerbank</td><td>2</td><td>projectspoor PICO op een echte Pico</td></tr>
+  </table>
+  <h3>Klassikaal (de fysieke Bello)</h3>
+  <ul>
+    <li>Eén (of enkele) opgebouwde OpenRoboticDog "Bello" met Feetech STS3215-servo's — de docent
+        bedient het lopen; studenten monteren hun eigen componenten (ogen, noodstop, logger, IMU,
+        neus) op vaste montagepunten met een eigen Pico.</li>
+    <li>Reserveonderdelen: 3D-geprinte montagebeugels voor Pico + breadboard op de rug.</li>
+  </ul>
+  <div class="letop"><b>Servo-voeding:</b> één SG90 mag even van VBUS (5 V USB) snoepen, maar bij
+    twee servo's of haperingen: externe 5 V-voeding gebruiken en GND's koppelen. Nooit een servo
+    op de 3V3-pin — die levert te weinig stroom. De STS3215-servo's van de echte Bello hebben hun
+    eigen voeding en busaansturing: daar blijven studentenhanden af, behalve onder begeleiding.</div>
+</section>
+
+<!-- ================= BRONNEN ================= -->
+<section class="blok" id="bronnen">
+  <h2>Bronnen &amp; verantwoording</h2>
+  <ul>
+    <li><b>De Programmeursleerling — Leren coderen met Python 3</b>, Pieter Spronck (CC BY-NC,
+        <a href="http://www.spronck.net/pythonbook">spronck.net/pythonbook</a>).
+        Hoofdstukverwijzingen per week staan in de paarse "Theorie vooraf"-blokken.
+        Gebruikt: H1–8 (kern), H10–13, H16–17, H20; H26 (CSV) als verdieping.</li>
+    <li><b>Get Started with MicroPython on Raspberry Pi Pico</b>, Halfacree &amp; Everard
+        (Raspberry Pi Press, CC BY-NC-SA). Gebruikt: H1–4, H8–10; Appendix B (pinout) is het
+        vaste naslagblad bij elk practicum vanaf week 6.</li>
+    <li><b>Python Cheat Sheet</b> (eigen uitgave): elke les op tafel, elke les op tafel.</li>
+    <li><b>Webots</b> (Cyberbotics, gratis &amp; open source): User Guide-tutorials 1 en 4;
+        de Bello-wereld en <code>max_api.py</code> worden door de docent uitgereikt.</li>
+    <li><b>Robothond Bello</b>: OpenRoboticDog-hardware (MIT-licentie) + MuJoCo-simulatie,
+        loopcontroller (<code>max_walk.py</code>) en RL-training uit de <code>spot</code>-repository.
+        De oefenpoot komt uit de STL's in <code>OpenRoboticDog/3D Files/</code>.</li>
+  </ul>
+  <h3>Meegeleverd in de repository (<code>cursus/webots/</code>)</h3>
+  <ul>
+    <li><b><code>worlds/max_wereld.wbt</code></b> — arena (4×4 m, muren, obstakel) met het
+        Bello-model: 8 positiegestuurde gewrichten (<code>heup_LV</code> … <code>knie_RA</code>),
+        IMU, GPS en afstandssensor; afmetingen en massa's uit het MuJoCo-model, en het
+        uiterlijk (romp-frame en gebogen onderbenen) uit de originele OpenRoboticDog-STL's —
+        het virtuele model ziet er dus uit als de fysieke Bello.</li>
+    <li><b><code>controllers/max_student/max_api.py</code></b> — de Bello-API: 2-link-IK en
+        voettraject geport uit <code>max_walk.py</code>, trot-gait met IMU-koershouder,
+        gesloten-lus draaien, alle kaartje-commando's.</li>
+    <li><b><code>controllers/max_student/max_speels.py</code></b> — de speelse laag waarmee
+        studenten beginnen: trucjes (<code>blaf</code>, <code>geef_poot</code>,
+        <code>kwispel</code>, …) opgebouwd uit dezelfde primitieven als de API, plus
+        oneliners in de console en een kleine toestand (honger/energie/blijheid) voor de
+        dictionary-week.</li>
+    <li><b><code>worlds/max_mqtt_wereld.wbt</code> + <code>controllers/max_mqtt_executor/</code></b> —
+        Bello voert tekstcommando's uit die op een lokale MQTT-broker binnenkomen
+        (<code>max/&lt;groep&gt;/cmd</code>), bv. vanaf een Pico; met hartslag en noodstop.
+        Voor de docent/het podium; details in <code>cursus/webots/README.md</code>.</li>
+    <li><b><code>pico/</code></b> — de Pico-kant: <code>max_pico.py</code> en <code>voorbeeld_main.py</code>
+        (dezelfde commando's als in Webots, als tekst over de seriële poort) en <code>mpu6050.py</code>,
+        de kant-en-klare IMU-module voor Proef 4. Plus <code>container/</code>: de hele cursus in één
+        Docker-container (Webots in de browser, editor, broker, Pico-emulator, AI-tutor).</li>
+    <li><b><code>worlds/test_wereld.wbt</code> + <code>controllers/max_test/</code></b> —
+        geautomatiseerde zelftest (14 checks), draait headless; zie
+        <code>cursus/webots/README.md</code>. Status: <b>alle 14 checks geslaagd</b>.</li>
+    <li><b><code>api_kaartje.md</code></b> — het uitdeelkaartje met commando's per week.</li>
+  </ul>
+  
+</section>
+
+</main>
+
+<footer>
+  Inleiding Programmeren &amp; Mechatronica · HBO Werktuigbouwkunde · 10 weken met robothond Bello ·
+  gebaseerd op De Programmeursleerling (Spronck), Get Started with MicroPython on Raspberry Pi
+  Pico (Raspberry Pi Press), Webots en het OpenRoboticDog-project.
+</footer>
+
+<script>
+// Video's standaard op dubbele snelheid; de kijker kan het in de speler zelf terugzetten.
+document.querySelectorAll("video").forEach(function (v) {
+  v.defaultPlaybackRate = 2; v.playbackRate = 2;
+  v.addEventListener("loadedmetadata", function () { v.playbackRate = 2; });
+});
+</script>
+</body>
+</html>

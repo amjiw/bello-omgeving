@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Bello-omgeving handleiding</title>
+<style>
+/* Layout: één leeskolom van ~68 tekens, zelfde kleuren en letters als de cursusgids (studentsite). */
+:root {
+  --bg:#eef1f1; --surface:#ffffff; --surface-2:#e7ebeb; --code-bg:#f4f6f6;
+  --ink:#16201e; --muted:#586765; --line:#d7dedd;
+  --accent:#b1541c; --accent-soft:rgba(177,84,28,.12);
+  --teal:#0e7a89; --teal-soft:rgba(14,122,137,.12); --good:#2f7d52; --warn:#9a6b00;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"Cascadia Code","Cascadia Mono","SF Mono","Consolas","Liberation Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0e1413; --surface:#161d1c; --surface-2:#1d2625; --code-bg:#101716;
+    --ink:#e6edeb; --muted:#93a3a0; --line:#273230;
+    --accent:#e08a4a; --accent-soft:rgba(224,138,74,.16);
+    --teal:#44b6c5; --teal-soft:rgba(68,182,197,.16); --good:#56b784; --warn:#d9a73a;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0e1413; --surface:#161d1c; --surface-2:#1d2625; --code-bg:#101716;
+  --ink:#e6edeb; --muted:#93a3a0; --line:#273230;
+  --accent:#e08a4a; --accent-soft:rgba(224,138,74,.16);
+  --teal:#44b6c5; --teal-soft:rgba(68,182,197,.16); --good:#56b784; --warn:#d9a73a;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.reader{max-width:70ch;margin:0 auto;padding-block:2.4rem 4rem;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.kicker{font-family:var(--mono);text-transform:uppercase;letter-spacing:.13em;font-size:.66rem;color:var(--muted);margin:0 0 .4rem}
+h1{font-size:2rem;line-height:1.1;letter-spacing:-.015em;font-weight:680;margin:0 0 .5rem;text-wrap:balance}
+.lead{color:var(--muted);margin:0 0 1.2rem;font-size:1.05rem}
+.versie{display:inline-block;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;
+  background:var(--accent-soft);color:var(--accent);padding:.25rem .6rem;border-radius:6px}
+nav.inhoud{display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.2rem .9rem;
+  margin:1.4rem 0 2.2rem;padding:1rem 1.1rem;background:var(--surface);border:1px solid var(--line);border-radius:11px}
+nav.inhoud a{color:var(--teal);text-decoration:none;font-size:.93rem;padding:.2rem 0}
+nav.inhoud a:hover{text-decoration:underline}
+h2{font-size:1.5rem;line-height:1.15;letter-spacing:-.01em;font-weight:680;margin:2.6rem 0 .9rem;text-wrap:balance;scroll-margin-top:1rem}
+h2::after{content:"";display:block;width:46px;height:3px;border-radius:2px;background:var(--accent);margin-top:.6rem}
+h3{font-size:1.12rem;font-weight:660;margin:1.6rem 0 .5rem;text-wrap:balance}
+p{margin:.65rem 0}
+a{color:var(--teal)}
+ul,ol{margin:.6rem 0;padding-left:1.4rem}
+li{margin:.3rem 0}
+li::marker{color:var(--accent)}
+strong{font-weight:660}
+code{font-family:var(--mono);font-size:.86em}
+:not(pre)>code{background:var(--surface-2);padding:.1em .38em;border-radius:5px;color:var(--accent);font-size:.84em}
+pre{background:var(--code-bg);border:1px solid var(--line);border-radius:11px;padding:.9rem 1rem;overflow-x:auto;
+  margin:.9rem 0;line-height:1.5;box-shadow:inset 3px 0 0 var(--accent)}
+pre code{color:var(--ink);font-size:.85rem;background:none;padding:0}
+kbd{font-family:var(--mono);font-size:.78em;border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;
+  padding:.08em .4em;background:var(--surface)}
+.tbl{overflow-x:auto;margin:1rem 0;border:1px solid var(--line);border-radius:11px}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{text-align:left;padding:.55rem .8rem;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--surface-2)}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even){background:var(--surface-2)}
+.stappen{counter-reset:stap;list-style:none;padding-left:0;margin:1rem 0}
+.stappen li{position:relative;padding-left:2.6rem;margin:.8rem 0}
+.stappen li::before{counter-increment:stap;content:counter(stap);position:absolute;left:0;top:.05rem;width:1.8rem;height:1.8rem;
+  border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:.8rem;font-weight:600;
+  display:flex;align-items:center;justify-content:center}
+.let-op{border-left:3px solid var(--warn);background:var(--surface);padding:.7rem 1rem;border-radius:0 9px 9px 0;margin:1rem 0}
+.let-op b{color:var(--warn)}
+.tip{border-left:3px solid var(--teal);background:var(--teal-soft);padding:.7rem 1rem;border-radius:0 9px 9px 0;margin:1rem 0}
+.kaarten{display:grid;grid-template-columns:1fr;gap:.6rem;margin:1rem 0}
+.kaart{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.75rem .95rem;min-width:0}
+.kaart b{display:block;margin-bottom:.15rem}
+.kaart small{color:var(--muted)}
+.foot{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+:where(a):focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:4px}
+</style>
+</head>
+<body>
+<main class="reader">
+  <p class="kicker">HBO Werktuigbouwkunde · Programmeren &amp; Mechatronica · robothond Bello</p>
+  <h1>De Bello-omgeving op je eigen laptop</h1>
+  <p class="lead">Installeren, starten, werken, bijwerken, en wat je doet als het niet werkt.</p>
+  <p><span class="versie">handleiding bij versie 2026.11.04</span></p>
+
+  <nav class="inhoud" aria-label="Inhoud">
+    <a href="#wat">1. Wat je krijgt</a>
+    <a href="#laptop">2. Wat je laptop nodig heeft</a>
+    <a href="#docker">3. Docker Desktop installeren</a>
+    <a href="#starten">4. Starten</a>
+    <a href="#startpagina">5. De startpagina</a>
+    <a href="#editor">6. Werken in de editor</a>
+    <a href="#pico">7. Pico in de browser</a>
+    <a href="#tutor">8. De AI-tutor</a>
+    <a href="#bijwerken">9. Stoppen, bijwerken, terugdraaien</a>
+    <a href="#storing">10. Als het niet werkt</a>
+    <a href="#vragen">11. Veelgestelde vragen</a>
+  </nav>
+
+  <h2 id="wat">1. Wat je krijgt</h2>
+  <p>Alles voor de cursus zit in één pakket dat op je eigen laptop draait: de simulator met Bello,
+  een code-editor, de AI-tutor, een MQTT-broker en een Pico-emulator. Het pakket draait in
+  Docker-containers, een soort afgesloten kastje op je laptop. Jij werkt in de browser en hoeft
+  verder niets te installeren, ook geen Python of Webots.</p>
+  <p>Thuis werkt het zonder wifi. Alleen de AI-tutor (het taalmodel in de cloud) en de eerste keer
+  laden van het 3D-beeld hebben internet nodig.</p>
+
+  <h2 id="laptop">2. Wat je laptop nodig heeft</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Onderdeel</th><th>Minimaal</th><th>Opmerking</th></tr></thead>
+    <tbody>
+      <tr><td>Besturingssysteem</td><td>Windows 10/11 64-bits, macOS of Linux</td><td>Windows Home werkt ook (via WSL 2)</td></tr>
+      <tr><td>Werkgeheugen</td><td>8 GB</td><td>16 GB als je de lokale AI wilt gebruiken</td></tr>
+      <tr><td>Schijfruimte</td><td>15 GB vrij</td><td>Docker Desktop 2 GB, het pakket ongeveer 12 GB</td></tr>
+      <tr><td>Processor</td><td>x86-64 met virtualisatie</td><td>staat bij vrijwel elke laptop al aan in de BIOS</td></tr>
+      <tr><td>Rechten</td><td>eenmalig admin</td><td>alleen voor het installeren van Docker Desktop</td></tr>
+      <tr><td>Internet</td><td>eenmalig 3,5 GB</td><td>doe de eerste start thuis of op school, niet via je telefoon</td></tr>
+    </tbody>
+  </table></div>
+  <div class="let-op"><b>Mac met Apple Silicon (M1 en nieuwer).</b> Het pakket is gebouwd voor x86-64. Docker Desktop
+  draait het dan onder emulatie: het werkt, maar de simulatie is traag. Meld het bij de docent, dan
+  zoeken we een oplossing.</div>
+
+  <h2 id="docker">3. Docker Desktop installeren</h2>
+  <p>Eenmalig, ongeveer een kwartier. Dit is de enige installatie.</p>
+  <h3>Windows</h3>
+  <ol class="stappen">
+    <li>Download Docker Desktop voor Windows van <a href="https://www.docker.com/products/docker-desktop/">docker.com</a>
+      en start het installatieprogramma.</li>
+    <li>Laat het vinkje <em>Use WSL 2 instead of Hyper-V</em> aan staan. Docker regelt WSL 2 zelf.</li>
+    <li>Herstart als Windows daarom vraagt. Soms moet dat twee keer.</li>
+    <li>Start Docker Desktop via het startmenu. Accepteer de voorwaarden (gratis voor onderwijs en
+      persoonlijk gebruik). Een account aanmaken is niet nodig: kies <em>Skip</em> of <em>Continue without signing in</em>.</li>
+    <li>Wacht tot het walvis-icoon rechtsonder in de taakbalk rustig staat. Dan is Docker klaar.</li>
+  </ol>
+  <h3>macOS en Linux</h3>
+  <p>Mac: download de versie die bij je processor past (Apple Silicon of Intel) en sleep de app naar
+  Programma's. Linux: Docker Desktop of Docker Engine met het compose-plugin; controleer met
+  <code>docker compose version</code>.</p>
+  <div class="tip">Docker Desktop hoeft niet bij het opstarten van je laptop mee te starten. Zet dat uit
+  onder <em>Settings → General → Start Docker Desktop when you sign in</em> als je laptop traag wordt.
+  Start het dan zelf voordat je met Bello begint.</div>
+
+  <h2 id="starten">4. Starten</h2>
+  <ol class="stappen">
+    <li>Download <a href="https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-omgeving.zip">bello-omgeving.zip</a>
+      (altijd de nieuwste versie; de zip is klein) en pak hem uit op een vaste plek, bijvoorbeeld
+      <code>Documenten\bello-omgeving</code>. Verplaats de map daarna niet meer: de mapnaam bepaalt
+      waar Docker je code bewaart.</li>
+    <li>Zorg dat Docker Desktop draait.</li>
+    <li>Dubbelklik op <strong><code>starten.cmd</code></strong>. De eerste keer haalt hij ongeveer 3,5 GB op
+      en dat duurt een paar minuten tot een kwartier. Daarna start hij in een halve minuut.</li>
+    <li>De browser opent <code>http://localhost:8000</code>. Zie je nog niets, wacht dan een halve
+      minuut en ververs: de simulator start als laatste.</li>
+  </ol>
+  <p>Mac en Linux hebben geen <code>.cmd</code>-bestanden. Open een terminal in de uitgepakte map:</p>
+<pre><code>cp .env.example .env
+docker compose --profile pico up -d       # starten
+docker compose --profile pico stop        # stoppen
+docker compose --profile pico pull &amp;&amp; docker compose --profile pico up -d   # bijwerken</code></pre>
+
+  <h2 id="startpagina">5. De startpagina</h2>
+  <p>Op <code>localhost:8000</code> staan vijf kaarten. Elke kaart opent een eigen tabblad.</p>
+  <div class="kaarten">
+    <div class="kaart"><b>1. Bello in 3D</b>Het beeld van de simulatie. Met de muis draai en zoom je.
+      Onder het beeld staat de console: wat Bello zegt en de foutmeldingen uit je code.
+      <small>De knop met de luidspreker zet het blafgeluid aan; browsers spelen pas geluid na een klik.</small></div>
+    <div class="kaart"><b>2. Je code</b>De editor (VS Code in de browser) met <code>mijn_code.py</code>. Hier werk je.</div>
+    <div class="kaart"><b>3. AI-tutor</b>Hints bij fouten en begrippen, geen uitwerkingen. Werkt vanaf week 3 met je eigen sleutel.</div>
+    <div class="kaart"><b>4. Bello op afstand (MQTT)</b>Hoe een Pico W of de Pico-emulator Bello commando's stuurt. Vanaf week 6, en bij de demo in week 1.</div>
+    <div class="kaart"><b>5. Pico in de browser (Velxio)</b>Een nagebootste Raspberry Pi Pico met LED-ogen, noodstop en oefenpoot, al bedraad.</div>
+  </div>
+  <p>Onderaan de startpagina staan het versienummer en de lijst <em>wat is er nieuw</em>.</p>
+
+  <h2 id="editor">6. Werken in de editor</h2>
+  <p>Kaart 2 opent de map met <code>mijn_code.py</code>. Dat is jouw bestand: alles wat je Bello laat
+  doen, schrijf je hier. Elk programma begint met:</p>
+<pre><code>from max_speels import Bello
+bello = Bello()
+
+bello.zwaai()</code></pre>
+  <div class="tbl"><table>
+    <thead><tr><th>Knop onderin de editor</th><th>Toets</th><th>Wat er gebeurt</th></tr></thead>
+    <tbody>
+      <tr><td>▶ Run in Webots</td><td><kbd>F5</kbd></td><td>alles opslaan en de simulatie herstarten met jouw code</td></tr>
+      <tr><td>(alleen opslaan)</td><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td>werkt ook: opslaan is genoeg om te herstarten</td></tr>
+      <tr><td>⏸ Pauze</td><td><kbd>F6</kbd></td><td>bevriest de simulatie; nog eens drukken gaat verder</td></tr>
+      <tr><td>⏩ Snel</td><td><kbd>F7</kbd></td><td>rekent zo snel als je laptop kan; nog eens drukken is weer realtime</td></tr>
+      <tr><td>⏹ Stop</td><td><kbd>Shift</kbd>+<kbd>F5</kbd></td><td>breekt je programma af; Bello staat weer op de startpositie</td></tr>
+    </tbody>
+  </table></div>
+  <p>De editor kent Python: rode kringels bij fouten en aanvulling als je <code>bello.</code> typt. Wat
+  Bello zegt (<code>bello.zeg</code>) en de foutmeldingen zie je in de console onder het 3D-beeld.
+  Een rode regel met <code>Traceback</code> is een fout in je code; de laatste regel zegt wat er mis is
+  en bij welk regelnummer.</p>
+  <div class="tip">Houd één browservenster met het 3D-beeld open naast de editor. Twee schermen of
+  de vensters naast elkaar werkt het prettigst.</div>
+
+  <h2 id="pico">7. Pico in de browser</h2>
+  <p>Kaart 5 opent Velxio met het Bello-project: een Raspberry Pi Pico met LED-ogen op GP14 en
+  GP15, een noodstop op GP16, twee servo's van de oefenpoot op GP12 en GP13 en een MPU6050 op
+  I2C0. De bedrading staat al klaar; <code>main.py</code> bevat een voorbeeldprogramma.</p>
+  <ol class="stappen">
+    <li>Druk op <strong>Run</strong>. De LED-ogen gaan aan en de seriële monitor toont regels als
+      <code>CMD:blaf 3</code>.</li>
+    <li>Elke <code>CMD:</code>-regel wordt een beweging van Bello in het 3D-tabblad.</li>
+    <li>Druk op <strong>Stop</strong> om het programma te stoppen. Een nieuwe Run begint met Bello op de startpositie.</li>
+  </ol>
+  <p>Voorwaarde: Bello luistert pas als je eigen <code>mijn_code.py</code> klaar is. In de console
+  staat dan <code>[Bello/pico] klaar</code>. Een programma dat eindeloos doorloopt houdt Bello bezet.</p>
+
+  <h2 id="tutor">8. De AI-tutor</h2>
+  <p>De tutor geeft hints, geen antwoorden. Hij leest je <code>mijn_code.py</code> en de laatste
+  foutmelding mee, zoekt in het cursusmateriaal en wordt per vraag in hetzelfde gesprek iets
+  concreter: eerst een vraag terug, dan het begrip met de bron, dan een voorbeeld in een andere
+  situatie, dan de regel waar het misgaat. De uitwerking schrijf je zelf. Aandringen helpt niet;
+  dat is de afspraak, geen storing.</p>
+  <p>De tutor werkt vanaf de workshop in week 3. Dan maak je een gratis account op
+  <code>console.groq.com</code>, maak je een sleutel aan onder <em>API Keys</em> en zet je die in
+  het bestand <code>.env</code> in je map:</p>
+<pre><code>GROQ_API_KEY=gsk_...</code></pre>
+  <p>Daarna <code>stoppen.cmd</code> en <code>starten.cmd</code>. Je vindt de tutor op drie plekken,
+  en het is overal dezelfde: kaart 3, in de editor via <kbd>Ctrl</kbd>+<kbd>L</kbd>, en in de
+  terminal van de editor met <code>opencode</code>. Alles komt in een logboek op je eigen laptop
+  (knop <em>logboek</em> op kaart 3); de docent mag er bij de live-demo naar vragen.</p>
+  <div class="let-op"><b>Je sleutel is persoonlijk.</b> Nooit delen, nooit in je code zetten, nooit in een
+  verslag plakken. Tot week 3 mag <code>.env</code> leeg blijven; de tutor meldt dan netjes dat er
+  geen taalmodel is.</div>
+
+  <h2 id="bijwerken">9. Stoppen, bijwerken, terugdraaien</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Wat</th><th>Hoe</th></tr></thead>
+    <tbody>
+      <tr><td>Stoppen</td><td><code>stoppen.cmd</code>, of de container stoppen in Docker Desktop. Je code blijft bewaard.</td></tr>
+      <tr><td>Nieuwe versie van de docent</td><td><code>bijwerken.cmd</code>. Haalt de nieuwste instellingen van GitHub en alleen het verschil in de images (meestal enkele megabytes), herstart, en je eigen <code>mijn_code.py</code> blijft staan.</td></tr>
+      <tr><td>Welke versie heb ik?</td><td>Onderaan de startpagina. Dit is de eerste vraag die de docent stelt bij een storing.</td></tr>
+      <tr><td>Terugdraaien</td><td>Zet in <code>.env</code> de regel <code>BELLO_VERSIE=2026.11.04</code> (de oude datum) en draai <code>bijwerken.cmd</code>. Terug naar nieuw: <code>BELLO_VERSIE=latest</code>.</td></tr>
+      <tr><td>Lokale AI aan of uit</td><td><code>ai_lokaal_aan.cmd</code> / <code>ai_lokaal_uit.cmd</code>. Alleen zinvol met 16 GB werkgeheugen.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Je code staat in een Docker-volume met de naam <code>max_werk</code>. Een nieuwe versie van de
+  omgeving raakt dat volume niet. Het verdwijnt alleen met <code>docker compose down -v</code>, en
+  dat commando typ je dus nooit zomaar.</p>
+
+  <h2 id="storing">10. Als het niet werkt</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Wat je ziet</th><th>Wat er aan de hand is</th><th>Wat je doet</th></tr></thead>
+    <tbody>
+      <tr><td>Rode foutmelding meteen na <code>starten.cmd</code>, of <code>docker</code> wordt niet herkend</td><td>Docker Desktop draait niet</td><td>Start Docker Desktop, wacht op de rustige walvis, probeer opnieuw</td></tr>
+      <tr><td><code>starten.cmd</code> stopt tijdens het ophalen</td><td>Geen internet of te weinig schijfruimte</td><td>Controleer beide en start opnieuw; wat al binnen is blijft binnen</td></tr>
+      <tr><td>Pagina op <code>localhost:8000</code> blijft leeg</td><td>De simulator is nog aan het opstarten</td><td>Wacht een halve minuut en ververs</td></tr>
+      <tr><td>3D-beeld blijft zwart, "verbinden"</td><td>De eerste keer laadt de viewer code van internet</td><td>Internet aanzetten, ververs; daarna werkt het offline</td></tr>
+      <tr><td>Bello reageert niet na opslaan</td><td>Fout in je code, of de simulatie staat op pauze</td><td>Kijk in de console naar een rode regel; druk <kbd>F6</kbd> als je zelf op Pauze had gedrukt</td></tr>
+      <tr><td>De Pico-emulator beweegt Bello niet</td><td>Je programma in <code>mijn_code.py</code> is nog niet klaar</td><td>Wacht op <code>[Bello/pico] klaar</code> in de console; controleer met <kbd>F12</kbd> op de Velxio-pagina of er <code>[max-hook] verbonden met brug</code> staat</td></tr>
+      <tr><td>Tutor zegt "geen taalmodel"</td><td>Geen sleutel in <code>.env</code></td><td>Normaal tot week 3; daarna sleutel invullen en herstarten</td></tr>
+      <tr><td>Alles traag, laptop zucht</td><td>Te weinig geheugen</td><td>Lokale AI uit (<code>ai_lokaal_uit.cmd</code>), andere programma's sluiten, geen Snel-modus</td></tr>
+    </tbody>
+  </table></div>
+  <p>Kom je er niet uit: dubbelklik op <strong><code>diagnose.cmd</code></strong>. Die maakt een zip met
+  je versie, de logboeken, de console en je <code>mijn_code.py</code> (zonder je sleutels). Stuur die
+  via Teams naar de docent en schrijf erbij wat je deed en wat je verwachtte.</p>
+
+  <h2 id="vragen">11. Veelgestelde vragen</h2>
+  <h3>Waar staat mijn code, en hoe maak ik er een kopie van?</h3>
+  <p>In het Docker-volume, niet in een gewone map. Een kopie maak je in de editor: rechtsklik op
+  <code>mijn_code.py</code> in de verkenner links en kies <em>Download</em>. Of selecteer alles
+  (<kbd>Ctrl</kbd>+<kbd>A</kbd>), kopieer, en plak het in een bestand op je eigen schijf. Doe dat
+  aan het eind van elke lesdag.</p>
+  <h3>Mag ik de map verplaatsen of hernoemen?</h3>
+  <p>Liever niet. De naam van de map bepaalt de naam van de containers en het volume. Verplaats je
+  hem toch, maak dan eerst een kopie van je code.</p>
+  <h3>Hoe krijg ik de schijfruimte terug na de cursus?</h3>
+  <p>Eerst je code veiligstellen. Dan in de map: <code>docker compose --profile pico down -v</code>
+  en daarna <code>docker image prune -a</code>. Docker Desktop zelf verwijder je via Windows-instellingen.</p>
+  <h3>Kan ik het ook zonder Docker doen?</h3>
+  <p>Ja, met de losse bundel (Webots en Thonny, alleen Windows), maar dan zonder tutor en zonder
+  Pico-emulator. Vraag de docent.</p>
+  <h3>Moet Docker Desktop altijd aan staan?</h3>
+  <p>Alleen als je met Bello werkt. Sluit je het, dan stopt alles; je code blijft bewaard.</p>
+
+  <p class="foot">Programmeren &amp; Mechatronica · Bello-omgeving · handleiding bij versie 2026.11.04.
+  Technische details voor de docent staan in <code>cursus/container/README.md</code>.</p>
+</main>
+</body>
+</html>

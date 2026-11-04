@@ -1,0 +1,99 @@
+# Bello-omgeving voor studenten, versie 2026.11.04 (gegenereerd door uitbrengen.py; niet bewerken)
+# Starten: starten.cmd   Bijwerken: bijwerken.cmd   Stoppen: stoppen.cmd
+services:
+  max:
+    # Versie: BELLO_VERSIE in .env (standaard latest); terugdraaien = een oudere datumtag invullen
+    image: ghcr.io/amjiw/bello-cursus:${BELLO_VERSIE:-latest}
+    ports:
+      - "127.0.0.1:8000:8000"     # startpagina + 3D-viewer + tutor-tabblad
+      - "127.0.0.1:8080:8080"     # editor (geen login -> alleen localhost!)
+      - "127.0.0.1:8090:8090"     # AI-tutor (OpenAI-compatibel; Continue, opencode en tutor.html)
+      - "127.0.0.1:1234:1234"     # Webots-stream (WebSocket)
+      - "127.0.0.1:7071:7071"     # brug browser-Pico -> MQTT (max_hook.js in Velxio)
+      - "1883:1883"               # MQTT, ook bereikbaar voor een Pico W op hetzelfde wifi
+      - "9001:9001"               # MQTT over WebSocket (browser-simulator)
+    environment:
+      MAX_WERELD: ${MAX_WERELD:-max_wereld.wbt}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GROQ_MODEL: ${GROQ_MODEL:-openai/gpt-oss-20b}
+      OLLAMA_API_KEY: ${OLLAMA_API_KEY:-}
+      HETZNER_API_KEY: ${HETZNER_API_KEY:-}
+      MAX_AI_MODEL: ${MAX_AI_MODEL:-qwen3.5:4b}
+      TUTOR_MODUS: ${TUTOR_MODUS:-hints}    # hints (student) of vrij (docent)
+      OLLAYA_MODEL: ${OLLAYA_MODEL:-laya:multilingual}
+    volumes:
+      - max_werk:/werk            # student-werk blijft bewaard; wissen: docker compose down -v
+    init: true                  # nette PID 1 (signalen, zombies); Webots draait in een herstart-lus
+    shm_size: 512m
+    stop_grace_period: 5s
+    depends_on:
+      ollaya:
+        condition: service_started
+        required: false         # zonder Ollaya beslist de tutor met eenvoudige regels
+
+  ollaya:
+    # Beslismodel voor de tutor: kiest per vraag het soort hint (fout lezen, begrip, vraag terug,
+    # uitwerking gevraagd, ...). Klein (image 260 MB, model ~0,7 GB), CPU, ~0,5 s per beslissing.
+    # Haalt het model bij de eerste start zelf op (eenmalig internet).
+    image: ghcr.io/ollaya-dev/ollaya
+    environment:
+      OLLAYA_HOST: "0.0.0.0:11435"
+      OLLAYA_MODEL: ${OLLAYA_MODEL:-laya:multilingual}
+    volumes:
+      - ollaya:/home/ollaya/.ollaya
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        ollaya serve &
+        sleep 3
+        if ollaya list 2>/dev/null | grep -q "^$${OLLAYA_MODEL}"; then
+          echo "[ollaya] model $${OLLAYA_MODEL} aanwezig"
+        else
+          echo "[ollaya] model $${OLLAYA_MODEL} ophalen (eenmalig)..."
+          ollaya pull "$${OLLAYA_MODEL}" && echo "[ollaya] klaar: $${OLLAYA_MODEL}"
+        fi
+        wait
+
+  velxio:
+    # Pico-emulator in de browser, met de Bello-serialpatch en het Bello-startproject ingebakken
+    # (zie velxio/Dockerfile). Jaarlijks: `docker compose --profile pico build --pull`.
+    image: ghcr.io/amjiw/bello-velxio:${BELLO_VERSIE:-latest}
+    profiles: ["pico"]
+    ports:
+      - "127.0.0.1:3080:80"
+    volumes:
+      - velxio_data:/app/data     # projecten + sleutel; de Arduino-cores zitten in het image
+    depends_on: [ max ]
+
+  ollama:
+    # Lokaal AI-model (motor 3 van de workshop). Plug-and-play: bij de eerste start haalt de
+    # service het model zelf op (eenmalig internet, ~3,4 GB); daarna werkt het offline.
+    image: ollama/ollama
+    profiles: ["ai-lokaal"]
+    environment:
+      OLLAMA_CONTEXT_LENGTH: "65536"   # OpenCode wil >= 64k context
+      MAX_AI_MODEL: ${MAX_AI_MODEL:-qwen3.5:4b}   # 8 GB RAM? zet MAX_AI_MODEL=qwen3.5:2b in .env
+      OLLAMA_KEEP_ALIVE: "3m"          # model na 3 min stilte uit het geheugen (container blijft ~100 MB)
+      OLLAMA_MAX_LOADED_MODELS: "1"
+    # Aan/uit zonder compose-kennis: ai_lokaal_aan.cmd / ai_lokaal_uit.cmd (Windows) of de
+    # start/stop-knop bij de container "ollama" in Docker Desktop. Uit = 0 MB geheugen.
+    volumes:
+      - ollama:/root/.ollama
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        ollama serve &
+        sleep 4
+        if ollama list 2>/dev/null | grep -q "^$${MAX_AI_MODEL}"; then
+          echo "[ollama] model $${MAX_AI_MODEL} aanwezig"
+        else
+          echo "[ollama] model $${MAX_AI_MODEL} ophalen (eenmalig)..."
+          ollama pull "$${MAX_AI_MODEL}" && echo "[ollama] klaar: $${MAX_AI_MODEL}"
+        fi
+        wait
+
+volumes:
+  max_werk: {}
+  ollama: {}
+  ollaya: {}
+  velxio_data: {}

@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04d - opmaak en kennisbank
+
+- Startpagina: de links "de standaardviewer" en "de consolepagina" vielen buiten tegel 1 en 2.
+- Tutor-kennisbank: de cursuspagina met de nieuwe sectie "De Bello-omgeving op je laptop" en de aangepaste week 1.
+
 ## 2026.11.04c - updates vanzelf
 
 - `starten.cmd` controleert bij elke start of er een nieuwe versie is en haalt die op (zonder internet: overgeslagen).

@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04g - tweede omgeving op dezelfde laptop
+
+- `starten.cmd` merkt het als er al een andere Bello-omgeving draait (poorten bezet) en zegt wat je moet doen.
+- Tutor: alleen nog het Tutor-tabblad en de editor (Ctrl+L); de terminal-variant is uit de teksten.
+
 ## 2026.11.04f - taalmodel
 
 - Overal "taalmodel" in plaats van "motor": statusregel en logboek van de tutor, startpagina, handleiding.

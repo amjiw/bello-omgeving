@@ -246,11 +246,34 @@ bello.zwaai()</code></pre>
   concreter: eerst een vraag terug, dan het begrip met de bron, dan een voorbeeld in een andere
   situatie, dan de regel waar het misgaat. De uitwerking schrijf je zelf. Aandringen helpt niet;
   dat is de afspraak, geen storing.</p>
-  <p>De tutor werkt vanaf de workshop in week 3. Dan maak je een gratis account op
-  <code>console.groq.com</code>, maak je een sleutel aan onder <em>API Keys</em> en zet je die in
-  het bestand <code>.env</code> in je map:</p>
+  <p>De tutor werkt vanaf de workshop in week 3 met een gratis sleutel van Groq, een dienst die
+  open taalmodellen draait. Er is geen creditcard of betaling voor nodig. Zo kom je eraan:</p>
+  <h3>Een Groq-sleutel aanmaken</h3>
+  <ol class="stappen">
+    <li>Ga naar <a href="https://console.groq.com">console.groq.com</a> en kies <em>Sign up</em>. Inloggen
+      kan met je schoolmail, een Google-account of een GitHub-account. Bevestig de e-mail als daarom
+      gevraagd wordt.</li>
+    <li>Klik in het menu links op <strong>API Keys</strong> en daarna op <strong>Create API Key</strong>.
+      Geef hem een naam, bijvoorbeeld <code>bello</code>.</li>
+    <li>Kopieer de sleutel meteen (hij begint met <code>gsk_</code>). Groq laat hem maar één keer
+      zien; kwijt is kwijt, dan maak je gewoon een nieuwe.</li>
+    <li>Open in je map <code>bello-omgeving</code> het bestand <code>.env</code> met Kladblok
+      (rechtsklik → Openen met) en plak de sleutel achter het gelijkteken, zonder spaties of
+      aanhalingstekens:
 <pre><code>GROQ_API_KEY=gsk_...</code></pre>
-  <p>Daarna <code>stoppen.cmd</code> en <code>starten.cmd</code>. Je vindt de tutor op drie plekken,
+      Sla het bestand op.</li>
+    <li>Dubbelklik op <code>stoppen.cmd</code> en daarna op <code>starten.cmd</code>. De omgeving
+      leest <code>.env</code> alleen bij het starten; de pagina verversen is niet genoeg. In de
+      statusregel van het Tutor-tabblad staat nu <em>motoren: groq, lokaal</em>.</li>
+  </ol>
+  <p>Zie je in de Verkenner geen <code>.env</code> maar alleen <code>.env.example</code>? Dan is
+  <code>starten.cmd</code> nog nooit gedraaid; die maakt <code>.env</code> aan. Bestanden die met een
+  punt beginnen zijn soms verborgen: zet in de Verkenner onder <em>Beeld</em> de optie
+  <em>Verborgen items</em> aan.</p>
+  <p>De gratis laag van Groq heeft een limiet per sleutel (in de orde van 30 vragen per minuut en
+  1000 per dag), ruim genoeg voor een lesdag. Groq bewaart je vragen standaard niet; de servers
+  staan in de Verenigde Staten. Zet er dus geen persoonsgegevens in.</p>
+  <p>Je vindt de tutor op drie plekken,
   en het is overal dezelfde: tegel 3, in de editor via <kbd>Ctrl</kbd>+<kbd>L</kbd>, en in de
   terminal van de editor met <code>opencode</code>. Alles komt in een logboek op je eigen laptop
   (knop <em>logboek</em> op tegel 3); de docent mag er bij de live-demo naar vragen.</p>

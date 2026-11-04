@@ -29,7 +29,10 @@ en de Pico-emulator) draait in Docker-containers op je eigen laptop. Je werkt in
    Bello in het 3D-tabblad.
 
 De AI-tutor heeft een gratis Groq-sleutel nodig; dat regelen we in de workshop van week 3.
-Tot die tijd mag `.env` leeg blijven.
+Tot die tijd mag `.env` leeg blijven. In het kort: account op https://console.groq.com (schoolmail,
+Google of GitHub), menu *API Keys*, *Create API Key*, de sleutel (begint met `gsk_`) meteen
+kopiëren en in `.env` achter `GROQ_API_KEY=` plakken, opslaan, dan `stoppen.cmd` en `starten.cmd`
+(de omgeving leest `.env` alleen bij het starten). Uitgebreid: `handleiding.html`, hoofdstuk 8.
 
 ## Dagelijks gebruik
 

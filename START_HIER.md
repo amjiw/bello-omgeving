@@ -16,7 +16,7 @@ en de Pico-emulator) draait in Docker-containers op je eigen laptop. Je werkt in
    één keer op (op Windows vraagt het om WSL2; laat het dat zelf regelen en herstart als hij dat vraagt).
 2. Download de zip via https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-omgeving.zip
    (als je dit leest heb je hem al) en pak hem uit op een vaste plek, bijvoorbeeld
-   `Documenten\bello-omgeving`. Verplaats de map daarna niet meer.
+   `C:\dev\bello-omgeving`. Verplaats de map daarna niet meer.
 3. Open in de Verkenner de uitgepakte map `bello-omgeving` (daar staan de knoppen `starten.cmd`,
    `stoppen.cmd`, `bijwerken.cmd` en `diagnose.cmd`) en dubbelklik op **`starten.cmd`**. De eerste
    keer haalt hij ongeveer 3,5 GB op (doe dit thuis of op het schoolnetwerk, niet via je telefoon);

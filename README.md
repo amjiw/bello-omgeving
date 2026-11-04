@@ -13,10 +13,13 @@ Docker-containers op je eigen laptop. Je werkt in de browser.
    haalt hij ongeveer 3,5 GB op.
 4. De browser opent `http://localhost:8000`.
 
-De volledige handleiding staat in de zip (`handleiding.html`, dubbelklikken) en in
-[`START_HIER.md`](START_HIER.md). Nieuwe versie ophalen: `bijwerken.cmd`. Gaat er iets mis:
+De volledige handleiding staat online op https://amjiw.github.io/bello-omgeving/handleiding.html (en in de zip als
+`handleiding.html`). De studiehandleiding van het vak: https://amjiw.github.io/bello-omgeving/, de cursuspagina met de weken:
+https://amjiw.github.io/bello-omgeving/cursus.html. Nieuwe versie ophalen: `bijwerken.cmd`. Gaat er iets mis:
 `diagnose.cmd` maakt een zip voor de docent.
 
 De images staan op `ghcr.io/amjiw/bello-cursus` en `ghcr.io/amjiw/bello-velxio`. Deze repo
 bevat alleen de bestanden die een student nodig heeft; de bron van de omgeving wordt door de
 docent beheerd.
+
+<p align="right"><img src="https://amjiw.github.io/bello-omgeving/media/nhl_stenden.png" width="110" alt="NHL Stenden university of applied sciences"></p>

@@ -2,6 +2,10 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.04h - logo NHL Stenden
+
+- Het logo van NHL Stenden staat nu klein op de startpagina, in de handleiding (ook de pdf), de studiehandleiding en de cursuspagina.
+
 ## 2026.11.04g - tweede omgeving op dezelfde laptop
 
 - `starten.cmd` merkt het als er al een andere Bello-omgeving draait (poorten bezet) en zegt wat je moet doen.

@@ -81,6 +81,20 @@ tbody tr:nth-child(even){background:var(--surface-2)}
 .kaart small{color:var(--muted)}
 .foot{margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@media print{
+  :root{--bg:#ffffff}
+  body{font-size:11pt;line-height:1.45}
+  .reader{max-width:none;padding-block:0}
+  nav.inhoud{display:none}
+  h2{page-break-after:avoid;margin-top:1.6rem}
+  h3{page-break-after:avoid}
+  .kaart,.let-op,.tip,pre,tr{page-break-inside:avoid}
+  pre{white-space:pre-wrap;overflow:visible}
+  .tbl{overflow:visible}
+  .tbl{border-color:#bbb}
+  a{color:inherit;text-decoration:none}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-family:var(--mono);font-size:.8em;color:var(--muted)}
+}
 :where(a):focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:4px}
 </style>
 </head>

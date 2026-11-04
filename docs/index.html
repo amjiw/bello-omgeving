@@ -5,6 +5,7 @@
   --ink:#16201e; --muted:#586765; --line:#d7dedd;
   --accent:#b1541c; --accent-soft:rgba(177,84,28,.12);
   --teal:#0e7a89; --teal-soft:rgba(14,122,137,.12); --good:#2f7d52;
+  --logo-filter:none;
   --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   --mono:ui-monospace,"Cascadia Code","Cascadia Mono","SF Mono","Consolas","Liberation Mono",monospace;
   --maxw:68ch;
@@ -15,6 +16,7 @@
     --ink:#e6edeb; --muted:#93a3a0; --line:#273230;
     --accent:#e08a4a; --accent-soft:rgba(224,138,74,.16);
     --teal:#44b6c5; --teal-soft:rgba(68,182,197,.16); --good:#56b784;
+    --logo-filter:brightness(0) invert(1) opacity(.82);
   }
 }
 :root[data-theme="light"]{
@@ -22,12 +24,14 @@
   --ink:#16201e; --muted:#586765; --line:#d7dedd;
   --accent:#b1541c; --accent-soft:rgba(177,84,28,.12);
   --teal:#0e7a89; --teal-soft:rgba(14,122,137,.12); --good:#2f7d52;
+  --logo-filter:none;
 }
 :root[data-theme="dark"]{
   --bg:#0e1413; --surface:#161d1c; --surface-2:#1d2625; --code-bg:#101716;
   --ink:#e6edeb; --muted:#93a3a0; --line:#273230;
   --accent:#e08a4a; --accent-soft:rgba(224,138,74,.16);
   --teal:#44b6c5; --teal-soft:rgba(68,182,197,.16); --good:#56b784;
+  --logo-filter:brightness(0) invert(1) opacity(.82);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
@@ -44,6 +48,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 .sidebar{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;
   padding:2.2rem 1.6rem;border-right:1px solid var(--line);
   display:flex;flex-direction:column;gap:1.7rem;background:var(--bg)}
+.brand .logo{display:block;width:112px;height:auto;margin:0 0 1.2rem;filter:var(--logo-filter)}
 .brand h1{font-size:1.72rem;line-height:1.08;margin:.35rem 0 .5rem;
   letter-spacing:-.015em;text-wrap:balance;font-weight:680}
 .kicker,.nav-title,.brand-sub,.src-note{font-family:var(--mono);
@@ -154,6 +159,7 @@ code{font-family:var(--mono);font-size:.88em}
   .nav{flex-flow:row wrap;gap:.6rem 1.1rem}
   .nav-group{flex:0 0 auto}
   .side-foot{margin-top:.4rem}
+  .brand .logo{width:88px;margin-bottom:.9rem}
   .reader{padding:2rem 1.3rem 3rem}
   .doc h2{font-size:1.6rem}
 }
@@ -162,6 +168,7 @@ code{font-family:var(--mono);font-size:.88em}
 <div class="app">
   <aside class="sidebar">
     <div class="brand">
+      <img class="logo" src="media/nhl_stenden.png" alt="NHL Stenden university of applied sciences" width="420" height="366">
       <p class="kicker">HBO Werktuigbouwkunde &middot; robothond Bello</p>
       <h1>Programmeren &amp;<br>Mechatronica</h1>
       <p class="brand-sub">Cursusgids &middot; 10 weken &middot; Webots + Raspberry Pi Pico</p>

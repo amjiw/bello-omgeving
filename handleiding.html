@@ -86,7 +86,8 @@ tbody tr:nth-child(even){background:var(--surface-2)}
   body{font-size:11pt;line-height:1.45}
   .reader{max-width:none;padding-block:0}
   nav.inhoud{display:none}
-  h2{page-break-after:avoid;margin-top:1.6rem}
+  h2{page-break-after:avoid;margin-top:0;break-before:page}   /* elk hoofdstuk op een nieuwe pagina */
+  #wat{break-before:auto}                                       /* behalve het eerste, dat volgt op de kop */
   h3{page-break-after:avoid}
   .kaart,.let-op,.tip,pre,tr{page-break-inside:avoid}
   pre{white-space:pre-wrap;overflow:visible}

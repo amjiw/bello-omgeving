@@ -201,7 +201,11 @@ docker compose --profile pico pull &amp;&amp; docker compose --profile pico up -
 
   <h2 id="editor">6. Werken in de editor</h2>
   <p>Tegel 2 opent de map met <code>mijn_code.py</code>. Dat is jouw bestand: alles wat je Bello laat
-  doen, schrijf je hier. Elk programma begint met:</p>
+  doen, schrijf je hier. Alleen dit bestand is van jou; de andere bestanden in de map (zoals
+  <code>max_api.py</code>, <code>max_speels.py</code> en de map <code>pico</code>) horen bij de
+  cursus en worden bij elke start van de omgeving teruggezet. Een wijziging daarin raak je dus
+  kwijt, en Run in Webots doet er ook niets mee: die draait alleen <code>mijn_code.py</code>.
+  Elk programma begint met:</p>
 <pre><code>from max_speels import Bello
 bello = Bello()
 

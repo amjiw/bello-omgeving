@@ -2,6 +2,10 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.09 - bronnen in de tutor aanklikbaar
+
+- De bronnen die de tutor noemt zijn nu links die in een nieuw tabblad openen: de cursuspagina bij die week, een boek op de juiste pagina, notities bij de juiste kop. Ook in de bronregel onder elk antwoord.
+
 ## 2026.11.04h - logo NHL Stenden
 
 - Het logo van NHL Stenden staat nu klein op de startpagina, in de handleiding (ook de pdf), de studiehandleiding en de cursuspagina.

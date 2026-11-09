@@ -32,7 +32,7 @@ De AI-tutor heeft een gratis Groq-sleutel nodig; dat regelen we in de workshop v
 Tot die tijd mag `.env` leeg blijven. In het kort: account op https://console.groq.com (schoolmail,
 Google of GitHub), menu *API Keys*, *Create API Key*, de sleutel (begint met `gsk_`) meteen
 kopiëren en in `.env` achter `GROQ_API_KEY=` plakken, opslaan, dan `stoppen.cmd` en `starten.cmd`
-(de omgeving leest `.env` alleen bij het starten). Uitgebreid: `handleiding.html`, hoofdstuk 8.
+(de omgeving leest `.env` alleen bij het starten). Uitgebreid: de installatiehandleiding (`handleiding.html`), hoofdstuk 8.
 
 ## Dagelijks gebruik
 

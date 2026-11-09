@@ -2,6 +2,12 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.09a - één cursuspagina, installatiehandleiding, boeken per hoofdstuk
+
+- De cursus heeft nu één pagina voor studenten: https://amjiw.github.io/bello-omgeving/ (leeruitkomsten, weken, opdrachten, AI-tutor, beoordeling). De tutor linkt bij zijn bronnen rechtstreeks naar die pagina.
+- De handleiding heet nu installatiehandleiding (ook de pdf); bestandsnamen en links zijn gelijk gebleven.
+- Verwijzingen naar De Programmeursleerling en het Pico-boek openen de pdf op het juiste hoofdstuk; het Pico-boek (CC BY-NC-SA) staat op de cursussite.
+
 ## 2026.11.09 - bronnen in de tutor aanklikbaar
 
 - De bronnen die de tutor noemt zijn nu links die in een nieuw tabblad openen: de cursuspagina bij die week, een boek op de juiste pagina, notities bij de juiste kop. Ook in de bronregel onder elk antwoord.

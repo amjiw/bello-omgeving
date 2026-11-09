@@ -325,6 +325,34 @@ bello.zit()</code></pre>
      opslaan is genoeg, de simulatie herstart vanzelf. Nieuwe versies van de docent komen automatisch
      binnen bij het starten. Gaat er iets mis: <code>diagnose.cmd</code> maakt een zip die je naar de
      docent stuurt.</p>
+
+  <h3 id="opdracht-maken">Zo maak je een opdracht</h3>
+  <p>Elke week heeft A-opdrachten (kale Python op de PC) en B-opdrachten (Bello). Ze draaien op een
+     andere manier:</p>
+  <table>
+    <tr><th></th><th>A — programmeren (PC)</th><th>B — Bello</th></tr>
+    <tr><td><b>Waar typ je?</b></td>
+        <td>In de editor (tegel 2) maak je een <b>nieuw bestand</b> naast <code>mijn_code.py</code>,
+            bijvoorbeeld <code>w1_a1.py</code> (week 1, opdracht A1): rechtermuisknop in de verkenner
+            links → <i>New File</i>.</td>
+        <td>In <code>mijn_code.py</code>, het enige bestand dat van jou is. Begin altijd met
+            <code>from max_speels import Bello</code> en <code>bello = Bello()</code>.</td></tr>
+    <tr><td><b>Hoe draai je het?</b></td>
+        <td>Afspeelknop ▶ rechtsboven in de editor (of rechtermuisknop in de tekst →
+            <i>Run Python File</i>). Python draait in de terminal onderin.</td>
+        <td>Opslaan (<code>Ctrl+S</code> of <code>F5</code>). De simulatie herstart vanzelf met jouw code.</td></tr>
+    <tr><td><b>Waar zie je het resultaat?</b></td>
+        <td>In de terminal onderin: daar staan je <code>print</code>-regels en daar typ je het antwoord
+            op <code>input()</code>. Terminal leegmaken: typ <code>clear</code>.</td>
+        <td>Op tegel 1 (Bello in 3D) doet Bello wat je typte; in de console onder het beeld staan
+            <code>bello.zeg(...)</code> en de foutmeldingen.</td></tr>
+    <tr><td><b>Fout?</b></td>
+        <td>Rode tekst in de terminal; de laatste regel zegt wat er mis is en bij welk regelnummer.</td>
+        <td>Rode regel met <code>Traceback</code> in de console; de AI-tutor (tegel 3) biedt een hint aan.</td></tr>
+  </table>
+  <p>Je eigen bestanden blijven staan, ook na stoppen en starten; alleen de cursusbestanden
+     (<code>max_api.py</code>, <code>max_speels.py</code>, de map <code>pico</code>) worden bij elke start
+     ververst. Klaar met A1 en B1? Laat ze aan een ander tweetal zien, dat zet het vinkje op de weeklijst.</p>
   <p><b>Doe de installatie vóór de eerste les</b>, thuis of op school (3,5 GB download), dan kunnen we in
      week 1 meteen beginnen. Lukt het niet, kom dan een kwartier eerder.</p>
 </section>
@@ -349,8 +377,9 @@ bello.zit()</code></pre>
   <div class="dagdeel">
     <div><h4><span class="tag pc">PC</span>A — programmeren</h4>
       Kick-off: video van de échte Bello + demo van de simulator. Daarna de Bello-omgeving starten
-      (geïnstalleerd vóór de les, zie <a href="#omgeving">Bello-omgeving</a>), eerste programma's in de
-      browser-editor, expressies, variabelen, f-strings.</div>
+      (geïnstalleerd vóór de les, zie <a href="#omgeving">Bello-omgeving</a>), eerste programma's als los
+      bestand in de browser-editor (zie <a href="#opdracht-maken">Zo maak je een opdracht</a>):
+      expressies, variabelen, f-strings.</div>
     <div><h4><span class="tag webots">WEBOTS</span>B — Bello besturen</h4>
       Tegel 1 (Bello in 3D) en tegel 2 (je code) openen, <code>mijn_code.py</code> bekijken (het
       startbestand laat Bello meteen zwaaien, blaffen en een poot geven), het API-kaartje

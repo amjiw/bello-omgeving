@@ -140,7 +140,7 @@
 
 <section class="blok" id="overzicht">
   <h2>Opzet: de motorkap gaat steeds verder open</h2>
-  <p>Studenten besturen vanaf de eerste les de robothond <b>Bello</b> in <b>Webots</b> — eerst met
+  <p>Je bestuurt vanaf de eerste les de robothond <b>Bello</b> in <b>Webots</b> — eerst met
      kant-en-klare commando's (<code>bello.loop(3)</code>), aan het eind met een zelfgeschreven
      looppatroon. Het niveau groeit in drie fases:</p>
   <div class="letop"><b>Studielast: 72 uur</b> = één dag van acht uur per week, negen weken lang. Daarvan
@@ -149,7 +149,7 @@
     het practicum leer je het nieuwe en krijg je hulp. Geen weekcijfers en geen verslagen: per week zijn A1 en B1 de basis (laat ze aan een ander tweetal zien), de rest is
     verdieping voor wie tijd over heeft. Je werkt in tweetallen (werkt de omgeving bij een van
     jullie niet, dan werk je even samen op de andere laptop); het project doe je met twee tweetallen
-    samen. Het boek is naslag, geen leesplicht.</div>
+    samen. Het boek is een goede introductie en tevens naslagwerk.</div>
   <div class="videoduo">
     <figure>
       <video controls loop muted playsinline preload="metadata">
@@ -181,26 +181,24 @@
   </table>
 
   <p>Elk practicum heeft twee delen: <b>A — programmeren</b> (ongeveer een uur, Python op de PC met
-     een werktuigbouwsom; naslag in <i>De Programmeursleerling</i>) en <b>B — Bello</b> (de rest van het
-     practicum, in Webots en vanaf week 6 met de Pico; naslag in <i>Get Started with MicroPython on
-     Raspberry Pi Pico</i>). De volgorde van A en B wisselt per week.</p>
+     een werktuigbouwsom; naslag in <i><a href="https://www.spronck.net/pythonbook/pythonboek.pdf" target="_blank" rel="noopener">De Programmeursleerling</a></i>) en <b>B — Bello</b> (de rest van het
+     practicum, in Webots en vanaf week 6 met de Pico; naslag in <i><a href="https://magazine.raspberrypi.com/books/get-started-micropython-pico-2ed" target="_blank" rel="noopener">Get Started with MicroPython on Raspberry Pi Pico</a></i>). De volgorde van A en B wisselt per week.</p>
 
   <h3>Weekoverzicht</h3>
   <table>
     <tr><th>Week</th><th>A — programmeren</th><th>B — Bello</th><th>Naslag</th></tr>
-    <tr><td><b>1</b></td><td>Expressies, variabelen, <code>print</code>/<code>input</code></td><td>Webots + Bello-wereld installeren; Bello's eerste stappen met commando's</td><td>PL H1–4 · Webots-tut. 1</td></tr>
-    <tr><td><b>2</b></td><td>Condities (<code>if</code>/<code>elif</code>/<code>else</code>)</td><td>Bello kijkt uit: reageren op de afstandssensor</td><td>PL H6</td></tr>
-    <tr><td><b>3</b></td><td>Herhalingen (<code>while</code>, <code>for</code>)</td><td>Bello loopt patronen: vierkant, patrouille, parcours</td><td>PL H7</td></tr>
-    <tr><td><b>4</b></td><td>Functies, parameters, <code>return</code></td><td>Leer Bello nieuwe trucjes: je eigen commando's bovenop de API</td><td>PL H5+H8</td></tr>
-    <tr><td><b>5</b></td><td>Lists en tuples; dictionary als opzoektabel</td><td>Een show als list; motorkap open: losse gewrichten sturen</td><td>PL H10–13</td></tr>
-    <tr><td><b>6</b></td><td>Een class herkennen; <code>try</code>/<code>except</code></td><td><b>De echte Bello en de Pico:</b> LED-ogen, noodstop, commando's naar Bello · Proef 1 · verdieping: oefenpoot, IMU, datalogger</td><td>Pico H1–4 · PL H17, H20</td></tr>
+    <tr><td><b>1</b></td><td>Expressies, variabelen, <code>print</code>/<code>input</code></td><td>Webots + Bello-wereld installeren; Bello's eerste stappen met commando's</td><td>PL <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=17" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 1 (pdf, pagina 17)">H1–4</a> · <a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation" target="_blank" rel="noopener">Webots-tut. 1</a></td></tr>
+    <tr><td><b>2</b></td><td>Condities (<code>if</code>/<code>elif</code>/<code>else</code>)</td><td>Bello kijkt uit: reageren op de afstandssensor</td><td>PL <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=69" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 6 (pdf, pagina 69)">H6</a></td></tr>
+    <tr><td><b>3</b></td><td>Herhalingen (<code>while</code>, <code>for</code>)</td><td>Bello loopt patronen: vierkant, patrouille, parcours</td><td>PL <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=87" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 7 (pdf, pagina 87)">H7</a></td></tr>
+    <tr><td><b>4</b></td><td>Functies, parameters, <code>return</code></td><td>Leer Bello nieuwe trucjes: je eigen commando's bovenop de API</td><td>PL <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=53" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 5 (pdf, pagina 53)">H5</a>+<a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=115" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 8 (pdf, pagina 115)">H8</a></td></tr>
+    <tr><td><b>5</b></td><td>Lists en tuples; dictionary als opzoektabel</td><td>Een show als list; motorkap open: losse gewrichten sturen</td><td>PL <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=151" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 10 (pdf, pagina 151)">H10–13</a></td></tr>
+    <tr><td><b>6</b></td><td>Een class herkennen; <code>try</code>/<code>except</code></td><td><b>De echte Bello en de Pico:</b> LED-ogen, noodstop, commando's naar Bello · Proef 1 · verdieping: oefenpoot, IMU, datalogger</td><td><a href="https://magazine.raspberrypi.com/books/get-started-micropython-pico-2ed" target="_blank" rel="noopener">Pico</a> H1–4 · PL <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=229" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 17 (pdf, pagina 229)">H17</a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=257" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 20 (pdf, pagina 257)">H20</a></td></tr>
     <tr><td><b>7</b></td><td colspan="2">Project "Maak Bello slimmer" — bouwen (1): spoor kiezen, plan in drie zinnen, bouwen</td><td>—</td></tr>
     <tr><td><b>8</b></td><td colspan="2">Project — bouwen (2), generale repetitie, inleveren</td><td>—</td></tr>
     <tr><td><b>9</b></td><td colspan="2"><b>Assessment:</b> demo, code-uitleg en individuele verdediging (12 min per viertal)</td><td>—</td></tr>
     <tr><td><b>10</b></td><td colspan="2">Herkansing</td><td>—</td></tr>
   </table>
-  <p><b>Afkortingen:</b> <i>PL</i> = De Programmeursleerling · <i>Pico</i> = Get Started with
-     MicroPython on Raspberry Pi Pico. De <i>Python Cheat Sheet</i> is elke week het naslagblad
+  <p><b>Afkortingen:</b> <i>PL</i> = <a href="https://www.spronck.net/pythonbook/pythonboek.pdf" target="_blank" rel="noopener">De Programmeursleerling</a> (gratis pdf; de links openen het boek op de juiste pagina) · <i>Pico</i> = <a href="https://magazine.raspberrypi.com/books/get-started-micropython-pico-2ed" target="_blank" rel="noopener">Get Started with MicroPython on Raspberry Pi Pico</a>. De <i>Python Cheat Sheet</i> is elke week het naslagblad
      naast het toetsenbord.</p>
   <div class="letop"><b>Zo leer je het:</b> elk concept komt drie keer terug —
     (1) in A op de PC met een werktuigbouwsom, (2) in B meteen toegepast op Bello
@@ -210,16 +208,16 @@
 
 <section class="blok" id="maxapi">
   <h2>De Bello-API (de bibliotheek waar je tegen programmeert)</h2>
-  <p>Studenten programmeren vanaf les 1 tegen de Bello-bibliotheek: <code>max_api.py</code>
+  <p>Je programmeert vanaf les 1 tegen de Bello-bibliotheek: <code>max_api.py</code>
      (door de docent geleverd, draait in de Webots-controller en neemt het lopen — de
      sinus-gait uit het Bello-project — voor zijn rekening) met daarbovenop het dunne laagje
      <code>max_speels.py</code>: dezelfde motor, plus trucjes als <code>blaf</code> en
      <code>geef_poot</code> en droge oneliners in de console (uit te zetten met
-     <code>bello.grappen(False)</code>). De student schrijft gewoon een Python-script
+     <code>bello.grappen(False)</code>). Je schrijft gewoon een Python-script
      — in <code>mijn_code.py</code>, geopend in de browser-editor van de Bello-omgeving (of in Thonny, bij de losse bundel
      zonder Docker). <b>Opslaan is genoeg:</b> de simulatie in Webots herstart automatisch met
      de nieuwe code, en fouten verschijnen in de Webots-console.</p>
-  <span class="codetitel">zo ziet elk studentenscript eruit</span>
+  <span class="codetitel">zo ziet je script eruit</span>
 <pre><code>from max_speels import Bello
 
 bello = Bello()          # verbindt met de simulator
@@ -286,8 +284,8 @@ bello.zit()</code></pre>
   </div>
   <div class="theorie"><b>Naslag (doorlezen):</b>
     <ul>
-      <li>PL: H1 <i>Introductie</i>, H2 <i>Python gebruiken</i>, H3 <i>Expressies</i>, H4 <i>Variabelen</i></li>
-      <li>Webots User Guide: Tutorial 1 <i>Your first simulation</i> (alleen doorlezen; de Bello-omgeving installeer je vóór de les, zie <a href="#omgeving">Bello-omgeving</a>)</li>
+      <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=17" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 1 (pdf, pagina 17)">H1 <i>Introductie</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=27" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 2 (pdf, pagina 27)">H2 <i>Python gebruiken</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=31" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 3 (pdf, pagina 31)">H3 <i>Expressies</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=41" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 4 (pdf, pagina 41)">H4 <i>Variabelen</i></a></li>
+      <li>Webots User Guide: <a href="https://cyberbotics.com/doc/guide/tutorial-1-your-first-simulation" target="_blank" rel="noopener">Tutorial 1 <i>Your first simulation</i></a> (alleen doorlezen; de Bello-omgeving installeer je vóór de les, zie <a href="#omgeving">Bello-omgeving</a>)</li>
     </ul>
   </div>
 
@@ -389,7 +387,7 @@ bello.zeg("Klaar!")</code></pre>
   </div>
   <div class="theorie"><b>Naslag (doorlezen):</b>
     <ul>
-      <li>PL: H6 <i>Condities</i></li>
+      <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=69" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 6 (pdf, pagina 69)">H6 <i>Condities</i></a></li>
       <li>Nieuw op het API-kaartje: <code>bello.afstand()</code> en <code>bello.kantelhoek()</code></li>
     </ul>
   </div>
@@ -495,7 +493,7 @@ else:
   </div>
   <div class="theorie"><b>Naslag (doorlezen):</b>
     <ul>
-      <li>PL: H7 <i>Iteraties</i></li>
+      <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=87" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 7 (pdf, pagina 87)">H7 <i>Iteraties</i></a></li>
     </ul>
   </div>
   <div class="letop"><b>AI-tutor (deze week, 20 minuten):</b> in de container zit een
@@ -505,7 +503,7 @@ else:
     wordt per vraag iets concreter (vraag terug → begrip met bron → voorbeeld in een andere
     situatie → de regel waar het misgaat). De uitwerking schrijf je zelf; dat is ook wat de
     assessment van je vraagt. Zijn kennis komt uit open bronnen: de cursuspagina, het
-    API-kaartje, <i>De Programmeursleerling</i>, de officiële Python-tutorial en de
+    API-kaartje, <i><a href="https://www.spronck.net/pythonbook/pythonboek.pdf" target="_blank" rel="noopener">De Programmeursleerling</a></i>, de officiële Python-tutorial en de
     MicroPython-quickref, plus je eigen aantekeningen in <code>/werk/tutor/kennis</code>. Je
     maakt een gratis Groq-account (geen betaalgegevens, stappen in de handleiding, hoofdstuk 8) en
     zet de sleutel in <code>.env</code>.</div>
@@ -604,7 +602,7 @@ bello.loop(3)</code></pre>
   </div>
   <div class="theorie"><b>Naslag (doorlezen):</b>
     <ul>
-      <li>PL: H5 <i>Eenvoudige functies</i> + H8 <i>Functies</i></li>
+      <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=53" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 5 (pdf, pagina 53)">H5 <i>Eenvoudige functies</i></a> + <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=115" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 8 (pdf, pagina 115)">H8 <i>Functies</i></a></li>
     </ul>
   </div>
 
@@ -724,7 +722,7 @@ bello.zeg(f"Muur bereikt in {n} stappen")</code></pre>
   </div>
   <div class="theorie"><b>Naslag (doorlezen):</b>
     <ul>
-      <li>PL: H10 <i>Strings</i>, H11 <i>Tuples</i>, H12 <i>Lists</i>, H13 <i>Dictionaries</i></li>
+      <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=151" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 10 (pdf, pagina 151)">H10 <i>Strings</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=167" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 11 (pdf, pagina 167)">H11 <i>Tuples</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=173" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 12 (pdf, pagina 173)">H12 <i>Lists</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=191" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 13 (pdf, pagina 191)">H13 <i>Dictionaries</i></a></li>
       <li>Nieuw op het API-kaartje: <code>bello.zet_hoek(naam, graden)</code> — namen als
           <code>"LV_heup"</code>, <code>"RA_knie"</code> (L/R = links/rechts, V/A = voor/achter)</li>
     </ul>
@@ -848,8 +846,8 @@ else:
   </div>
   <div class="theorie"><b>Naslag (doorlezen):</b>
     <ul>
-      <li>Pico-boek: H1 <i>Get to know your Pico</i> t/m H4 <i>Physical computing with Pico</i></li>
-      <li>PL: H17 <i>Exceptions</i>, H20 <i>Object Oriëntatie</i> (alleen de eerste paragrafen)</li>
+      <li><a href="https://magazine.raspberrypi.com/books/get-started-micropython-pico-2ed" target="_blank" rel="noopener">Pico-boek</a>: H1 <i>Get to know your Pico</i> t/m H4 <i>Physical computing with Pico</i></li>
+      <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=229" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 17 (pdf, pagina 229)">H17 <i>Exceptions</i></a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=257" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 20 (pdf, pagina 257)">H20 <i>Object Oriëntatie</i></a> (alleen de eerste paragrafen)</li>
     </ul>
   </div>
 
@@ -1370,7 +1368,7 @@ while robot.step(timestep) != -1:
     <tr><td>Live demo (4)</td><td>geen werkende demo getoond</td>
         <td>demo getoond met uitleg van wat er gebeurt</td>
         <td>demo + uitleg van wat er mis kán gaan en hoe de code dat afvangt</td></tr>
-    <tr><td>Code-uitleg per student (4)</td><td>kan eigen deel niet uitleggen</td>
+    <tr><td>Code-uitleg, individueel (4)</td><td>kan eigen deel niet uitleggen</td>
         <td>legt eigen code regel voor regel uit</td>
         <td>+ voert live een gevraagde wijziging correct door</td></tr>
     <tr><td>Vragen &amp; reflectie (2)</td><td>geen antwoord op vragen</td>
@@ -1387,7 +1385,7 @@ while robot.step(timestep) != -1:
 <!-- ================= MATERIAAL ================= -->
 <section class="blok" id="materiaal">
   <h2>Materiaal</h2>
-  <h3>Software (per student, vanaf week 1)</h3>
+  <h3>Software (op je eigen laptop, vanaf week 1)</h3>
   <ul>
     <li><b>De Bello-omgeving</b> (Docker Desktop + het pakket van de docent, zie
         <a href="#omgeving">Bello-omgeving</a>): simulator, editor, AI-tutor en Pico-emulator in de browser.
@@ -1397,7 +1395,7 @@ while robot.step(timestep) != -1:
     <li>matplotlib (zit in de Bello-omgeving; vanaf week 6) · MicroPython-firmware (week 6)</li>
   </ul>
   <h3>Hardware: alleen de verdiepingskist (klassikaal)</h3>
-  <p>Studenten werken met de Pico-emulator in de browser; er is geen kit per tweetal. Voor wie klaar
+  <p>Jullie werken met de Pico-emulator in de browser; er is geen kit per tweetal. Voor wie klaar
      is en de verdieping wil, ligt bij de docent een kist met:</p>
   <table>
     <tr><th>Onderdeel</th><th>Aantal</th><th>Voor</th></tr>
@@ -1409,14 +1407,14 @@ while robot.step(timestep) != -1:
   <h3>Klassikaal (de fysieke Bello)</h3>
   <ul>
     <li>Eén (of enkele) opgebouwde OpenRoboticDog "Bello" met Feetech STS3215-servo's — de docent
-        bedient het lopen; studenten monteren hun eigen componenten (ogen, noodstop, logger, IMU,
+        bedient het lopen; jullie monteren je eigen componenten (ogen, noodstop, logger, IMU,
         neus) op vaste montagepunten met een eigen Pico.</li>
     <li>Reserveonderdelen: 3D-geprinte montagebeugels voor Pico + breadboard op de rug.</li>
   </ul>
   <div class="letop"><b>Servo-voeding:</b> één SG90 mag even van VBUS (5 V USB) snoepen, maar bij
     twee servo's of haperingen: externe 5 V-voeding gebruiken en GND's koppelen. Nooit een servo
     op de 3V3-pin — die levert te weinig stroom. De STS3215-servo's van de echte Bello hebben hun
-    eigen voeding en busaansturing: daar blijven studentenhanden af, behalve onder begeleiding.</div>
+    eigen voeding en busaansturing: daar blijven jullie handen af, behalve onder begeleiding.</div>
 </section>
 
 <!-- ================= BRONNEN ================= -->
@@ -1424,11 +1422,11 @@ while robot.step(timestep) != -1:
   <h2>Bronnen &amp; verantwoording</h2>
   <ul>
     <li><b>De Programmeursleerling — Leren coderen met Python 3</b>, Pieter Spronck (CC BY-NC,
-        <a href="http://www.spronck.net/pythonbook">spronck.net/pythonbook</a>).
-        Hoofdstukverwijzingen per week staan in de paarse "Theorie vooraf"-blokken.
-        Gebruikt: H1–8 (kern), H10–13, H16–17, H20; H26 (CSV) als verdieping.</li>
-    <li><b>Get Started with MicroPython on Raspberry Pi Pico</b>, Halfacree &amp; Everard
-        (Raspberry Pi Press, CC BY-NC-SA). Gebruikt: H1–4, H8–10; Appendix B (pinout) is het
+        <a href="https://www.spronck.net/pythonbook/dutchindex.xhtml" target="_blank" rel="noopener">spronck.net/pythonbook</a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf" target="_blank" rel="noopener">pdf</a>).
+        Hoofdstukverwijzingen per week staan in de paarse "Naslag"-blokken en openen de pdf op de juiste pagina.
+        Gebruikt: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=17" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 1 (pdf, pagina 17)">H1–8</a> (kern), <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=151" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 10 (pdf, pagina 151)">H10–13</a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=215" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 16 (pdf, pagina 215)">H16–17</a>, <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=257" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 20 (pdf, pagina 257)">H20</a>; <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=327" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 26 (pdf, pagina 327)">H26</a> (CSV) als verdieping.</li>
+    <li><b><a href="https://magazine.raspberrypi.com/books/get-started-micropython-pico-2ed" target="_blank" rel="noopener">Get Started with MicroPython on Raspberry Pi Pico</a></b>, Halfacree &amp; Everard
+        (Raspberry Pi Press, CC BY-NC-SA). Gebruikt: H1–4, H8–10; <a href="https://datasheets.raspberrypi.com/pico/Pico-R3-A4-Pinout.pdf" target="_blank" rel="noopener">Appendix B (pinout)</a> is het
         vaste naslagblad bij elk practicum vanaf week 6.</li>
     <li><b>Python Cheat Sheet</b> (eigen uitgave): elke les op tafel, elke les op tafel.</li>
     <li><b>Webots</b> (Cyberbotics, gratis &amp; open source): User Guide-tutorials 1 en 4;
@@ -1448,7 +1446,7 @@ while robot.step(timestep) != -1:
         voettraject geport uit <code>max_walk.py</code>, trot-gait met IMU-koershouder,
         gesloten-lus draaien, alle kaartje-commando's.</li>
     <li><b><code>controllers/max_student/max_speels.py</code></b> — de speelse laag waarmee
-        studenten beginnen: trucjes (<code>blaf</code>, <code>geef_poot</code>,
+        je begint: trucjes (<code>blaf</code>, <code>geef_poot</code>,
         <code>kwispel</code>, …) opgebouwd uit dezelfde primitieven als de API, plus
         oneliners in de console en een kleine toestand (honger/energie/blijheid) voor de
         dictionary-week.</li>

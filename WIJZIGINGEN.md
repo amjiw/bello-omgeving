@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.09b - zo maak je een opdracht, week 1 B2
+
+- De installatiehandleiding (ook de pdf in de zip) legt uit hoe je een opdracht maakt: A-opdrachten als los Python-bestand met de afspeelknop en de terminal, B-opdrachten in `mijn_code.py`. Dezelfde uitleg staat op de cursuspagina onder "Zo maak je een opdracht".
+- Cursuspagina: week 1 B2 gaat over het blok dat voor Bello staat (er is geen bal in de wereld); `bello.positie()` staat in de API-tabel; de Python Cheat Sheet is een link die in een nieuw tabblad opent.
+
 ## 2026.11.09a - één cursuspagina, installatiehandleiding, boeken per hoofdstuk
 
 - De cursus heeft nu één pagina voor studenten: https://amjiw.github.io/bello-omgeving/ (leeruitkomsten, weken, opdrachten, AI-tutor, beoordeling). De tutor linkt bij zijn bronnen rechtstreeks naar die pagina.

@@ -66,6 +66,7 @@
   .opdracht b:first-child { color: var(--groen); }
   .maxlink { background: var(--oranje-licht); border-left: 4px solid var(--oranje); padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
   .maxlink b:first-child { color: var(--oranje); }
+  blockquote { margin: .8rem 0; padding: .4rem 1rem; border-left: 4px solid var(--blauw-licht); color: #3b4a66; }
   .proef { background: #fce9ef; border-left: 4px solid #b0295e; padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
   .proef b:first-child { color: #b0295e; }
   .letop { background: var(--geel-licht); border-left: 4px solid var(--geel-rand); padding: .7rem 1rem; border-radius: 0 8px 8px 0; margin: .8rem 0; }
@@ -129,7 +130,7 @@
   <a href="#overzicht">Overzicht</a>
   <a href="#maxapi">Bello-API</a>
   <a href="#omgeving">Bello-omgeving</a>
-  <a href="#w1">W1</a><a href="#w2">W2</a><a href="#w3">W3</a><a href="#w4">W4</a><a href="#w5">W5</a>
+  <a href="#w1">W1</a><a href="#w2">W2</a><a href="#w3">W3</a><a href="#aitutor">AI-tutor</a><a href="#w4">W4</a><a href="#w5">W5</a>
   <a href="#w6">W6</a><a href="#w7">W7</a><a href="#w8">W8</a><a href="#w9">W9 toets</a><a href="#w10">W10 herk.</a>
   <a href="#beoordeling">Beoordeling</a>
   <a href="#materiaal">Materiaal</a>
@@ -362,9 +363,17 @@ bello.zeg("Klaar!")</code></pre>
           met 1 decimaal.</li>
       <li><b>B1 (basis):</b> laat Bello een "ereronde" doen: vooruit, groeten (zwaai), rondje om
           zijn eigen as (<code>draai(360)</code>) en weer zitten.</li>
-      <li><b>B2 (verdieping, optioneel):</b> laat Bello eerst vragen hoeveel graden hij moet draaien en rapporteer daarna
+      <li><b>B2 (debuggen):</b> hieronder staat code die Bello naar de bal <i>zou moeten</i> laten lopen,
+          maar hij loopt er telkens net voorbij ("boink" tegen de muur). Verander precies één getal
+          zodat hij netjes bij de bal stopt en gaat zitten. Meet in de simulatie hoe ver hij per stap
+          komt en beredeneer je antwoord.
+<pre><code>from max_speels import Bello
+bello = Bello()
+bello.loop(8)      # &lt;-- Bello schiet door. Welk getal klopt niet?
+bello.zit()</code></pre></li>
+      <li><b>B3 (verdieping, optioneel):</b> laat Bello eerst vragen hoeveel graden hij moet draaien en rapporteer daarna
           met een f-string hoeveel kwartslagen dat was (gebruik <code>//</code> en <code>%</code>).</li>
-      <li><b>B3 (verdieping, optioneel):</b> bepaal experimenteel de staplengte: laat Bello 10 stappen doen,
+      <li><b>B4 (verdieping, optioneel):</b> bepaal experimenteel de staplengte: laat Bello 10 stappen doen,
           lees de afgelegde afstand af in Webots en bereken de staplengte per stap.</li>
     </ul>
   </div>
@@ -496,17 +505,7 @@ else:
       <li>PL: <a href="https://www.spronck.net/pythonbook/pythonboek.pdf#page=87" target="_blank" rel="noopener" title="De Programmeursleerling, hoofdstuk 7 (pdf, pagina 87)">H7 <i>Iteraties</i></a></li>
     </ul>
   </div>
-  <div class="letop"><b>AI-tutor (deze week, 20 minuten):</b> in de container zit een
-    AI-tutor die <i>hints</i> geeft en geen uitwerkingen: tabblad 3 op de startpagina, en
-    dezelfde tutor in de editor (Ctrl+L) en de terminal (<code>opencode</code>). Hij ziet je
-    <code>mijn_code.py</code> en de laatste foutmelding mee, zoekt in het cursusmateriaal en
-    wordt per vraag iets concreter (vraag terug → begrip met bron → voorbeeld in een andere
-    situatie → de regel waar het misgaat). De uitwerking schrijf je zelf; dat is ook wat de
-    assessment van je vraagt. Zijn kennis komt uit open bronnen: de cursuspagina, het
-    API-kaartje, <i><a href="https://www.spronck.net/pythonbook/pythonboek.pdf" target="_blank" rel="noopener">De Programmeursleerling</a></i>, de officiële Python-tutorial en de
-    MicroPython-quickref, plus je eigen aantekeningen in <code>/werk/tutor/kennis</code>. Je
-    maakt een gratis Groq-account (geen betaalgegevens, stappen in de handleiding, hoofdstuk 8) en
-    zet de sleutel in <code>.env</code>.</div>
+  <div class="letop"><b>AI-tutor (deze week, 20 minuten):</b> in de Bello-omgeving zit een AI-tutor die <i>hints</i> geeft en geen uitwerkingen. Hoe hij werkt, hoe je hem instelt (gratis Groq-account) en de opdrachten AI-1 t/m AI-4 staan in het blok <a href="#aitutor">AI-tutor</a> direct na deze week.</div>
 
   <h3>Voorbeelden</h3>
   <span class="codetitel">voorbeeld 1 — maattabel.py (PC): een tabel genereren met for + range</span>
@@ -591,6 +590,359 @@ bello.loop(3)</code></pre>
 </section>
 
 <!-- ================= WEEK 4 ================= -->
+<!-- ================= AI-TUTOR (na week 3) ================= -->
+<section class="blok" id="aitutor">
+<h2>AI-tutor (20 minuten in week 3) — hints, geen antwoorden</h2>
+<blockquote>
+<p><i>Bello opvoeden, week 3-extra:</i> Bello krijgt een hulpje. Niet om jouw werk te doen, maar
+om naast je te zitten: een foutmelding helpen lezen, een begrip uitleggen, een vraag
+terugstellen. De uitwerking schrijf jij — en in week 9 moet jij je eigen code kunnen
+uitleggen en live aanpassen, niet de AI.</p>
+</blockquote>
+<div class="doelen"><b>Wat je na deze 20 minuten kunt</b>
+<ul>
+<li>de AI-tutor gebruiken op twee plekken: het Tutor-tabblad en de editor (Ctrl+L);</li>
+<li>uitleggen waarom de tutor je géén uitwerking geeft, en wat hij wél doet (de hint-ladder);</li>
+<li>de twee taalmodellen instellen: Groq (gratis, zonder betaalgegevens) → klein
+  lokaal model, en weten welke de tutor op dat moment gebruikt;</li>
+<li>eigen kennis aan de tutor geven (je aantekeningen) en zien dat hij die, net als de open
+  bronnen, als bron noemt;</li>
+<li>een antwoord van een AI <b>kritisch controleren</b> aan de hand van wat Bello doet;</li>
+<li>(verdieping) OpenCode op je eigen laptop zetten en een eigen agent bouwen die uit een boek
+  antwoordt.</li>
+</ul></div>
+<h3>Spelregels (lees dit eerst)</h3>
+<ul>
+<li>AI-hulp mág in dit vak, maar je noemt het in je reflectie (zie de spelregels in de <a href="https://amjiw.github.io/bello-omgeving/" target="_blank" rel="noopener">studiehandleiding</a>). Je levert geen regel code in die je niet zelf kunt uitleggen.</li>
+<li>De tutor geeft hints, geen antwoorden. Aandringen helpt niet; dat is geen storing maar de
+  afspraak. Wat je wél kunt doen: je vraag kleiner maken ("waarom stopt mijn loop niet?" in plaats
+  van "maak mijn code af").</li>
+<li>Je token is persoonlijk: nooit delen, nooit in code zetten, nooit in Git. Zet ook geen
+  wachtwoorden of persoonsgegevens in een prompt.</li>
+<li>De gratis dienst is experimenteel: geen garantie. Daarom een lokaal model als reserve; de
+  tutor pakt dat zelf als de cloud stokt.</li>
+<li>Wat de AI zegt is een <i>voorstel</i>. Bello is de scheidsrechter: draai de code en kijk wat hij
+  doet.</li>
+</ul>
+<h3>Hoe de tutor werkt</h3>
+<p>Elke vraag, uit welke ingang ook, gaat door dezelfde kleine dienst in de container
+(<code>tutor.py</code>, poort 8090). Die doet vijf dingen voordat het taalmodel iets mag zeggen:</p>
+<ol>
+<li><b>Meekijken.</b> Hij leest je <code>mijn_code.py</code> en de laatste foutmelding uit de console, en
+  schat in welke week je zit aan wat je code al gebruikt.</li>
+<li><b>Het soort hint kiezen.</b> Een klein lokaal <i>beslismodel</i> (Ollaya, draait naast de
+  container, ~0,5 s) kiest uit: foutmelding lezen, begrip uitleggen, vraag terug, "uitwerking
+  gevraagd", buiten de cursus, of naar de docent. Een beslismodel schrijft geen tekst; het kiest
+  alleen, met een kans erbij. Is het er niet, dan kiezen eenvoudige regels.</li>
+<li><b>Zoeken in het cursusmateriaal.</b> De drie meest relevante stukjes uit de cursuspagina,
+  de trucjeskaart, de cursusnotitie <i>Foutmeldingen lezen</i>, de open bronnen
+  (<i>De Programmeursleerling</i>, de Python-tutorial, de MicroPython-quickref) en alles wat jij
+  zelf in <code>/werk/tutor/kennis</code> zet. Elk stukje heeft een bron, en die noemt de tutor als aanklikbare link.</li>
+<li><b>De hint-ladder.</b> Hoe vaker je in hetzelfde gesprek doorvraagt, hoe concreter de hint:
+  <i>1</i> een vraag terug · <i>2</i> het begrip met de bron · <i>3</i> een voorbeeld in een
+  andere situatie (hoogstens drie regels) · <i>4</i> de regel waar het misgaat, zonder de
+  verbeterde regel.</li>
+<li><b>Het taalmodel</b> schrijft dan de hint: Groq → lokaal, de eerste die
+  antwoordt. Onder elk antwoord in het Tutor-tabblad staat welk soort hint het was, welke stap,
+  welk taalmodel en welke bronnen.</li>
+</ol>
+<p>Alles komt in een lokaal <b>logboek</b> (knop <i>logboek</i> op het tabblad): tijd, je vraag,
+het soort hint, de stap en het fouttype. Geen namen, niets verlaat je laptop behalve de vraag
+naar het taalmodel. Jij kunt het inzien en wissen; bij de assessment mag de docent ernaar vragen om
+te zien waar je vastliep.</p>
+<h3>De taalmodellen</h3>
+<table>
+<thead>
+<tr>
+<th>Volgorde</th>
+<th>Taalmodel</th>
+<th>Wat is het</th>
+<th>Wanneer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><b>Groq</b></td>
+<td>Open modellen (<code>openai/gpt-oss-20b</code>) op Groq's eigen chips, erg snel (~1 s per
+  hint). Gratis tier zonder betaalgegevens; account via e-mail, Google of GitHub op
+  <code>console.groq.com</code>, sleutel onder <i>API Keys</i>. Limiet per sleutel (orde 30 per
+  minuut, 1000 per dag). Prompts worden standaard niet bewaard; servers in de VS.</td>
+<td>standaard</td>
+</tr>
+<tr>
+<td>2</td>
+<td><b>Ollama lokaal</b></td>
+<td><code>qwen3.5:4b</code> (3,4 GB) op je eigen laptop. Werkt offline, niets verlaat je machine,
+  maar traag (tientallen seconden per hint) en minder slim. Op 8 GB RAM: <code>qwen3.5:2b</code>.</td>
+<td>backup: geen internet, privacy, of om te voelen wat een klein model (niet) kan</td>
+</tr>
+<tr>
+<td>–</td>
+<td><b>Ollama Cloud</b> en <b>Hetzner</b> (alleen docent)</td>
+<td>Ollama Cloud rekent sinds 2026 per token af en geeft zonder tegoed HTTP 402; Hetzner
+  Inference is gratis en EU-gehost, maar het account vraagt betaalgegevens. Daarom geen van
+  beide voor jou; de docent kan ze als extra taalmodel instellen.</td>
+<td>optioneel</td>
+</tr>
+</tbody>
+</table>
+<h3>Route A — de Bello-omgeving (10 minuten)</h3>
+<p>De Bello-omgeving heeft de tutor, Ollaya en de taalmodellen al aan boord. Maak een account op
+<code>console.groq.com</code> (met je schoolmail, Google of GitHub), maak een sleutel aan onder
+<i>API Keys</i>, open in je map <code>bello-omgeving</code> het bestand <code>.env</code> en plak de
+sleutel achter <code>GROQ_API_KEY=</code>. Daarna <code>stoppen.cmd</code> en <code>starten.cmd</code>: de
+omgeving leest <code>.env</code> alleen bij het starten. Stap voor stap, met plaatjes van wat je ziet:
+hoofdstuk 8 van de <a href="https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-handleiding.pdf">handleiding</a>. Lokale AI erbij (alleen met 16 GB werkgeheugen):
+<code>ai_lokaal_aan.cmd</code>.</p>
+<p>Open daarna <code>http://localhost:8000</code>. De tutor zit op twee plekken, en het is dezelfde:</p>
+<ul>
+<li><b>Tegel 3, het Tutor-tabblad</b>: chat met statusregel (taalmodel, Ollaya aan/uit, omvang van de
+  kennisbank, geschatte week). Staat er een fout in de console, dan verschijnt de knop
+  <i>Hint bij de … op regel …?</i>; in het 3D-tabblad staat dan dezelfde link in de kop van de console.</li>
+<li><b>De editor</b> (tegel 2): het Continue-icoon in de zijbalk of Ctrl+L. Alleen chatten; de
+  tutor bewerkt je code niet.</li>
+</ul>
+<p>Laptop met 8 GB? Zet <code>MAX_AI_MODEL=qwen3.5:2b</code> in <code>.env</code>. Het lokale model aan- of
+uitzetten om geheugen te sparen: <code>ai_lokaal_aan.cmd</code> / <code>ai_lokaal_uit.cmd</code>.</p>
+<h3>Eigen kennis voor de tutor</h3>
+<p>In het werkvolume staat de map <code>/werk/tutor/kennis</code> (open hem in de editor via
+<i>File → Open Folder → /werk/tutor/kennis</i>). Alles wat je daar neerzet als <code>.md</code>,
+<code>.txt</code>, <code>.html</code> of <code>.pdf</code> doorzoekt de tutor binnen een minuut mee, met de
+bestandsnaam (bij pdf's met paginanummer) als bron. Drie dingen horen daar:</p>
+<ul>
+<li><b>Open bronnen, vanzelf opgehaald</b> bij de eerste start met internet, rechtstreeks van de
+  auteur of uitgever: <i>De Programmeursleerling</i> (Spronck, gratis pdf), de tutorial-hoofdstukken
+  van de officiële Python-documentatie (PSF-licentie) en de MicroPython quick reference voor de RP2
+  (MIT). Geen betaalde boeken, niets uit O'Reilly: alles wat de tutor weet, mag je zelf ook gewoon
+  lezen en delen.</li>
+<li><b>Je eigen aantekeningen</b> (<code>mijn_notities.md</code>, met bovenaan <code># Mijn notities</code>):
+  wat jij in je eigen woorden opschrijft, kan de tutor je later teruggeven — en dan zie je
+  "(zie Mijn notities)" onder de hint.</li>
+<li><b>Ander open materiaal</b> (CC- of MIT-licentie, of eigen werk van de docent).</li>
+</ul>
+<p>Er wordt niets getraind en niets geüpload: de tutor zoekt alleen in de tekst en stuurt hoogstens
+drie alinea's mee aan het taalmodel. Een bestand weghalen is genoeg om het uit de kennisbank te halen.</p>
+<h3>Route B (verdieping) — OpenCode op je eigen laptop, zonder tutor ertussen (30 minuten)</h3>
+<p>Wil je zien wat er onder de tutor zit, of thuis zonder container werken? Dan zet je OpenCode
+zelf op je laptop met de taalmodellen rechtstreeks. Let op: dan is er géén hint-bewaking;
+OpenCode schrijft dan echt in je bestanden. De spelregels gelden onverminderd.</p>
+<p><b>Stap 1 — OpenCode.</b> Windows: <code>npm install -g opencode-ai</code> (of
+<code>scoop install opencode</code>). macOS/Linux: <code>curl -fsSL https://opencode.ai/install | bash</code>.
+Controleer met <code>opencode --version</code>.</p>
+<p><b>Stap 2 — Ollama (lokaal taalmodel).</b> Installeer Ollama via ollama.com/download en haal
+het kleine model op:</p>
+<pre><code>ollama pull qwen3.5:4b
+ollama run qwen3.5:4b "Leg in één zin uit wat een variabele is."
+</code></pre>
+<p>OpenCode wil een context van minstens 64k tokens. Zet daarom de omgevingsvariabele
+<code>OLLAMA_CONTEXT_LENGTH=65536</code> (Windows: <code>setx OLLAMA_CONTEXT_LENGTH 65536</code>, daarna
+Ollama opnieuw starten). Dat kost werkgeheugen: heb je 8 GB, neem dan <code>qwen3.5:2b</code>.</p>
+<p><b>Stap 3 — sleutel (cloud-taalmodel).</b></p>
+<ul>
+<li><i>Groq:</i> maak een account op <code>console.groq.com</code> en maak een sleutel aan onder
+  <i>API Keys</i>. Gratis, zonder betaalgegevens.</li>
+<li><i>Ollama Cloud (optioneel):</i> sleutel onder <code>ollama.com/settings/keys</code>, maar de API
+  werkt alleen met gekocht tegoed.</li>
+<li><i>Hetzner (optioneel, niet nodig):</i> <code>experiments.hetzner.com/inference</code> is gratis en
+  EU-gehost, maar het account vraagt betaalgegevens. Sla hem over, tenzij je al een Hetzner-account hebt.</li>
+</ul>
+<p>Zet ze als omgevingsvariabelen (niet in een bestand in je project!):</p>
+<pre><code># Windows (PowerShell), daarna een nieuwe terminal openen
+setx GROQ_API_KEY    "jouw-groq-sleutel"
+setx OLLAMA_API_KEY  "jouw-ollama-sleutel"   # alleen als je tegoed hebt
+# macOS/Linux: dezelfde twee regels als  export NAAM="..."  in ~/.bashrc of ~/.zshrc
+</code></pre>
+<p><b>Stap 4 — één configuratiebestand met drie taalmodellen.</b> Maak
+<code>~/.config/opencode/opencode.json</code> (Windows:
+<code>%USERPROFILE%\.config\opencode\opencode.json</code>):</p>
+<pre><code>{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "groq": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "1. Groq (gratis, standaard)",
+      "options": {
+        "baseURL": "https://api.groq.com/openai/v1",
+        "apiKey": "{env:GROQ_API_KEY}"
+      },
+      "models": {
+        "openai/gpt-oss-20b": { "name": "gpt-oss 20B (Groq)" }
+      }
+    },
+    "ollama-cloud": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama Cloud (optioneel, vraagt tegoed)",
+      "options": {
+        "baseURL": "https://ollama.com/v1",
+        "apiKey": "{env:OLLAMA_API_KEY}"
+      },
+      "models": {
+        "gpt-oss:20b":  { "name": "gpt-oss 20B (licht, zuinig op je quotum)" },
+        "gpt-oss:120b": { "name": "gpt-oss 120B (zwaarder)" }
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "2. Ollama lokaal (backup)",
+      "options": {
+        "baseURL": "http://localhost:11434/v1",
+        "apiKey": "ollama"
+      },
+      "models": {
+        "qwen3.5:4b": { "name": "Qwen3.5 4B (lokaal)" }
+      }
+    }
+  },
+  "model": "groq/openai/gpt-oss-20b"
+}
+</code></pre>
+<p>De actuele cloudmodellen van Ollama staan op <code>ollama.com/search?c=cloud</code>; vervang de
+namen onder <code>ollama-cloud</code> als een model verdwenen is. Sneller alternatief voor het lokale taalmodel:
+<code>ollama launch opencode</code> (Ollama 0.15+) schrijft die configuratie voor je.</p>
+<p><b>Stap 5 — je eerste gesprek.</b> Ga naar je Bello-map en start OpenCode:</p>
+<pre><code>cd cursus/controllers/max_student
+opencode
+</code></pre>
+<p>Typ <code>/models</code>: je ziet je taalmodellen. Stel dan je eerste vraag:</p>
+<pre><code>Leg mij regel voor regel uit wat mijn_code.py doet. Ik ben eerstejaars en ken nog geen Python.
+</code></pre>
+<p>En daarna een opdracht die het bestand verandert — kijk goed wat er gebeurt, want OpenCode
+<i>schrijft echt in je bestanden</i>:</p>
+<pre><code>Voeg aan mijn_code.py toe dat Bello na het blaffen een poot geeft en daarna twee rondjes
+om zijn as draait. Gebruik alleen commando's van de trucjeskaart in week 1.
+</code></pre>
+<p>Sla op, kijk in Webots. Klopt het niet? <code>/undo</code> draait de wijziging terug.</p>
+<p><b>Stap 6 — wisselen van taalmodel.</b> Krijg je <code>429</code> (te veel verzoeken) of blijft het hangen:
+even wachten. Geen internet: <code>/models</code> → het lokale model. Met <code>/init</code> maakt OpenCode een
+<code>AGENTS.md</code> in je project; zet daar in dat Bello via <code>max_speels</code> wordt bestuurd en dat de
+commando's op de trucjeskaart staan — dan hoef je dat niet elke keer uit te leggen.</p>
+<h3>Je eigen agent, met kennis uit een boek</h3>
+<p>Een <b>agent</b> in OpenCode is een rol met een eigen instructie, eigen model en eigen rechten.
+Je bouwt er nu één die alleen antwoordt uit hoofdstukken die jíj aan het lezen bent — een
+"boekencoach" die hints geeft in plaats van uitwerkingen.</p>
+<p><b>1. Kennis verzamelen.</b> Maak in je project een map <code>kennis/</code> en zet die in
+<code>.gitignore</code>. Gebruik alleen open bronnen: <i>De Programmeursleerling</i> staat gratis
+online (spronck.net), de Python-tutorial op docs.python.org (PSF-licentie) en de MicroPython-docs
+(MIT) mag je gewoon kopiëren. Sla het hoofdstuk van deze week als tekst op en zet de bron (boek,
+hoofdstuk, URL) op de eerste regel. Geen betaalde boeken en niets uit O'Reilly: die licenties
+staan kopiëren niet toe. Je eigen aantekeningen en samenvattingen zijn minstens zo bruikbaar:
+wat jij in je eigen woorden opschrijft, kan de coach later aan je teruggeven.</p>
+<pre><code>kennis/
+├── pl_h6_condities.txt     # De Programmeursleerling, H6 (gratis online)
+├── python_tutorial_loops.txt  # docs.python.org, tutorial "Control flow" (PSF-licentie)
+└── mijn_notities.md        # jouw eigen samenvatting van de les
+</code></pre>
+<p><b>2. De agent beschrijven.</b> Maak <code>.opencode/agents/boekencoach.md</code> in je project:</p>
+<pre><code>---
+description: Beantwoordt vragen uit de hoofdstukken in kennis/, met bronvermelding, alleen hints
+mode: subagent
+model: groq/openai/gpt-oss-20b
+temperature: 0.2
+permission:
+  edit: deny
+  bash: deny
+---
+Je bent een studiecoach voor een eerstejaars werktuigbouwkunde-student.
+Lees eerst de bestanden in de map kennis/. Antwoord uitsluitend op basis van die tekst
+en noem bij elk antwoord het bestand en de bron-URL. Staat het er niet in, zeg dan:
+"Dat staat niet in mijn hoofdstukken." Geef nooit een volledige uitwerking van een
+opdracht; geef een hint en een verwijzing naar de passage waar het staat.
+</code></pre>
+<p><b>3. Gebruiken.</b> In OpenCode roep je hem aan met een apenstaartje:</p>
+<pre><code>@boekencoach wat is volgens het boek het verschil tussen een list en een tuple?
+@boekencoach waar staat in het Pico-hoofdstuk hoe ik een knop met pull-down aansluit?
+</code></pre>
+<p>Omdat de agent geen bestanden mag wijzigen en geen commando's mag draaien
+(<code>edit: deny</code>, <code>bash: deny</code>), kan hij niets slopen — hij kan alleen lezen en uitleggen.
+Dat is de eerste les over agents: <b>geef precies de rechten die nodig zijn, niet meer</b>.</p>
+<div class="opdracht"><b>Opdrachten</b>
+<ul>
+<li><b>AI-1 (basis).</b> Route A werkend: lever een screenshot van het Tutor-tabblad in met de
+  statusregel (taalmodel, Ollaya), plus één vraag over <code>mijn_code.py</code> mét jouw oordeel: klopte
+  de hint, en wat heb je er vervolgens zelf mee gedaan?</li>
+<li><b>AI-2.</b> Zet expres een fout in je code (<code>bello.loop("drie")</code>), klik op
+  <i>Hint bij de TypeError…</i> en vraag daarna twee keer door. Noteer per antwoord de hint-stap en
+  of de tutor zich aan "geen uitwerking" hield. Controleer de uitleg aan de hand van wat Bello doet.</li>
+<li><b>AI-3.</b> Schrijf <code>mijn_notities.md</code> (vijf regels over loops, in je eigen woorden) en
+  zet hem in <code>/werk/tutor/kennis</code>. Stel een vraag over loops en kijk of je notities als bron
+  verschijnen, naast de open bronnen.</li>
+<li><b>AI-4 (uitdaging, route B).</b> Zet OpenCode op je eigen laptop met de taalmodellen
+  rechtstreeks (zonder tutor ertussen) en bouw de <code>@boekencoach</code> hieronder. Vergelijk: wat
+  doet die anders dan de tutor, en welke van de twee zou jij een klasgenoot aanraden?</li>
+<li><b>Reflectie (3 zinnen, in je logboek):</b> waar zat de AI fout, en hoe heb je dat ontdekt?</li>
+</ul></div>
+<div class="maxlink"><b>Onder de motorkap:</b> Als jij een vraag typt, gaat die niet rechtstreeks naar het taalmodel. De tutor-dienst bouwt
+eerst zelf de opdracht voor het model: de spelregels (hints, geen uitwerking, hoogstens drie regels
+code, Nederlands), het soort hint dat Ollaya koos, de hint-stap, jouw code, de laatste foutmelding
+en de drie gevonden stukjes cursusmateriaal. Pas dán gaat het geheel via HTTPS naar Groq (of naar het
+lokale model), en het antwoord stroomt woord voor woord terug naar jouw scherm. De "gereedschapsaanroepen"
+waarmee OpenCode normaal bestanden wijzigt, haalt de tutor weg: daarom kan hij alleen praten.
+Daarom doet het lokale model het ook trager: jouw laptop moet dat hele model zelf doorrekenen. En
+daarom is <code>429</code> geen fout van jou: het is de server die zegt "te veel verzoeken" — de
+tutor probeert dan het volgende taalmodel.</div>
+<table>
+<thead>
+<tr>
+<th>Onderdeel</th>
+<th>Waar draait het</th>
+<th>Wat gebeurt er met je vraag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tutor-dienst + kennisbank</td>
+<td>je eigen laptop (container)</td>
+<td>leest mee, zoekt, bouwt de opdracht; logboek blijft lokaal</td>
+</tr>
+<tr>
+<td>Ollaya (beslismodel)</td>
+<td>je eigen laptop (container)</td>
+<td>ziet alleen je vraag en "fout ja/nee"; kiest het soort hint</td>
+</tr>
+<tr>
+<td>Groq</td>
+<td>VS</td>
+<td>standaard niet bewaard; hoogstens 30 dagen bij storingsonderzoek. Stuur geen gevoelige data</td>
+</tr>
+<tr>
+<td>Ollama Cloud / Hetzner (alleen docent)</td>
+<td>VS/EU</td>
+<td>inhoud wordt niet bewaard</td>
+</tr>
+<tr>
+<td>Ollama lokaal</td>
+<td>je eigen laptop</td>
+<td>verlaat je machine niet</td>
+</tr>
+</tbody>
+</table>
+<h3>Zelftoets</h3>
+<ol>
+<li>Waarom staat Groq vooraan in de volgorde en het lokale model achteraan?</li>
+<li>Wat betekent HTTP <code>429</code>, en wat doet de tutor dan?</li>
+<li>Waarom geeft de tutor na vier keer doorvragen nog steeds niet de verbeterde regel?</li>
+<li>Wat is het verschil tussen een beslismodel (Ollaya) en een taalmodel (Qwen)?</li>
+<li>Wat controleer je altijd voordat je code inlevert waar AI aan te pas kwam?</li>
+</ol>
+<details class="rubriek">
+<summary>Antwoordrichting</summary>
+<ol>
+<li>Groq is gratis, snel en slim genoeg; het lokale model is het minst capabel en traag,
+   maar werkt altijd — ook zonder internet.</li>
+<li>De server weigert tijdelijk omdat er te veel verzoeken per minuut waren. De tutor probeert
+   het volgende taalmodel; jij hoeft niets te doen.</li>
+<li>Omdat de assessment in week 9 vraagt dat jij je eigen code kunt uitleggen en aanpassen. Stap 4
+   wijst de regel aan en zegt wat er misgaat; de verbeterde regel schrijven is precies het stukje
+   leren dat van jou moet komen.</li>
+<li>Een beslismodel kiest uit vaste opties en geeft een kans; het schrijft geen tekst en is daardoor
+   klein en snel. Een taalmodel schrijft tekst en is groot en traag.</li>
+<li>Dat je elke regel begrijpt en kunt uitleggen, en dat Bello in Webots echt doet wat de bedoeling
+   was.</li>
+</ol>
+</details>
+</section>
+
 <section class="week" id="w4">
   <h2><span class="weeklabel">Week 4</span> Leer Bello nieuwe trucjes — functies</h2>
   <div class="doelen"><b>Leerdoelen</b>
@@ -815,12 +1167,13 @@ else:
       <li><b>A2 (verdieping, optioneel):</b> breid de materialentabel (voorbeeld 4) uit met 2 materialen en toon voor een gegeven
           kracht en doorsnede van <i>alle</i> materialen of ze veilig zijn (loop over
           <code>materialen.items()</code>, hergebruik je functies van week 4).</li>
-      <li><b>B1:</b> ontwerp je eigen choreografie-list van minstens 8 stappen en speel hem
-          voorwaarts én achterstevoren af.</li>
+      <li><b>B1:</b> ontwerp je eigen show-list van minstens 8 trucjes of bewegingen en speel hem
+          voorwaarts én achterstevoren af. Welke beweging ziet er gek uit achterstevoren?</li>
       <li><b>B2 (verdieping, optioneel):</b> laat Bello "pootjes geven": til met <code>zet_hoek</code> de poot rechtsvoor
           op in 5 soepele tussenstappen en zet hem weer neer.</li>
-      <li><b>B3 (verdieping, optioneel):</b> maak van je kniebuiging-list een <i>zwaaibeweging van de heup</i>
-          en combineer heup + knie tegelijk (twee lists, één for-loop met <code>zip()</code>).</li>
+      <li><b>B3 (verdieping, optioneel):</b> combineer heup + knie tegelijk (twee lists, één for-loop met
+          <code>zip()</code>): maak van je kniebuiging-list ook een <i>zwaaibeweging van de heup</i> en speel
+          beide samen af.</li>
     </ul>
   </div>
   <div class="letop"><b>Klaar als:</b> A1 en B1 werken en een ander tweetal heeft ze gezien (vinkje). De rest is

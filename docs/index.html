@@ -293,6 +293,7 @@ bello.zit()</code></pre>
     <tr><td><code>bello.zeg(tekst)</code> / <code>bello.wacht(s)</code></td><td>tekst in de console / pauzeer <code>s</code> seconden</td><td>W1</td></tr>
     <tr><td><code>bello.blaf(n)</code> / <code>bello.geef_poot()</code> / <code>bello.kwispel(n)</code> / <code>bello.bedel()</code> / <code>bello.jaag_op_staart(n)</code> / <code>bello.doe_alsof_dood()</code></td><td>trucjes uit <code>max_speels</code>: echte bewegingen uit dezelfde primitieven, met wat karakter</td><td>W1</td></tr>
     <tr><td><code>bello.grappen(False)</code></td><td>zet de oneliners van Bello uit</td><td>W1</td></tr>
+    <tr><td><code>bello.positie()</code></td><td>(x, y) van Bello in meters, om staplengtes na te meten</td><td>W1</td></tr>
     <tr><td><code>bello.grom()</code></td><td>lage waarschuwing (kopje omlaag) — bv. als er iets voor zijn neus staat</td><td>W2</td></tr>
     <tr><td><code>bello.voer()</code> / <code>bello.aai()</code> / <code>bello.toestand()</code></td><td>Tamagotchi-Bello: honger, energie en blijheid als dictionary</td><td>W6</td></tr>
     <tr><td><code>bello.afstand()</code></td><td>afstand (m) tot het obstakel vóór zijn neus</td><td>W2</td></tr>
@@ -448,13 +449,13 @@ bello.zeg("Klaar!")</code></pre>
           met 1 decimaal.</li>
       <li><b>B1 (basis):</b> laat Bello een "ereronde" doen: vooruit, groeten (zwaai), rondje om
           zijn eigen as (<code>draai(360)</code>) en weer zitten.</li>
-      <li><b>B2 (debuggen):</b> hieronder staat code die Bello naar de bal <i>zou moeten</i> laten lopen,
-          maar hij loopt er telkens net voorbij ("boink" tegen de muur). Verander precies één getal
-          zodat hij netjes bij de bal stopt en gaat zitten. Meet in de simulatie hoe ver hij per stap
-          komt en beredeneer je antwoord.
+      <li><b>B2 (debuggen):</b> hieronder staat code die Bello tot vlak vóór het blok <i>zou moeten</i>
+          laten lopen dat recht voor zijn neus staat, maar hij loopt er telkens tegenaan ("boink").
+          Verander precies één getal zodat hij netjes vóór het blok stopt en gaat zitten. Meet in de
+          simulatie hoe ver hij per stap komt (<code>bello.positie()</code> helpt) en beredeneer je antwoord.
 <pre><code>from max_speels import Bello
 bello = Bello()
-bello.loop(8)      # &lt;-- Bello schiet door. Welk getal klopt niet?
+bello.loop(8)      # &lt;-- Bello botst tegen het blok. Welk getal klopt niet?
 bello.zit()</code></pre></li>
       <li><b>B3 (verdieping, optioneel):</b> laat Bello eerst vragen hoeveel graden hij moet draaien en rapporteer daarna
           met een f-string hoeveel kwartslagen dat was (gebruik <code>//</code> en <code>%</code>).</li>

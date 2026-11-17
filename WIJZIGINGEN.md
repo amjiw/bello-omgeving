@@ -2,6 +2,12 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.17 - mijn_code_origineel.py
+
+- Naast `mijn_code.py` staat nu `mijn_code_origineel.py`: het startbestand zoals het bedoeld is. Loopt Bello vast door je code, kopieer de inhoud daarvan naar `mijn_code.py` en sla op. Dit bestand wordt bij elke start en bij `bijwerken.cmd` opnieuw neergezet; je eigen `mijn_code.py` blijft altijd staan.
+- De uitleg bovenaan `mijn_code.py` klopt weer met de omgeving in de browser (geen Thonny of Webots-knoppen meer).
+- `bijwerken.cmd` (in de nieuwe zip) herstart de omgeving altijd, ook als er geen nieuwe versie is, zodat de cursusbestanden vers zijn.
+
 ## 2026.11.09b - zo maak je een opdracht, week 1 B2
 
 - De installatiehandleiding (ook de pdf in de zip) legt uit hoe je een opdracht maakt: A-opdrachten als los Python-bestand met de afspeelknop en de terminal, B-opdrachten in `mijn_code.py`. Dezelfde uitleg staat op de cursuspagina onder "Zo maak je een opdracht".

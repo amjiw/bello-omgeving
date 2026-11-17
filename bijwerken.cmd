@@ -18,7 +18,9 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
-docker compose --profile pico up -d
+rem --force-recreate: ook zonder nieuwe versie herstarten, zodat de cursusbestanden en
+rem mijn_code_origineel.py altijd opnieuw worden neergezet (mijn_code.py blijft staan).
+docker compose --profile pico up -d --force-recreate
 docker image prune -f >nul
 echo.
 echo Bijgewerkt. Open http://localhost:8000 en kijk onder "wat is er nieuw".

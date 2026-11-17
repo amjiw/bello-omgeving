@@ -752,7 +752,7 @@ te zien waar je vastliep.</p>
 <td><b>Groq</b></td>
 <td>Open modellen (<code>openai/gpt-oss-20b</code>) op Groq's eigen chips, erg snel (~1 s per
   hint). Gratis tier zonder betaalgegevens; account via e-mail, Google of GitHub op
-  <code>console.groq.com</code>, sleutel onder <i>API Keys</i>. Limiet per sleutel (orde 30 per
+  <a href="https://console.groq.com/login" target="_blank" rel="noopener" title="Groq: aanmelden of inloggen (nieuw tabblad)">console.groq.com</a>, sleutel onder <i><a href="https://console.groq.com/keys" target="_blank" rel="noopener" title="Groq: API Keys (nieuw tabblad)">API Keys</a></i>. Limiet per sleutel (orde 30 per
   minuut, 1000 per dag). Prompts worden standaard niet bewaard; servers in de VS.</td>
 <td>standaard</td>
 </tr>
@@ -775,8 +775,8 @@ te zien waar je vastliep.</p>
 </table>
 <h3>Route A — de Bello-omgeving (10 minuten)</h3>
 <p>De Bello-omgeving heeft de tutor, Ollaya en de taalmodellen al aan boord. Maak een account op
-<code>console.groq.com</code> (met je schoolmail, Google of GitHub), maak een sleutel aan onder
-<i>API Keys</i>, open in je map <code>bello-omgeving</code> het bestand <code>.env</code> en plak de
+<a href="https://console.groq.com/login" target="_blank" rel="noopener" title="Groq: aanmelden of inloggen (nieuw tabblad)">console.groq.com</a> (met je schoolmail, Google of GitHub), maak een sleutel aan onder
+<i><a href="https://console.groq.com/keys" target="_blank" rel="noopener" title="Groq: API Keys (nieuw tabblad)">API Keys</a></i>, open in je map <code>bello-omgeving</code> het bestand <code>.env</code> en plak de
 sleutel achter <code>GROQ_API_KEY=</code>. Daarna <code>stoppen.cmd</code> en <code>starten.cmd</code>: de
 omgeving leest <code>.env</code> alleen bij het starten. Stap voor stap, met plaatjes van wat je ziet:
 hoofdstuk 8 van de <a href="https://github.com/amjiw/bello-omgeving/releases/latest/download/bello-handleiding.pdf">installatiehandleiding</a>. Lokale AI erbij (alleen met 16 GB werkgeheugen):
@@ -826,8 +826,8 @@ ollama run qwen3.5:4b "Leg in één zin uit wat een variabele is."
 Ollama opnieuw starten). Dat kost werkgeheugen: heb je 8 GB, neem dan <code>qwen3.5:2b</code>.</p>
 <p><b>Stap 3 — sleutel (cloud-taalmodel).</b></p>
 <ul>
-<li><i>Groq:</i> maak een account op <code>console.groq.com</code> en maak een sleutel aan onder
-  <i>API Keys</i>. Gratis, zonder betaalgegevens.</li>
+<li><i>Groq:</i> maak een account op <a href="https://console.groq.com/login" target="_blank" rel="noopener" title="Groq: aanmelden of inloggen (nieuw tabblad)">console.groq.com</a> en maak een sleutel aan onder
+  <i><a href="https://console.groq.com/keys" target="_blank" rel="noopener" title="Groq: API Keys (nieuw tabblad)">API Keys</a></i>. Gratis, zonder betaalgegevens.</li>
 <li><i>Ollama Cloud (optioneel):</i> sleutel onder <code>ollama.com/settings/keys</code>, maar de API
   werkt alleen met gekocht tegoed.</li>
 <li><i>Hetzner (optioneel, niet nodig):</i> <code>experiments.hetzner.com/inference</code> is gratis en

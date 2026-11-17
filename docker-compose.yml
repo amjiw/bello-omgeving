@@ -1,4 +1,4 @@
-# Bello-omgeving voor studenten, versie 2026.11.17 (gegenereerd door uitbrengen.py; niet bewerken)
+# Bello-omgeving voor studenten, versie 2026.11.17b (gegenereerd door uitbrengen.py; niet bewerken)
 # Starten: starten.cmd   Bijwerken: bijwerken.cmd   Stoppen: stoppen.cmd
 services:
   max:
@@ -23,6 +23,7 @@ services:
       OLLAYA_MODEL: ${OLLAYA_MODEL:-laya:multilingual}
     volumes:
       - max_werk:/werk            # student-werk blijft bewaard; wissen: docker compose down -v
+      - ./wereld:/werk/eigen_wereld   # verdieping: eigen Webots-wereld, op de laptop te bewerken
     init: true                  # nette PID 1 (signalen, zombies); Webots draait in een herstart-lus
     shm_size: 512m
     stop_grace_period: 5s

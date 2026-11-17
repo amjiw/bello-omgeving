@@ -2,6 +2,12 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.17b - verdieping: je eigen wereld en eigen sensoren
+
+- In je map `bello-omgeving` komt een map `wereld` met `mijn_wereld.wbt`, een kopie van Bello's wereld. Die kun je met Webots R2025a op je laptop aanpassen: obstakels, lampen, of extra sensoren op Bello. Zet `MAX_WERELD=mijn_wereld.wbt` in `.env` en start opnieuw; daarna herstart de 3D-wereld vanzelf als je opslaat. Uitleg in `wereld\LEESMIJ.txt` en in de installatiehandleiding (veelgestelde vragen).
+- Nieuw op het API-kaartje (verdieping): `bello.apparaat("naam")` geeft een sensor of LED die je zelf op Bello hebt gezet, al aangezet. Een verkeerde naam geeft een melding met de namen die Bello wel heeft.
+- Bestaat de wereld uit `MAX_WERELD` niet, dan start de omgeving gewoon met de standaardwereld in plaats van te stoppen.
+
 ## 2026.11.17 - mijn_code_origineel.py
 
 - Naast `mijn_code.py` staat nu `mijn_code_origineel.py`: het startbestand zoals het bedoeld is. Loopt Bello vast door je code, kopieer de inhoud daarvan naar `mijn_code.py` en sla op. Dit bestand wordt bij elke start en bij `bijwerken.cmd` opnieuw neergezet; je eigen `mijn_code.py` blijft altijd staan.

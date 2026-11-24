@@ -2,6 +2,11 @@
 
 Nieuwste bovenaan. Bijwerken: dubbelklik op `bijwerken.cmd` (je eigen `mijn_code.py` blijft staan).
 
+## 2026.11.24 - map wereld is een Webots-project
+
+- De map `wereld` heeft nu de indeling van een Webots-project: je wereld staat in `wereld\worlds\mijn_wereld.wbt` (met `meshes` en `textures` ernaast) en er is een map `controllers\max_student` met alleen een melding. Webots op je laptop vindt daardoor de controller en geeft geen waarschuwing meer ("The controller directory has not been found") als je voorwerpen toevoegt. Druk op je laptop nog steeds niet op play: Bello's code draait in de browseromgeving.
+- Had je al een `mijn_wereld.wbt` direct in de map `wereld`? Bij de eerste start verhuist die vanzelf naar `worlds\`, samen met eigen meshes en texturen.
+
 ## 2026.11.17b - verdieping: je eigen wereld en eigen sensoren
 
 - In je map `bello-omgeving` komt een map `wereld` met `mijn_wereld.wbt`, een kopie van Bello's wereld. Die kun je met Webots R2025a op je laptop aanpassen: obstakels, lampen, of extra sensoren op Bello. Zet `MAX_WERELD=mijn_wereld.wbt` in `.env` en start opnieuw; daarna herstart de 3D-wereld vanzelf als je opslaat. Uitleg in `wereld\LEESMIJ.txt` en in de installatiehandleiding (veelgestelde vragen).
